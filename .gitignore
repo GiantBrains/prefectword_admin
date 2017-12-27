@@ -9,17 +9,20 @@ nbproject
 .project
 .settings
 
+# config
+config/db.php
+config/params.php
+
+#ignore index.php
+web/index.php
+
 # windows thumbnail cache
 Thumbs.db
 
 # composer vendor dir
-/vendor
-
+vendor
 # composer itself is not needed
 composer.phar
-
-# Mac DS_Store Files
-.DS_Store
 
 # phpunit itself is not needed
 phpunit.phar
@@ -28,3 +31,6 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
+
+# NodeJS deps
+node_modules/
