@@ -9,11 +9,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
+    
+    <p> <?= Yii::$app->timezone->name ?></p>
 
     <p>
         This is the About page. You may modify the following file to customize its content:
     </p>
-     <?php Yii::$app->timezone->name ?>
+    
 
     <code><?= __FILE__ ?></code>
 </div>
