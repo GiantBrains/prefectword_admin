@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="row">
             <div class="col-lg-5">
+                 <?= Yii::$app->timezone->name ?>
 
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 

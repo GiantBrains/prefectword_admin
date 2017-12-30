@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         This is the About page. You may modify the following file to customize its content:
     </p>
+     <?= Yii::$app->timezone->name ?>
 
     <code><?= __FILE__ ?></code>
 </div>
