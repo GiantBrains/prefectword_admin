@@ -10,6 +10,7 @@ $this->title = 'My Yii Application';
         <h1>Congratulations!</h1>
 
         <p class="lead">You are viewing the doctorate essays backend.</p>
+         <?= Yii::$app->timeZone?>
 
     </div>
 
