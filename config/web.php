@@ -7,7 +7,7 @@ $config = [
     'id' => 'basic',
     'name'=>'Doctorate Essays',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log','timezone'],
+    'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -60,6 +60,10 @@ $config = [
             'class' => 'yii\rbac\DbManager',
             // uncomment if you want to cache RBAC items hierarchy
             // 'cache' => 'cache',
+        ],
+         'timezone' => [
+            'class' => 'yii2mod\timezone\Timezone',
+            'actionRoute' => '/site/timezone' //optional param - full path to page must be specified
         ],
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
