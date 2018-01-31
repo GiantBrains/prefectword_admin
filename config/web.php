@@ -16,6 +16,10 @@ $config = [
         'user' => [
             'class' => 'dektrium\user\Module',
             'controllerMap' => [
+                'settings' => [
+                    'class' => 'dektrium\user\controllers\SettingsController',
+                    'layout' => '@app/views/layouts/order',
+                ],
                 'registration' => [
                     'class' => \dektrium\user\controllers\RegistrationController::className(),
                     'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {

@@ -30,46 +30,90 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Doctorate</strong><strong style="color: midnightblue; font-size: 20px;">Essays</strong>',
-        'brandUrl' => Yii::$app->request->baseUrl.'/',
+        'brandUrl' => Yii::$app->request->baseUrl.'/order/index',
         'options' => [
-            'class' => 'navbar navbar-default1 navbar-fixed-top',
+            'class' => 'navbar navbar-default2 navbar-fixed-top',
         ],
     ]);
 
-    $menuItem []= ['label' => 'Writers', 'url' => ['/'],
-        'active' => $this->context->route == 'site/index',
+    $menuItem []= ['label' => 'My Orders', 'url' => Yii::$app->request->baseUrl.'/order/index',
+        'active' => $this->context->route == 'order/index',
     ];
-    $menuItem []= ['label' => 'How it Works', 'url' => ['/about'],
-        'active' => $this->context->route == 'site/about'
+    $menuItem []= ['label' => 'Create Order', 'url' => Yii::$app->request->baseUrl.'/order/create',
+        'active' => $this->context->route == 'order/create'
     ];
-    $menuItem []=  ['label' => 'Services', 'url' => ['/contact'],
-        'active' => $this->context->route == 'site/contact'
+    $menuItem []=  ['label' => 'Messages', 'url' => Yii::$app->request->baseUrl.'/order/send-message',
+        'active' => $this->context->route == 'order/send-message'
     ];
-    $menuItem []=  ['label' => 'About Us', 'url' => ['/contact'],
-        'active' => $this->context->route == 'site/about'
+    $menuItem []=  ['label' => 'Settings',
+        'items' => [
+            [
+                'label' => '<i class="fa fa-user" aria-hidden="true"></i> &nbsp; <span>Profile</span>',
+                'url' => Yii::$app->request->baseUrl.'/user/settings/profile',
+                'active' => $this->context->route == 'user/settings/profile'
+            ],
+            '<li role="separator" class="divider"></li>',
+            [
+                'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/profile1.png" style="height: 16px; " > &nbsp;<span>Account</span>',
+                'url' => Yii::$app->request->baseUrl.'/user/settings/account',
+                'active' => $this->context->route == 'user/settings/account'
+            ],
+            '<li role="separator" class="divider"></li>',
+            [
+                'label' => '<i class="fa fa-share-square" aria-hidden="true"></i> &nbsp; <span>Networks</span>',
+                'url' => Yii::$app->request->baseUrl.'/user/settings/networks',
+                'active' => $this->context->route == 'user/settings/networks'
+            ],
+        ],
     ];
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
+        'encodeLabels' => false,
         'items' => $menuItem,
     ]);
 
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Log In ' , 'url' => Yii::$app->request->baseUrl.'/user/security/login',
+        $menuItems[] = [
+            'label' => 'Log In ' , 'url' => Yii::$app->request->baseUrl.'/user/security/login',
             'active' => $this->context->route == 'user/security/login',
         ];
+        $menuItems[] = '<a href="'.Yii::$app->request->baseUrl.'/user/register"><button type="button" class="btn btn-primary navbar-btn essay-font">Sign Up</button></a>';
     } else {
+//        $menuItems[] = [
+//            'label' => $this->params['balance']?
+//                '<a style="height: 55px; margin-top: -35px;" href="'.Yii::$app->request->baseUrl.'/wallet/index"> <img style="height: 35px;"
+//            src="'.Yii::$app->request->baseUrl.'/images/rating/wallet.png" >'.'<span style="color: black; font-size: 18px; margin-top: 10px"> $'.number_format(floatval($this->params['balance']),
+//                    2, '.', ',').'</span>':'<a style="height: 55px; margin-top: -35px;" href="'.Yii::$app->request->baseUrl.'/wallet/index"> <img style="height: 35px;"
+//            src="'.Yii::$app->request->baseUrl.'/images/rating/wallet.png"> <span style="color: black; font-size: 18px">$0.00</span>'.'</a>',
+//            'active' => $this->context->route == 'wallet/index'
+//        ];
         $menuItems[] = [
-            'label' => 'Dashboard',
-            'url' => Yii::$app->request->baseUrl.'/site/index',
-            'active' => $this->context->route == 'site/index'
+            'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/profile1.png" style="height: 35px; margin-top: -5px; margin-bottom: -10px" >',
+            'items' => [
+                [
+                    'label' => '<i class="fa fa-user fa-2x" aria-hidden="true"></i> &nbsp; <span style="font-size: 20px">Profile</span>',
+                    'url' => Yii::$app->request->baseUrl.'/user/settings/profile',
+                    'active' => $this->context->route == 'user/settings/profile'
+                ],
+                '<li role="separator" class="divider"></li>',
+                [
+                    'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/wallet3.png" style="height: 32px; " > &nbsp; <span style="font-size: 20px">My Finances</span>',
+                    'url' => Yii::$app->request->baseUrl.'/wallet/index',
+                    'active' => $this->context->route == 'wallet/index'
+                ],
+                '<li role="separator" class="divider"></li>',
+                [
+                    'label' => '<i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> &nbsp; <span style="font-size: 20px"> Logout ('.Yii::$app->user->identity->username.')</span>',
+                    'url' => Yii::$app->request->baseUrl.'/user/security/logout',
+                    'linkOptions' => ['data-method' => 'post']
+                ],
+            ],
         ];
-
-        $menuItems[] = '<a data-method="post" href="'.Yii::$app->request->baseUrl.'/user/security/logout">
-<button type="button" class="btn btn-danger navbar-btn essay-font">Logout ('.Yii::$app->user->identity->username.')</button></a>';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => $menuItems,
     ]);
     NavBar::end();
@@ -86,8 +130,10 @@ AppAsset::register($this);
                     $item = 'home';
                     echo SideNav::widget([
                         'type' => $type,
+                        'indMenuClose'=>'&nbsp;<i class="fa fa-plus" aria-hidden="true"></i>',
+                        'indMenuOpen'=>' &nbsp;<i class="fa fa-minus" aria-hidden="true"></i>',
                         'encodeLabels' => false,
-                        'heading' => '<i class="glyphicon glyphicon-cog"></i> Operations',
+                        'heading' => '<i class="glyphicon glyphicon-cog"></i> Admin Portal',
                         'items' => [
                             //
                             //
@@ -134,31 +180,28 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer" style="background-color: #242a35; height: auto">
-    <div class="container" style="height: auto">
-        <div id="navigation" style=" height: 40px; margin-bottom: 30px">
-            <ul class="pull-left footer-link essay-font" style="font-size: 13px; color: #a1a9b3">
-                <li><a href="#">&nbsp; Become a Writer &nbsp;</a></li>
-                <li><a href="#">&nbsp; Affiliate Program &nbsp;</a></li>
-                <li><a href="#">&nbsp; Blog &nbsp;</a></li>
-                <li><a href="#">&nbsp; FAQ &nbsp;</a></li>
-                <li><a href="#">&nbsp; Reviews &nbsp;</a></li>
-                <li><a href="#">&nbsp; Contact Us &nbsp;</a></li>
-            </ul>
+<footer class="footer" style="background-color: white; border-top-color: #0f0f0f;">
+    <div class="container">
+        <diV class="row" style="margin-top: -5px">
+            <div class="col-md-1"></div>
+            <div class="col-md-5 navigation" style="margin-top: 5px">
+                <ul class="pull-left">
+                    <li><p  class="essay-font" style="font-size: 13px; color: #666666;"><?= Yii::$app->name?> &copy; <?= date('Y') ?>  All Rights Reserved &nbsp; </p></li>
+                    <li><a href="<?= \yii\helpers\Url::to(['site/termss'])?>"> &nbsp; Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <ul class="pull-right pay-cards">
+                    <li><img style="margin-left: 26px" src="<?= Yii::$app->request->baseUrl?>/images/rating/visapro.jpg"  alt="Visa" class="pm visa"></li>
+                    <li><img style="margin-left: 26px" src="<?= Yii::$app->request->baseUrl?>/images/rating/amexpro.jpg" alt="American Express" class="pm ae"></li>
+                    <li><img style="margin-left: 26px" src="<?= Yii::$app->request->baseUrl?>/images/rating/mcard.jpg" alt="MasterCard" class="pm mc"></li>
+                    <li><img style="margin-left: 26px" src="<?= Yii::$app->request->baseUrl?>/images/rating/paypalpro.jpg" alt="PayPal" class="pm paypal"></li>
+                </ul>
+            </div>
+            <div class="col-md-1">
 
-            <ul class="pull-right">
-                <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/visa.png"  width="40px" height="13px"  data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/visa.png" alt="Visa" class="pm visa"></li>
-                <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/amex.png" width="57px" height="19px" data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/amex.png" alt="American Express" class="pm ae"></li>
-                <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/mastercard.png" width="45px" height="27px" data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/mastercard.png" alt="MasterCard" class="pm mc"></li>
-                <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/paypal.png" width="60px" height="17px" data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/paypal.png" alt="PayPal" class="pm paypal"></li>
-                <li><a class="f-link essay-font" style="font-size: 13px;" href="#">Terms and Conditions</a></li>
-                <li><a class="f-link essay-font" style="font-size: 13px;"  href="#">Privacy Policy</a></li>
-            </ul>
-        </div><!-- navigation -->
-
-        <div style="margin-top: 30px">
-            <p  class="essay-font" style="text-align: center; font-size: 13px; color: #a1a9b3"><?= Yii::$app->name?> &copy; <?= date('Y') ?>  All Rights Reserved</p>
-        </div>
+            </div>
+        </diV>
     </div>
 </footer>
 
