@@ -30,7 +30,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Doctorate</strong><strong style="color: midnightblue; font-size: 20px;">Essays</strong>',
-        'brandUrl' => Yii::$app->request->baseUrl.'/order/index',
+        'brandUrl' => Yii::$app->request->baseUrl.'/',
         'options' => [
             'class' => 'navbar navbar-default2 navbar-fixed-top',
         ],
@@ -45,7 +45,7 @@ AppAsset::register($this);
     $menuItem []=  ['label' => 'Messages', 'url' => Yii::$app->request->baseUrl.'/order/send-message',
         'active' => $this->context->route == 'order/send-message'
     ];
-    $menuItem []=  ['label' => 'Settings',
+    $menuItem []=  ['label' => 'Account Settings',
         'items' => [
             [
                 'label' => '<i class="fa fa-user" aria-hidden="true"></i> &nbsp; <span>Profile</span>',
@@ -98,7 +98,7 @@ AppAsset::register($this);
                 ],
                 '<li role="separator" class="divider"></li>',
                 [
-                    'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/wallet3.png" style="height: 32px; " > &nbsp; <span style="font-size: 20px">My Finances</span>',
+                    'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/wallet3.png" style="height: 32px; " > &nbsp; <span style="font-size: 20px">Finances</span>',
                     'url' => Yii::$app->request->baseUrl.'/wallet/index',
                     'active' => $this->context->route == 'wallet/index'
                 ],
@@ -124,7 +124,7 @@ AppAsset::register($this);
     <div class="mycontent">
         <div class="row" style="margin-right: 0; margin-left: 0;">
             <div class="col-md-3">
-                <div>
+                <div class="sidebar">
                     <?php
                     $type = 'primary';
                     $item = 'home';
@@ -133,7 +133,7 @@ AppAsset::register($this);
                         'indMenuClose'=>'&nbsp;<i class="fa fa-plus" aria-hidden="true"></i>',
                         'indMenuOpen'=>' &nbsp;<i class="fa fa-minus" aria-hidden="true"></i>',
                         'encodeLabels' => false,
-                        'heading' => '<i class="glyphicon glyphicon-cog"></i> Admin Portal',
+                        'heading' => '<i class="fa fa-cog fa-spin" aria-hidden="true"></i> Admin Portal',
                         'items' => [
                             //
                             //
@@ -149,20 +149,35 @@ AppAsset::register($this);
                             ['label' => '<i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard', 'url' => Yii::$app->request->baseUrl.'/order/index'],
                             ['label' => '<i class="fa fa-plus " aria-hidden="true"></i> <span class="pull-right badge">10</span> Place Order', 'url' => Yii::$app->request->baseUrl.'/order/create'],
                             ['label' => '<i class="fa fa-list " aria-hidden="true"></i> <span class="pull-right badge">5</span> Pending Orders', 'url' => Yii::$app->request->baseUrl.'/order/pending'],
-                            ['label' => '<i class="fa fa-check " aria-hidden="true"></i> <span class="pull-right badge">5</span> In Progress', 'url' => Yii::$app->request->baseUrl.'/order/progress'],
-                            ['label' => '<i class="fa fa-recycle" aria-hidden="true"></i> <span class="pull-right badge">5</span> Revision', 'url' => Yii::$app->request->baseUrl.'/order/revision'],
-                            ['label' => '<i class="fa fa-edit " aria-hidden="true"></i> <span class="pull-right badge">5</span> Editing', 'url' => Yii::$app->request->baseUrl.'/order/editing'],
-                            ['label' => '<i class="fa fa-trophy " aria-hidden="true"></i> <span class="pull-right badge">5</span> Completed', 'url' => Yii::$app->request->baseUrl.'/order/completed'],
-                            ['label' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i> <span class="pull-right badge">5</span> Approved Orders', 'url' => Yii::$app->request->baseUrl.'/order/approved'],
-                            ['label' => '<i class="fa fa-thumbs-down " aria-hidden="true"></i> <span class="pull-right badge">5</span> Rejected Orders', 'url' => Yii::$app->request->baseUrl.'/order/rejected'],
+                            ['label' => '<i class="fa fa-clock-o" aria-hidden="true"></i> <span class="pull-right badge">5</span> Available Orders', 'url' => Yii::$app->request->baseUrl.'/order/available'],
+                            ['label' => '<i class="fa fa-question-circle-o" aria-hidden="true"></i> <span class="pull-right badge">5</span> Bids', 'url' => Yii::$app->request->baseUrl.'/order/bids'],
+                            ['label' => '<i class="fa fa-tasks" aria-hidden="true"></i> <span class="pull-right badge">5</span> Unconfirmed Orders', 'url' => Yii::$app->request->baseUrl.'/order/unconfirmed'],
+                            ['label' => '<span class="glyphicon glyphicon-check" aria-hidden="true"></span> <span class="pull-right badge">5</span> Confirmed Orders', 'url' => Yii::$app->request->baseUrl.'/order/confirmed'],
+                            ['label' => '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="pull-right badge">5</span> Editing', 'url' => Yii::$app->request->baseUrl.'/order/editing'],
+                            ['label' => '<i class="fa fa-thumbs-up " aria-hidden="true"></i> <span class="pull-right badge">5</span> Completed', 'url' => Yii::$app->request->baseUrl.'/order/completed'],
+                            ['label' => '<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> <span class="pull-right badge"> 5</span> Revision', 'url' => Yii::$app->request->baseUrl.'/order/revision'],
+                            ['label' => '<i class="fa fa-thumbs-down" aria-hidden="true"></i> <span class="pull-right badge"> 5</span> Rejected Orders', 'url' => Yii::$app->request->baseUrl.'/order/rejected'],
                             ['label' => '<i class="fa fa-legal" aria-hidden="true"></i> <span class="pull-right badge"> 5</span> Disputed Orders', 'url' => Yii::$app->request->baseUrl.'/order/disputed'],
-                            ['label' => '<span class="pull-right badge">2</span> Messages', 'icon' => 'bullhorn', 'items' => [
+                            ['label' => '<i class="fa fa-check " aria-hidden="true"></i> <span class="pull-right badge"> 5</span> Approved Orders', 'url' => Yii::$app->request->baseUrl.'/order/approved'],
+                            ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Settings', 'items' => [
+                                ['label' => 'Academic Levels', 'url' => Yii::$app->request->baseUrl.'/level/index'],
+                                ['label' => 'Styles', 'url' => Yii::$app->request->baseUrl.'/style/index'],
+                                ['label' => 'Languages', 'url' => Yii::$app->request->baseUrl.'/language/index'],
+                                ['label' => 'Urgency', 'url' => Yii::$app->request->baseUrl.'/urgency/index'],
+                                ['label' => 'Spacing', 'url' => Yii::$app->request->baseUrl.'/spacing/index'],
+                                ['label' => 'subjects', 'url' => Yii::$app->request->baseUrl.'/subject/index'],
+                                ['label' => 'pages', 'url' => Yii::$app->request->baseUrl.'/page/index'],
+                                ['label' => 'Types', 'url' => Yii::$app->request->baseUrl.'/Type/index'],
+                                ['label' => 'Services', 'url' => Yii::$app->request->baseUrl.'/service/index'],
+                                ['label' => 'Sources', 'url' => Yii::$app->request->baseUrl.'/source/index'],
+                            ]],
+                            ['label' => '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages', 'items' => [
                                 ['label' => 'Unread Messages', 'url' => Yii::$app->request->baseUrl.'/message/unread?type='.$type.''],
                                 ['label' => 'sent items', 'url' => Yii::$app->request->baseUrl.'/message/sent?type='.$type.''],
                                 ['label' => 'Inbox', 'url' => Yii::$app->request->baseUrl.'/message/inbox?type='.$type.''],
                             ],
                             ],
-                            ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Settings', 'items' => [
+                            ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Account Settings', 'items' => [
                                 ['label' => 'Profile', 'url' => Yii::$app->request->baseUrl.'/user/settings/profile'],
                                 ['label' => 'Account', 'url' => Yii::$app->request->baseUrl.'/user/settings/account'],
                                 ['label' => 'Networks', 'url' => Yii::$app->request->baseUrl.'/user/settings/networks'],

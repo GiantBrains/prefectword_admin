@@ -17,6 +17,15 @@ body {
     z-index: -1;
 }
 
+.check-icon {
+    font-size: 50px;
+}
+
+.sidebar {
+    height: 600px;
+    overflow: scroll;
+}
+
 
 .stat-nav li{
     float: left;
