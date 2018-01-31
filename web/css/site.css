@@ -10,8 +10,393 @@ body {
     padding: 0 0 60px;
 }
 
+.essay-font{
+    font-family: 'Open Sans', sans-serif;
+}
+.myslider{
+    z-index: -1;
+}
+
+
+.stat-nav li{
+    float: left;
+    display: inline-block;
+}
+#navigation ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#navigation ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+#navigation li:not(:first-child):before {
+    content: " | ";
+}
+
+.pay-cards li{
+    list-style-type: none;
+    display: inline-block;
+}
+
+
+.navigation ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+.navigation ul li
+{
+    list-style-type: none;
+    display: inline-block;
+}
+
+.navigation li:not(:first-child):before {
+    content: " | ";
+}
+
+
+#stats ul{
+    margin: 0;
+    padding: 0;
+}
+
+.block-reason {
+    padding: 10px;
+    border: 1px solid #8c80a1;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.svg-back {
+    background: #5bc0de;
+    border-radius: 3px;
+    border-color: #46b8da;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+}
+
+
+.testim{
+    background-image: url('../images/slides/testimonials.png');
+    height: 500px;
+}
+
+#stats ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+.numbers-items:not(:last-child):after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 1px;
+    background-color: lightgrey;
+    right: 0;
+    height: 60px;
+    top: 30px;
+}
+
+/* navbar */
+.navbar-default1 {
+    background-color: azure;
+    border-color: #E7E7E7;
+}
+/* Title */
+.navbar-default1 .navbar-brand {
+    color: #777;
+}
+.navbar-default1 .navbar-brand:hover,
+.navbar-default1 .navbar-brand:focus {
+    color: #5E5E5E;
+}
+/* Link */
+.navbar-default1 .navbar-nav > li > a {
+    color: #777;
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-default1 .navbar-nav > li > a:hover,
+.navbar-default1 .navbar-nav > li > a:focus {
+    color: #333;
+}
+.navbar-default1 .navbar-nav > .active > a,
+.navbar-default1 .navbar-nav > .active > a:hover,
+.navbar-default1 .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+.navbar-default1 .navbar-nav > .open > a,
+.navbar-default1 .navbar-nav > .open > a:hover,
+.navbar-default1 .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+/* Caret */
+.navbar-default1 .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+.navbar-default1 .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default1 .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+.navbar-default1 .navbar-nav > .open > a .caret,
+.navbar-default1 .navbar-nav > .open > a:hover .caret,
+.navbar-default1 .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+/* Mobile version */
+.navbar-default1 .navbar-toggle {
+    border-color: #DDD;
+}
+.navbar-default1 .navbar-toggle:hover,
+.navbar-default1 .navbar-toggle:focus {
+    background-color: #DDD;
+}
+.navbar-default1 .navbar-toggle .icon-bar {
+    background-color: #CCC;
+}
+@media (max-width: 767px) {
+    .navbar-default1 .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .navbar-default1 .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default1 .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+    }
+}
+
+
+/* navbar */
+.navbar-default2 {
+    background-color: white;
+    border-color: #0f0f0f;
+}
+/* Title */
+.navbar-default2 .navbar-brand {
+    color: #777;
+}
+.navbar-default2 .navbar-brand:hover,
+.navbar-default2 .navbar-brand:focus {
+    color: #5E5E5E;
+}
+/* Link */
+.navbar-default2 .navbar-nav > li > a {
+    color: #777;
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-default2 .navbar-nav > li > a:hover,
+.navbar-default2 .navbar-nav > li > a:focus {
+    color: #333;
+}
+.navbar-default2 .navbar-nav > .active > a,
+.navbar-default2 .navbar-nav > .active > a:hover,
+.navbar-default2 .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+.navbar-default2 .navbar-nav > .open > a,
+.navbar-default2 .navbar-nav > .open > a:hover,
+.navbar-default2 .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+/* Caret */
+.navbar-default2 .navbar-nav > li > .dropdown-menu{
+    background-color: azure;
+    border-color: #adadad;
+}
+ul#w3 .dropdown-menu >li{
+    border-bottom-color: black;
+}
+
+.navbar-default2 .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+.navbar-default2 .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default2 .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+.navbar-default2 .navbar-nav > .open > a .caret,
+.navbar-default2 .navbar-nav > .open > a:hover .caret,
+.navbar-default2 .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+/* Mobile version */
+.navbar-default2 .navbar-toggle {
+    border-color: #DDD;
+}
+.navbar-default2 .navbar-toggle:hover,
+.navbar-default2 .navbar-toggle:focus {
+    background-color: #DDD;
+}
+.navbar-default2 .navbar-toggle .icon-bar {
+    background-color: #CCC;
+}
+@media (max-width: 767px) {
+    .navbar-default2 .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .navbar-default2 .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default2 .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+    }
+}
+
+.footer-link a{
+    color: #a1a9b3;
+}
+
+.footer-link a:hover{
+    color: #337ab7;
+}
+
+.pull-right li .f-link{
+    color: #a1a9b3;
+}
+
+.pull-right li .f-link:hover{
+    color: #337ab7;
+}
+
+
+#files {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#files td, #files th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#files tr:nth-child(even){background-color: #f2f2f2;}
+
+#files tr:hover {background-color: #ddd;}
+
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.order-details-menu > .active{
+    background-color: #8F8F8F;
+}
+
+.order-details-menu > li >a{
+    color: white;
+}
+.order-details-menu > li > a > strong{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+#files th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #adadad;
+    color: white;
+}
 .wrap > .container {
     padding: 70px 15px 20px;
+}
+.file-create, .order-view, .message-index, .myorder{
+    margin-top: 40px;
+}
+.order-details-menu > a:hover{
+    background-color: #adadad;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap > .mycontent{
+    padding: 0 70px 20px 70px;
+}
+
+.wrap > .myfinance{
+    padding: 0 70px 70px 70px;
+}
+.wrapper a button .active{
+    background-color: lightgrey;
+}
+
+
+#transactions {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#transactions td, #transactions th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#transactions tr:nth-child(even){background-color: #f2f2f2;}
+
+#transactions tr:hover {background-color: #ddd;}
+
+#transactions th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #adadad;
+    color: white;
 }
 
 .footer {

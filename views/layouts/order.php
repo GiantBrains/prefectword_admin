@@ -7,8 +7,8 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use kartik\sidenav\SideNav;
 
 AppAsset::register($this);
 ?>
@@ -77,8 +77,60 @@ AppAsset::register($this);
     <div style="margin-top: 60px">
         <?= Alert::widget() ?>
     </div>
-    <div style="margin-top: -10px">
-        <?= $content ?>
+    <div class="mycontent">
+        <div class="row" style="margin-right: 0; margin-left: 0;">
+            <div class="col-md-3">
+                <div>
+                    <?php
+                    $type = 'primary';
+                    $item = 'home';
+                    echo SideNav::widget([
+                        'type' => $type,
+                        'encodeLabels' => false,
+                        'heading' => '<i class="glyphicon glyphicon-cog"></i> Operations',
+                        'items' => [
+                            //
+                            //
+                            // Important: you need to specify url as 'controller/action',
+                            // not just as 'controller' even if default action is used.
+                            //
+                            // NOTE: The variable `$item` is specific to this demo page that determines
+                            // which menu item will be activated. You need to accordingly define and pass
+                            // such variables to your view object to handle such logic in your application
+                            // (to determine the active status).
+                            //
+                            //
+                            ['label' => '<i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard', 'url' => Yii::$app->request->baseUrl.'/order/index'],
+                            ['label' => '<i class="fa fa-plus " aria-hidden="true"></i> <span class="pull-right badge">10</span> Place Order', 'url' => Yii::$app->request->baseUrl.'/order/create'],
+                            ['label' => '<i class="fa fa-list " aria-hidden="true"></i> <span class="pull-right badge">5</span> Pending Orders', 'url' => Yii::$app->request->baseUrl.'/order/pending'],
+                            ['label' => '<i class="fa fa-check " aria-hidden="true"></i> <span class="pull-right badge">5</span> In Progress', 'url' => Yii::$app->request->baseUrl.'/order/progress'],
+                            ['label' => '<i class="fa fa-recycle" aria-hidden="true"></i> <span class="pull-right badge">5</span> Revision', 'url' => Yii::$app->request->baseUrl.'/order/revision'],
+                            ['label' => '<i class="fa fa-edit " aria-hidden="true"></i> <span class="pull-right badge">5</span> Editing', 'url' => Yii::$app->request->baseUrl.'/order/editing'],
+                            ['label' => '<i class="fa fa-trophy " aria-hidden="true"></i> <span class="pull-right badge">5</span> Completed', 'url' => Yii::$app->request->baseUrl.'/order/completed'],
+                            ['label' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i> <span class="pull-right badge">5</span> Approved Orders', 'url' => Yii::$app->request->baseUrl.'/order/approved'],
+                            ['label' => '<i class="fa fa-thumbs-down " aria-hidden="true"></i> <span class="pull-right badge">5</span> Rejected Orders', 'url' => Yii::$app->request->baseUrl.'/order/rejected'],
+                            ['label' => '<i class="fa fa-legal" aria-hidden="true"></i> <span class="pull-right badge"> 5</span> Disputed Orders', 'url' => Yii::$app->request->baseUrl.'/order/disputed'],
+                            ['label' => '<span class="pull-right badge">2</span> Messages', 'icon' => 'bullhorn', 'items' => [
+                                ['label' => 'Unread Messages', 'url' => Yii::$app->request->baseUrl.'/message/unread?type='.$type.''],
+                                ['label' => 'sent items', 'url' => Yii::$app->request->baseUrl.'/message/sent?type='.$type.''],
+                                ['label' => 'Inbox', 'url' => Yii::$app->request->baseUrl.'/message/inbox?type='.$type.''],
+                            ],
+                            ],
+                            ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Settings', 'items' => [
+                                ['label' => 'Profile', 'url' => Yii::$app->request->baseUrl.'/user/settings/profile'],
+                                ['label' => 'Account', 'url' => Yii::$app->request->baseUrl.'/user/settings/account'],
+                                ['label' => 'Networks', 'url' => Yii::$app->request->baseUrl.'/user/settings/networks'],
+                            ],
+                            ],
+                        ],
+                    ]);
+                    ?>
+                </div>
+            </div>
+            <div class="col-md-9" style="padding-left: 10px; padding-right: 0">
+                <?= $content ?>
+            </div>
+        </div>
     </div>
 </div>
 
