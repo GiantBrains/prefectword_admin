@@ -154,6 +154,7 @@ AppAsset::register($this);
                             ['label' => '<i class="fa fa-tasks" aria-hidden="true"></i> <span class="pull-right badge">5</span> Unconfirmed Orders', 'url' => Yii::$app->request->baseUrl.'/order/unconfirmed'],
                             ['label' => '<span class="glyphicon glyphicon-check" aria-hidden="true"></span> <span class="pull-right badge">5</span> Confirmed Orders', 'url' => Yii::$app->request->baseUrl.'/order/confirmed'],
                             ['label' => '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="pull-right badge">5</span> Editing', 'url' => Yii::$app->request->baseUrl.'/order/editing'],
+                            ['label' => '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> <span class="pull-right badge">5</span> In Progress', 'url' => Yii::$app->request->baseUrl.'/order/active'],
                             ['label' => '<i class="fa fa-thumbs-up " aria-hidden="true"></i> <span class="pull-right badge">5</span> Completed', 'url' => Yii::$app->request->baseUrl.'/order/completed'],
                             ['label' => '<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> <span class="pull-right badge"> 5</span> Revision', 'url' => Yii::$app->request->baseUrl.'/order/revision'],
                             ['label' => '<i class="fa fa-thumbs-down" aria-hidden="true"></i> <span class="pull-right badge"> 5</span> Rejected Orders', 'url' => Yii::$app->request->baseUrl.'/order/rejected'],
