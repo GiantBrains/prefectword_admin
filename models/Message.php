@@ -18,7 +18,6 @@ use dektrium\user\models\User;
  *
  * @property User $sender
  * @property User $receiver
- * @property Order $orderNumber
  */
 class Message extends \yii\db\ActiveRecord
 {
@@ -77,14 +76,6 @@ class Message extends \yii\db\ActiveRecord
     public function getReceiver()
     {
         return $this->hasOne(User::className(), ['id' => 'receiver_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderNumber()
-    {
-        return $this->hasOne(Order::className(), ['id' => 'order_number']);
     }
 
     /**
