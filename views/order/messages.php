@@ -89,6 +89,9 @@ $this->registerJs($messages);
                             echo '<br>';
                         }
                     }
+                    echo \yii\widgets\LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
                     ?>
                 </div>
             </diV>

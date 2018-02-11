@@ -286,7 +286,16 @@ class OrderController extends Controller
     public function actionMessages($oid)
     {
          $message = new Message();
-        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id DESC')->all();
+        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id DESC');
+        // get the total number of articles (but do not fetch the article data yet)
+        $count = $order_messages->count();
+        // create a pagination object with the total count
+        $pagination = new Pagination(['totalCount' => $count]);
+        $pagination->pageSize = 7;
+        // limit the query using the pagination and retrieve the articles
+        $articles = $order_messages->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
         $client = Order::find()->where(['ordernumber'=>$oid])->one();
         if ($message->load(Yii::$app->request->post())) {
             $message->order_number = $oid;
@@ -311,7 +320,7 @@ class OrderController extends Controller
             $dataProvider->query->andFilterWhere(['sender_id'=>Yii::$app->user->id])->orFilterWhere(['receiver_id'=>Yii::$app->user->id]);
             return $this->render('messages', [
                 'searchModel' => $searchModel,
-                'order_messages'=>$order_messages,
+                'order_messages'=>$articles,
                 'dataProvider' => $dataProvider,
                 'model'=>$model,
                 'messages'=>$messages,
