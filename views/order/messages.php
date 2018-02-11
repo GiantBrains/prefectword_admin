@@ -80,7 +80,7 @@ $this->registerJs($messages);
                                 echo 'You on &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span>';
                             echo '</div>';
                         }else{
-                            echo '<div class="mymessage" style="height: auto; background-color: lightcyan">';
+                            echo '<div class="mymessage" style="height: auto; background-color: #d0e9c6">';
                                 echo ''.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span>';
                             echo '</div>';
                         }
