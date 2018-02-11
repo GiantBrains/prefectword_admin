@@ -75,14 +75,16 @@ $this->registerJs($messages);
                 <div class="col-lg-10" style="border: solid; border-color: #8c8c8c; padding: 10px; border-width: thin; border-radius: 10px; height: auto">
                     <?php
                     foreach ($order_messages as $order_message) {
-                      if ($order_message->sender_id == Yii::$app->user->id){
-                            echo '<div class="mymessage" style="height: auto; background-color: lightcyan">';
-                                echo 'You on &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span>';
+                        if ($order_message->sender_id == Yii::$app->user->id){
+                            echo '<div class="mymessage" style="height: auto; padding: 10px; background-color: lightcyan">';
+                            echo 'You on &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span>';
                             echo '</div>';
+                            echo '<br>';
                         }else{
-                            echo '<div class="mymessage" style="height: auto; background-color: #d0e9c6">';
-                                echo ''.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span>';
+                            echo '<div class="mymessage" style="height: auto; padding: 10px; text-align: right; background-color: #d0e9c6">';
+                            echo ''.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span>';
                             echo '</div>';
+                            echo '<br>';
                         }
                     }
                     ?>
