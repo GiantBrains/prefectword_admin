@@ -319,6 +319,11 @@ class OrderController extends Controller
             $searchModel = new MessageSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             $dataProvider->query->andFilterWhere(['sender_id'=>Yii::$app->user->id])->orFilterWhere(['receiver_id'=>Yii::$app->user->id]);
+            $mymessages = Message::find()->where(['order_number'=>$oid])->all();
+            foreach ($mymessages as $mymessage) {
+                $mymessage->status = 1;
+                $mymessage->save();
+            }
             return $this->render('messages', [
                 'searchModel' => $searchModel,
                 'order_messages'=>$articles,
