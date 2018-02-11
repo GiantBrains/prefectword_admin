@@ -106,7 +106,7 @@ $this->registerJs($messages);
                     ]); ?>
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($message, 'receiver_id')->textInput()->label('Send To:')->dropDownList([3=>'Writer', 1=>'Admin']) ?>
+                   <?= $form->field($message, 'receiver_id')->textInput()->label('Send To:')->dropDownList([3=>'Client']) ?>
                         </div>
                     </div>
                     <?= $form->field($message, 'message')->textarea(['rows' => 6]) ?>
