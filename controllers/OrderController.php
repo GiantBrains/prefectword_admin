@@ -292,7 +292,7 @@ class OrderController extends Controller
             $message->order_number = $oid;
             $message->sender_id = Yii::$app->user->id;
             if ($message->receiver_id == 3){
-                $client->client_by == null? $message->receiver_id = null : $message->receiver_id = $client->created_by;
+                $client->created_by == null? $message->receiver_id = null : $message->receiver_id = $client->created_by;
             }
             $message->status = 0;
             $message->save();
