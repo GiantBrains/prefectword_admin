@@ -75,15 +75,20 @@ $this->registerJs($messages);
                 <div class="col-lg-10" style="border: solid; border-color: #8c8c8c; padding: 10px; border-width: thin; border-radius: 10px; height: auto">
                     <?php
                     foreach ($order_messages as $order_message) {
+                        //get the time from the db in UTC and convert it client timezone
+                        $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
+                        $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+                        $ptime = $startTime->format("M d, Y H:i");
+
                         if ($order_message->sender_id == Yii::$app->user->id){
                             echo '<div class="mymessage" style="height: auto; padding: 10px; background-color: lightcyan">';
-                            echo '<div>You on &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span></div>';
+                            echo '<div>You on &nbsp;&nbsp;&nbsp;<span>'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
                             echo '</div>';
                             echo '<br>';
                         }else{
                             echo '<div class="mymessage" style="height: auto; padding: 10px; text-align: right; background-color: #d0e9c6">';
-                            echo '<div>'.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$order_message->created_at.'</span></div>';
+                            echo '<div>'.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
                             echo '</div>';
                             echo '<br>';
