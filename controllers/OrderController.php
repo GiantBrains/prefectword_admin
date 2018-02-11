@@ -287,14 +287,12 @@ class OrderController extends Controller
     {
          $message = new Message();
         $order_messages = Message::find()->where(['order_number'=>$oid])->all();
-        $writter = Order::find()->where(['ordernumber'=>$oid])->one();
+        $client = Order::find()->where(['ordernumber'=>$oid])->one();
         if ($message->load(Yii::$app->request->post())) {
             $message->order_number = $oid;
             $message->sender_id = Yii::$app->user->id;
             if ($message->receiver_id == 3){
-                $writter->written_by == null? $message->receiver_id = null : $message->receiver_id = $writter->written_by;
-            }else{
-                $writter->edited_by == null? $message->receiver_id = 1: $message->receiver_id = $writter->edited_by;
+                $client->client_by == null? $message->receiver_id = null : $message->receiver_id = $client->created_by;
             }
             $message->status = 0;
             $message->save();
