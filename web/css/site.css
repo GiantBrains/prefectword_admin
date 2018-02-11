@@ -10,6 +10,9 @@ body {
     padding: 0 0 60px;
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    background-color: darkgray;
+}
 .essay-font{
     font-family: 'Open Sans', sans-serif;
 }

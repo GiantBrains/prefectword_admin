@@ -59,6 +59,14 @@ class SiteController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        if ($action->id == 'error')
+            $this->layout = 'main';
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * Displays homepage.
      *
