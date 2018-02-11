@@ -12,6 +12,7 @@ use app\models\Pages;
 use app\models\Uniqueid;
 use app\models\Order;
 use app\models\OrderSearch;
+use yii\data\Pagination;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -324,7 +325,8 @@ class OrderController extends Controller
                 'dataProvider' => $dataProvider,
                 'model'=>$model,
                 'messages'=>$messages,
-                'message'=>$message
+                'message'=>$message,
+                'pagination'=>$pagination
             ]);
         }
     }
