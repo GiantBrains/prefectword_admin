@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Message;
 
 /**
- * MessageSearch represents the model behind the search form of `app\models\Message`.
+ * MessageSearch represents the model behind the search form about `app\models\Message`.
  */
 class MessageSearch extends Message
 {
@@ -18,8 +18,8 @@ class MessageSearch extends Message
     public function rules()
     {
         return [
-            [['id', 'general', 'sender_id', 'receiver_id', 'order_number', 'status'], 'integer'],
-            [['message', 'title','context', 'created_at'], 'safe'],
+            [['id', 'sender_id', 'receiver_id', 'order_number', 'status'], 'integer'],
+            [['message', 'title','created_at', 'context'], 'safe'],
         ];
     }
 
@@ -60,7 +60,6 @@ class MessageSearch extends Message
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'general' => $this->general,
             'sender_id' => $this->sender_id,
             'receiver_id' => $this->receiver_id,
             'order_number' => $this->order_number,
@@ -69,8 +68,8 @@ class MessageSearch extends Message
         ]);
 
         $query->andFilterWhere(['like', 'message', $this->message])
-                ->andFilterWhere(['like', 'title', $this->title])
-                ->andFilterWhere(['like', 'context', $this->context]);
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'context', $this->context]);
 
         return $dataProvider;
     }

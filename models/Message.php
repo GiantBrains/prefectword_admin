@@ -7,13 +7,15 @@ use dektrium\user\models\User;
 /**
  * This is the model class for table "message".
  *
- * @property int $id
- * @property int $general
- * @property int $sender_id
- * @property int $receiver_id
- * @property int $order_number
+ * @property integer $id
+ * @property integer $general
+ * @property integer $status
+ * @property string $title
+ * @property string $context
+ * @property integer $sender_id
+ * @property integer $receiver_id
+ * @property integer $order_number
  * @property string $message
- * @property int $read
  * @property string $created_at
  *
  * @property User $sender
@@ -35,13 +37,13 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['general', 'sender_id', 'receiver_id', 'order_number', 'status'], 'integer'],
-            [['sender_id', 'receiver_id', 'message','status'], 'required'],
-            [['message', 'title', 'context'], 'string'],
+            [['general', 'status', 'sender_id', 'receiver_id','order_number'], 'integer'],
+            [['message'], 'required'],
+            [['message'], 'string'],
             [['created_at'], 'safe'],
+            [['title', 'context'], 'string', 'max' => 255],
             [['sender_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['sender_id' => 'id']],
             [['receiver_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['receiver_id' => 'id']],
-            [['order_number'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_number' => 'id']],
         ];
     }
 
@@ -53,11 +55,13 @@ class Message extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'general' => 'General',
+            'status' => 'Status',
+            'title' => 'Title',
+            'context' => 'Context',
             'sender_id' => 'Sender ID',
             'receiver_id' => 'Receiver ID',
             'order_number' => 'Order Number',
             'message' => 'Message',
-            'read' => 'Read',
             'created_at' => 'Created At',
         ];
     }

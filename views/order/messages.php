@@ -34,20 +34,20 @@ $messages = <<<JS
 //           console(myObj[0]);
 //      }
 // }
-                $.ajax({
-                        type: 'post',
-                        url: 'message-count',
-                        data: $(this).serialize(),
-                        success:function(data) {
-                               $("#mycontent").html(data);
-                               console.log(data);
-                        },
-                        error: function(data) { // if error occured
-                                console.log("Error occured.please try again");
-                                 console.log(data);
-                        },
-                        dataType:'html'
-                });
+//                 $.ajax({
+//                         type: 'post',
+//                         url: 'message-count',
+//                         data: $(this).serialize(),
+//                         success:function(data) {
+//                                $("#mycontent").html(data);
+//                                console.log(data);
+//                         },
+//                         error: function(data) { // if error occured
+//                                 console.log("Error occured.please try again");
+//                                  console.log(data);
+//                         },
+//                         dataType:'html'
+//                 });
                                 
   // using GET method
 // $.get({
@@ -106,7 +106,7 @@ $this->registerJs($messages);
                     ]); ?>
                     <div class="row">
                         <div class="col-md-6">
-                   <?= $form->field($message, 'receiver_id')->textInput()->label('Send To:')->dropDownList([3=>'Client']) ?>
+                   <?= $form->field($message, 'sender_id')->textInput()->label('Send To:')->dropDownList([3=>'Client']) ?>
                         </div>
                     </div>
                     <?= $form->field($message, 'message')->textarea(['rows' => 6]) ?>
