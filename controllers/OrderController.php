@@ -286,7 +286,7 @@ class OrderController extends Controller
     public function actionMessages($oid)
     {
          $message = new Message();
-        $order_messages = Message::find()->where(['order_number'=>$oid])->all();
+        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id, DESC')->all();
         $client = Order::find()->where(['ordernumber'=>$oid])->one();
         if ($message->load(Yii::$app->request->post())) {
             $message->order_number = $oid;
