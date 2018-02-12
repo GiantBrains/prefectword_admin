@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e7e9ab532a285cd01e07e9f6151d6be",
+    "content-hash": "482f0e68903d896695529f122b7f23a7",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -1008,6 +1008,51 @@
                 "yii2"
             ],
             "time": "2014-11-09T08:07:23+00:00"
+        },
+        {
+            "name": "loveorigami/yii2-reversed-pagination",
+            "version": "2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loveorigami/yii2-reversed-pagination.git",
+                "reference": "ff9742b759da5ef7a6bd6ae3cc7b2cd9a5b09fe8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loveorigami/yii2-reversed-pagination/zipball/ff9742b759da5ef7a6bd6ae3cc7b2cd9a5b09fe8",
+                "reference": "ff9742b759da5ef7a6bd6ae3cc7b2cd9a5b09fe8",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "loveorigami\\pagination\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Lukyanov",
+                    "email": "loveorigami@mail.ru",
+                    "homepage": "http://loveorigami.info",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Yii2 reversed pagination",
+            "homepage": "https://github.com/loveorigami/yii2-reversed-pagination",
+            "keywords": [
+                "Behavior",
+                "slug",
+                "yii",
+                "yii2"
+            ],
+            "time": "2014-11-16T00:00:00+00:00"
         },
         {
             "name": "machour/yii2-notifications",
