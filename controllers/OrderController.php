@@ -292,7 +292,7 @@ class OrderController extends Controller
         $pages = new \loveorigami\pagination\ReversePagination(
             [
                 'totalCount' => $countQuery->count(),
-                'pageSize' => 7, // or in config Yii::$app->params['pageSize']
+                'pageSize' => 5, // or in config Yii::$app->params['pageSize']
             ]
         );
         $pages->pageSizeParam = false;
