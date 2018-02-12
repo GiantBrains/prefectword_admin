@@ -287,9 +287,9 @@ class OrderController extends Controller
     public function actionMessages($oid)
     {
          $message = new Message();
-        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id DESC');
+        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id ASC');
         $countQuery = clone $order_messages;
-        $pages = new Pagination(
+        $pages = new \loveorigami\pagination\ReversePagination(
             [
                 'totalCount' => $countQuery->count(),
                 'pageSize' => 7, // or in config Yii::$app->params['pageSize']
