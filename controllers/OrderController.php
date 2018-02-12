@@ -287,7 +287,7 @@ class OrderController extends Controller
     public function actionMessages($oid)
     {
          $message = new Message();
-        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id ASC, created_at ASC');
+        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id DESC, created_at ASC');
         $countQuery = clone $order_messages;
         $pages = new \loveorigami\pagination\ReversePagination(
             [
