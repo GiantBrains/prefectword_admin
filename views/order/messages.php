@@ -71,38 +71,48 @@ $this->registerJs($messages);
         <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/attached', 'oid'=>$model->ordernumber])?>"><strong>Order Files</strong></a></li>
         <li role="presentation"  class="active"><a href="<?= \yii\helpers\Url::to(['order/messages', 'oid'=>$model->ordernumber])?>"><strong>Messages</strong></a></li>
     </ul>
-        <div class="row" style="padding: 10px">
-            <button style="margin-left: 15px; margin-bottom: 15px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">
-                <i class="icon fa fa-plus"></i> New Message
-            </button>
-            <diV class="row" style="margin-left: 15px">
-                <div id="supasupa" class="col-lg-10 scroll-table" style="border: solid; border-color: #8c8c8c; padding: 10px; max-height: 300px;  overflow-x: hidden; overflow-y: scroll; border-width: thin; border-radius: 10px; height: auto">
-                    <?php
-                    foreach ($order_messages as $order_message) {
-                        //get the time from the db in UTC and convert it client timezone
-                        $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
-                        $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
-                        $ptime = $startTime->format("M d, Y H:i");
+    <div class="row" style="padding: 0 10px 0 10px">
+        <!--            <button style="margin-left: 15px; margin-bottom: 15px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">-->
+        <!--                <i class="icon fa fa-plus"></i> New Message-->
+        <!--            </button>-->
+        <diV class="row" style="margin-left: 15px">
+            <div id="supasupa" class="col-lg-10 scroll-table" style="border: solid; border-color: #8c8c8c; padding: 10px; max-height: 400px;  overflow-x: hidden; overflow-y: scroll; border-width: thin; border-radius: 10px; height: auto">
+                <?php
+                foreach ($order_messages as $order_message) {
+                    //get the time from the db in UTC and convert it client timezone
+                    $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
+                    $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+                    $ptime = $startTime->format("M d, Y H:i");
 
-                        echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
-                        if ($order_message->sender_id == Yii::$app->user->id){
-                            echo '<div  class="col-md-6" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
-                            echo '<div style="text-decoration: underline"><strong>You</strong> on &nbsp;<span style="font-style: italic">'.$ptime.'</span></div>';
-                            echo '<div>'.$order_message->message.'</div>';
-                            echo '</div>';
-                        }else{
-
-                            echo '<div  class="col-md-6 col-md-push-6" style="text-align: right; border-radius: 5px; background-color: #d0e9c6">';
-                            echo '<div><strong>'.$order_message->sender->username.'</strong> on &nbsp;<span  style="font-style: italic">'.$ptime.'</span></div>';
-                            echo '<div>'.$order_message->message.'</div>';
-                            echo '</div>';
-                        }
+                    echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
+                    if ($order_message->sender_id == Yii::$app->user->id){
+                        echo '<div  class="col-md-6" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
+                        echo '<div style="text-decoration: underline"><strong>You</strong> on &nbsp;<span style="font-style: italic">'.$ptime.'</span></div>';
+                        echo '<div>'.$order_message->message.'</div>';
+                        echo '</div>';
+                    }else{
+                        echo '<div  class="col-md-6 col-md-push-6" style="text-align: right; border-radius: 5px; background-color: #d0e9c6">';
+                        echo '<div style="text-decoration: underline"><strong>'.$order_message->sender->username.'</strong> on &nbsp;<span  
+                                   style="font-style: italic">'.$ptime.'</span></div>';
+                        echo '<div>'.$order_message->message.'</div>';
                         echo '</div>';
                     }
-                    ?>
+                    echo '</div>';
+                }
+                ?>
+                <div class="message-form">
+                    <?php $form = \kartik\form\ActiveForm::begin([
+                        'action'=> \yii\helpers\Url::to(['order/messages','oid'=>$model->ordernumber])
+                    ]); ?>
+                    <?= $form->field($message, 'message')->textarea(['rows' => 4])->label(false) ?>
+                    <div class="pull-right" >
+                        <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                    </div>
+                    <?php \kartik\form\ActiveForm::end(); ?>
                 </div>
-            </diV>
             </div>
+        </diV>
+    </div>
   </div>
 <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
