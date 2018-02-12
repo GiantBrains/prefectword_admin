@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
 use kartik\sidenav\SideNav;
+use \machour\yii2\notifications\widgets\NotificationsWidget;
 
 AppAsset::register($this);
 ?>
@@ -88,6 +89,34 @@ AppAsset::register($this);
 //            src="'.Yii::$app->request->baseUrl.'/images/rating/wallet.png"> <span style="color: black; font-size: 18px">$0.00</span>'.'</a>',
 //            'active' => $this->context->route == 'wallet/index'
 //        ];
+        $menuItems[] =
+            ''.NotificationsWidget::widget([
+                    'theme' => NotificationsWidget::THEME_GROWL,
+                    'clientOptions' => [
+                        'location' => 'br',
+                    ],
+                    'counters' => [
+                        '.notifications-header-count',
+                        '.notifications-icon-count'
+                    ],
+                    'markAllSeenSelector' => '#notification-seen-all',
+                    'listSelector' => '#notifications',
+                ]).'
+                <li class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="label label-warning notifications-icon-count">0</span>
+                    </a>
+                    <ul class="dropdown-menu" style="width: auto; min-width: 250px; max-width: 320px">
+                        <li class="header">You have <span class="notifications-header-count">0</span> notifications</li>
+                        <li>
+                            <ul class="menu">
+                                <div id="notifications"></div>
+                            </ul>
+                        </li>
+                        <li class="footer"><a href="#">View all</a></li>
+                    </ul>
+                </li>';
         $menuItems[] = [
             'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/profile1.png" style="height: 35px; margin-top: -5px; margin-bottom: -10px" >',
             'items' => [

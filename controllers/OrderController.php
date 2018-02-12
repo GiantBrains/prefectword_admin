@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\Notification;
 use Yii;
 use app\models\Message;
 use app\models\MessageSearch;
@@ -20,7 +21,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
-
 
 /**
  * OrderController implements the CRUD actions for Order model.
@@ -306,6 +306,8 @@ class OrderController extends Controller
             }
             $message->status = 0;
             $message->save();
+            // $message was just created by the logged in user, and sent to $recipient_id
+           Notification::warning(Notification::KEY_NEW_MESSAGE, $client->created_by, $message->id);
             return $this->redirect(['messages','oid'=>$oid]);
         }else{
             $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -1163,6 +1165,7 @@ class OrderController extends Controller
             unset($session['urgency_id']);
             unset($session['pages_id']);
             unset($session['level_id']);
+            Notification::success(Notification::KEY_NEW_ORDER, 1, $model->id);
             return $this->redirect(['view', 'oid' => $model->ordernumber]);
         }
         return $this->render('create', [
