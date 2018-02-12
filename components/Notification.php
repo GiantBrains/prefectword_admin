@@ -46,7 +46,7 @@ class Notification extends BaseNotification
     {
         switch ($this->key) {
             case self::KEY_NEW_ORDER:
-                return Yii::t('app', 'A New Order Has been Created');
+                return Yii::t('app', 'You have a new order');
 
             case self::KEY_NEW_MESSAGE:
                 return Yii::t('app', 'You got a new message');
@@ -64,7 +64,7 @@ class Notification extends BaseNotification
         switch ($this->key) {
             case self::KEY_NEW_ORDER:
                 $order = Order::findOne($this->key_id);
-                return Yii::t('app', 'You are meeting with {customer}', [
+                return Yii::t('app', '{customer} has created a new order', [
                     'customer' => $order->createdBy->username
                 ]);
 
