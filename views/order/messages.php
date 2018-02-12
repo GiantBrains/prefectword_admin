@@ -12,6 +12,9 @@ $tab3active = 'active';
 $this->title = 'Messages';
 $this->params['breadcrumbs'][] = $this->title;
 $messages = <<<JS
+$(document).ready(function(){
+$('.scroll-table').scrollTop(300);
+});
 // var xmlhttp;
 // if (window.XMLHttpRequest) {
 //      xmlhttp = new XMLHttpRequest();
@@ -72,12 +75,8 @@ $this->registerJs($messages);
                 <i class="icon fa fa-plus"></i> New Message
             </button>
             <diV class="row" style="margin-left: 15px">
-                <div class="col-lg-10" style="border: solid; border-color: #8c8c8c; padding: 10px; border-width: thin; border-radius: 10px; height: auto">
+                <div class="col-lg-10 scroll-table" style="border: solid; border-color: #8c8c8c; padding: 10px; max-height: 300px;  overflow-x: hidden; overflow-y: scroll; border-width: thin; border-radius: 10px; height: auto">
                     <?php
-                    echo \yii\widgets\LinkPager::widget([
-                        'pagination' => $pagination,
-                        'registerLinkTags' => true
-                    ]);
                     foreach ($order_messages as $order_message) {
                         //get the time from the db in UTC and convert it client timezone
                         $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
@@ -87,7 +86,7 @@ $this->registerJs($messages);
                         echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
                         if ($order_message->sender_id == Yii::$app->user->id){
                             echo '<div  class="col-md-6" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
-                            echo '<div><strong>You</strong> on &nbsp;<span style="font-style: italic">'.$ptime.'</span></div>';
+                            echo '<div style="text-decoration: underline"><strong>You</strong> on &nbsp;<span style="font-style: italic">'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
                             echo '</div>';
                         }else{

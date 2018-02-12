@@ -288,18 +288,18 @@ class OrderController extends Controller
     {
          $message = new Message();
         $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id DESC');
-        $countQuery = clone $order_messages;
-        $pages = new \loveorigami\pagination\ReversePagination(
-            [
-                'totalCount' => $countQuery->count(),
-                'pageSize' => 5,// or in config Yii::$app->params['pageSize']
-            ]
-        );
-        $pages->pageSizeParam = false;
-
-        $models = $order_messages->offset($pages->offset)
-            ->limit($pages->limit)
-            ->all();
+//        $countQuery = clone $order_messages;
+//        $pages = new \loveorigami\pagination\ReversePagination(
+//            [
+//                'totalCount' => $countQuery->count(),
+//                'pageSize' => 5,// or in config Yii::$app->params['pageSize']
+//            ]
+//        );
+//        $pages->pageSizeParam = false;
+//
+//        $models = $order_messages->offset($pages->offset)
+//            ->limit($pages->limit)
+//            ->all();
         $client = Order::find()->where(['ordernumber'=>$oid])->one();
         if ($message->load(Yii::$app->request->post())) {
             $message->order_number = $oid;
@@ -334,12 +334,12 @@ class OrderController extends Controller
             }
             return $this->render('messages', [
                 'searchModel' => $searchModel,
-                'order_messages'=>$models,
+                'order_messages'=>$order_messages,
                 'dataProvider' => $dataProvider,
                 'model'=>$model,
                 'messages'=>$messages,
                 'message'=>$message,
-                'pagination'=>$pages
+//                'pagination'=>$pages
             ]);
         }
     }
