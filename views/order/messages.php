@@ -74,8 +74,9 @@ $this->registerJs($messages);
             <diV class="row" style="margin-left: 15px">
                 <div class="col-lg-10" style="border: solid; border-color: #8c8c8c; padding: 10px; border-width: thin; border-radius: 10px; height: auto">
                     <?php
-                    echo \yii\widgets\LinkPager::widget([
+                    echo \loveorigami\pagination\ReverseLinkPager::widget([
                         'pagination' => $pagination,
+                        'registerLinkTags' => true
                     ]);
                     foreach ($order_messages as $order_message) {
                         //get the time from the db in UTC and convert it client timezone
