@@ -79,17 +79,21 @@ $this->registerJs($messages);
                         $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
                         $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
                         $ptime = $startTime->format("M d, Y H:i");
-                        
+
                         if ($order_message->sender_id == Yii::$app->user->id){
-                            echo '<div class="mymessage" style="height: auto; padding: 10px; text-align: right; background-color: lightcyan">';
+                            echo '<div class="mymessage row" style="height: auto; padding: 10px;">';
+                            echo '<div  class="col-md-6" style="text-align: left; background-color: lightcyan">';
                             echo '<div>You on &nbsp;&nbsp;&nbsp;<span>'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
                             echo '</div>';
+                            echo '</div>';
                             echo '<br>';
                         }else{
-                            echo '<div class="mymessage" style="height: auto; padding: 10px; background-color: #d0e9c6">';
+                            echo '<div class="mymessage row" style="height: auto; padding: 10px;>';
+                            echo '<div  class="col-md-6" style="text-align: right; background-color: #d0e9c6">';
                             echo '<div>'.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
+                            echo '</div>';
                             echo '</div>';
                             echo '<br>';
                         }
