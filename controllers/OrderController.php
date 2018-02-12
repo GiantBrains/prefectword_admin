@@ -287,7 +287,7 @@ class OrderController extends Controller
     public function actionMessages($oid)
     {
          $message = new Message();
-        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id DESC');
+        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id ASC');
         // get the total number of articles (but do not fetch the article data yet)
         $count = $order_messages->count();
         // create a pagination object with the total count

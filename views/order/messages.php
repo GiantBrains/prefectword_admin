@@ -74,33 +74,30 @@ $this->registerJs($messages);
             <diV class="row" style="margin-left: 15px">
                 <div class="col-lg-10" style="border: solid; border-color: #8c8c8c; padding: 10px; border-width: thin; border-radius: 10px; height: auto">
                     <?php
+                    echo \yii\widgets\LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
                     foreach ($order_messages as $order_message) {
                         //get the time from the db in UTC and convert it client timezone
                         $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
                         $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
                         $ptime = $startTime->format("M d, Y H:i");
 
+                        echo '<div class="mymessage row" style="height: auto; padding: 10px;">';
                         if ($order_message->sender_id == Yii::$app->user->id){
-                            echo '<div class="mymessage row" style="height: auto; padding: 10px;">';
-                            echo '<div  class="col-md-6" style="text-align: left; background-color: lightcyan">';
-                            echo '<div>You on &nbsp;&nbsp;&nbsp;<span>'.$ptime.'</span></div>';
+                            echo '<div  class="col-md-6" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
+                            echo '<div><strong>You</strong> on &nbsp;<span style="font-style: italic">'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
                             echo '</div>';
-                            echo '</div>';
-                            echo '<br>';
                         }else{
-                            echo '<div class="mymessage row" style="height: auto; padding: 10px;>';
-                            echo '<div  class="col-md-6" style="text-align: right; background-color: #d0e9c6">';
-                            echo '<div>'.$order_message->sender->username.' on  &nbsp;&nbsp;&nbsp;<span>'.$ptime.'</span></div>';
+
+                            echo '<div  class="col-md-6 col-md-push-6" style="text-align: right; border-radius: 5px; background-color: #d0e9c6">';
+                            echo '<div><strong>'.$order_message->sender->username.'</strong> on &nbsp;<span  style="font-style: italic">'.$ptime.'</span></div>';
                             echo '<div>'.$order_message->message.'</div>';
                             echo '</div>';
-                            echo '</div>';
-                            echo '<br>';
                         }
+                        echo '</div>';
                     }
-                    echo \yii\widgets\LinkPager::widget([
-                        'pagination' => $pagination,
-                    ]);
                     ?>
                 </div>
             </diV>
