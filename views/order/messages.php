@@ -13,7 +13,8 @@ $this->title = 'Messages';
 $this->params['breadcrumbs'][] = $this->title;
 $messages = <<<JS
 $(document).ready(function(){
-$('.scroll-table').scrollTop(300);
+    var iScrollHeight = $("#supasupa").prop("scrollHeight");
+$('.scroll-table').scrollTop(iScrollHeight);
 });
 // var xmlhttp;
 // if (window.XMLHttpRequest) {
@@ -75,7 +76,7 @@ $this->registerJs($messages);
                 <i class="icon fa fa-plus"></i> New Message
             </button>
             <diV class="row" style="margin-left: 15px">
-                <div class="col-lg-10 scroll-table" style="border: solid; border-color: #8c8c8c; padding: 10px; max-height: 300px;  overflow-x: hidden; overflow-y: scroll; border-width: thin; border-radius: 10px; height: auto">
+                <div id="supasupa" class="col-lg-10 scroll-table" style="border: solid; border-color: #8c8c8c; padding: 10px; max-height: 300px;  overflow-x: hidden; overflow-y: scroll; border-width: thin; border-radius: 10px; height: auto">
                     <?php
                     foreach ($order_messages as $order_message) {
                         //get the time from the db in UTC and convert it client timezone
