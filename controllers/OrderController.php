@@ -221,7 +221,7 @@ class OrderController extends Controller
         Yii::$app->view->params['disputed_count'] = $disputed_count;
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['progress'=>1]);
+        $dataProvider->query->andFilterWhere(['active'=>1]);
         return $this->render('active', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
