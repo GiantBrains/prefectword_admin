@@ -93,7 +93,7 @@ $this->registerJs($messages);
                         echo '</div>';
                     }else{
                         echo '<div  class="col-md-8 col-md-push-4" style="border-radius: 5px; background-color: #d0e9c6">';
-                        echo '<div style="text-decoration: underline; text-align: left"><strong style="text-transform: capitalize">'.$order_message->sender->username.'</strong> on &nbsp;<span  
+                        echo '<div style="text-decoration: underline; text-align: right"><strong style="text-transform: capitalize">'.$order_message->sender->username.'</strong> on &nbsp;<span  
                                    style="font-style: italic">'.$ptime.'</span></div>';
                         echo '<div style="text-align: left">'.$order_message->message.'</div>';
                         echo '</div>';
