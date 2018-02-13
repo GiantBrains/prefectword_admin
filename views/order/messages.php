@@ -16,6 +16,7 @@ $(document).ready(function(){
     var iScrollHeight = $("#supasupa").prop("scrollHeight");
 $('.scroll-table').scrollTop(iScrollHeight);
 });
+
 // var xmlhttp;
 // if (window.XMLHttpRequest) {
 //      xmlhttp = new XMLHttpRequest();
@@ -92,7 +93,7 @@ $this->registerJs($messages);
                         echo '</div>';
                     }else{
                         echo '<div  class="col-md-6 col-md-push-6" style="text-align: right; border-radius: 5px; background-color: #d0e9c6">';
-                        echo '<div style="text-decoration: underline"><strong>'.$order_message->sender->username.'</strong> on &nbsp;<span  
+                        echo '<div style="text-decoration: underline"><strong style="text-transform: capitalize">'.$order_message->sender->username.'</strong> on &nbsp;<span  
                                    style="font-style: italic">'.$ptime.'</span></div>';
                         echo '<div>'.$order_message->message.'</div>';
                         echo '</div>';
