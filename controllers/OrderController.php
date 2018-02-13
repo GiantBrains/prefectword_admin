@@ -93,11 +93,19 @@ class OrderController extends Controller
         Yii::$app->view->params['rejected_count'] = $rejected_count;
         $disputed_count = Order::find()->where(['disputed'=> 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
+
+        $perm = Yii::$app->authManager->getPermissionsByUser(Yii::$app->user->id);
+        $rol = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+        $usd = Yii::$app->authManager->getUserIdsByRole('admin');
+
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'perm'=>$perm,
+            'rol'=>$rol,
+            'usd'=>$usd
         ]);
     }
 

@@ -23,7 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
 //$this->registerJs($deadline);
 ?>
 <div class="myorder" style="margin-left: -10px">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?php echo Html::encode($this->title) ?></h1>
+<!--    <h2>--><?php //foreach ($rol as $item) {
+//            echo '<h2>'.$item->name.' <span style="color: red">'.$item->type.'</span> '.$item->description.'</h2>';
+//        } ?><!--</h2>-->
+<!--    <h2>--><?php //foreach ($perm as $item) {
+//            echo '<h2>'.$item->name.' <span style="color: red">'.$item->type.'</span> '.$item->description.'</h2>';
+//    } ?><!--</h2>-->
+<!--    <h2>--><?php //$usd[0]?><!--</h2>-->
     <hr>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
