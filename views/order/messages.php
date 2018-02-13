@@ -87,15 +87,15 @@ $this->registerJs($messages);
 
                     echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
                     if ($order_message->sender_id == Yii::$app->user->id){
-                        echo '<div  class="col-md-6" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
+                        echo '<div  class="col-md-8" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
                         echo '<div style="text-decoration: underline"><strong>You</strong> on &nbsp;<span style="font-style: italic">'.$ptime.'</span></div>';
                         echo '<div>'.$order_message->message.'</div>';
                         echo '</div>';
                     }else{
-                        echo '<div  class="col-md-6 col-md-push-6" style="text-align: right; border-radius: 5px; background-color: #d0e9c6">';
-                        echo '<div style="text-decoration: underline"><strong style="text-transform: capitalize">'.$order_message->sender->username.'</strong> on &nbsp;<span  
+                        echo '<div  class="col-md-8 col-md-push-4" style="border-radius: 5px; background-color: #d0e9c6">';
+                        echo '<div style="text-decoration: underline; text-align: left"><strong style="text-transform: capitalize">'.$order_message->sender->username.'</strong> on &nbsp;<span  
                                    style="font-style: italic">'.$ptime.'</span></div>';
-                        echo '<div>'.$order_message->message.'</div>';
+                        echo '<div style="text-align: left">'.$order_message->message.'</div>';
                         echo '</div>';
                     }
                     echo '</div>';
