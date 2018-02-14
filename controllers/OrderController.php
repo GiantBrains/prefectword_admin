@@ -1586,7 +1586,7 @@ class OrderController extends Controller
             unset($session['pages_id']);
             unset($session['level_id']);
             Notification::success(Notification::KEY_NEW_ORDER, 1, $model->id);
-            $notify = \app\models\Notification::find()->where(['key_id'=> $model->id])->one();
+            $notify = \app\models\Notification::find()->where(['key_id'=> $model->id, 'seen'=>0])->one();
             $notify->order_number = $model->ordernumber;
             $notify->save();
             return $this->redirect(['view', 'oid' => $model->ordernumber]);
