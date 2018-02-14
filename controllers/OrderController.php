@@ -645,6 +645,9 @@ class OrderController extends Controller
             $message->save();
             // $message was just created by the logged in user, and sent to $recipient_id
            Notification::warning(Notification::KEY_NEW_MESSAGE, $client->created_by, $message->id);
+            $notify = \app\models\Notification::find()->where(['key_id'=> $message->id])->one();
+            $notify->order_number = $oid;
+            $notify->save();
             return $this->redirect(['messages','oid'=>$oid]);
         }else{
             $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -690,6 +693,11 @@ class OrderController extends Controller
                     $mymessage->status = 1;
                     $mymessage->save();
                 }
+            }
+            $notifications = \app\models\Notification::find()->where(['order_number'=>$oid, 'seen'=>0, 'user_id'=>Yii::$app->user->id])->all();
+            foreach ($notifications as $notification) {
+                $notification->seen = 1;
+                $notification->save();
             }
             return $this->render('messages', [
                 'searchModel' => $searchModel,
@@ -1578,6 +1586,9 @@ class OrderController extends Controller
             unset($session['pages_id']);
             unset($session['level_id']);
             Notification::success(Notification::KEY_NEW_ORDER, 1, $model->id);
+            $notify = \app\models\Notification::find()->where(['key_id'=> $model->id])->one();
+            $notify->order_number = $model->ordernumber;
+            $notify->save();
             return $this->redirect(['view', 'oid' => $model->ordernumber]);
         }
         return $this->render('create', [
