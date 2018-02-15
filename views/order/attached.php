@@ -14,7 +14,7 @@ $this->title = 'Additional Files';
     <h1><?= Html::encode('Order #'.$model->ordernumber) ?></h1>
     <hr>
     <?php
-    $msgcount = \app\models\Notification::find()->where(['key'=>'new_message', 'user_id'=>Yii::$app->user->id, 'order_number'=>$model->ordernumber])->count();
+    $msgcount = \app\models\Notification::find()->where(['key'=>'new_message'])->andWhere(['user_id'=>Yii::$app->user->id])->andFilterWhere([ 'order_number'=>$model->ordernumber])->count();
     ?>
     <ul class="nav nav-tabs" style="margin-bottom: 5px">
         <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/view', 'oid'=>$model->ordernumber])?>"><strong>Order details</strong></a></li>
