@@ -43,9 +43,6 @@ AppAsset::register($this);
     $menuItem []= ['label' => 'Create Order', 'url' => Yii::$app->request->baseUrl.'/order/create',
         'active' => $this->context->route == 'order/create'
     ];
-    $menuItem []=  ['label' => 'Messages', 'url' => Yii::$app->request->baseUrl.'/order/send-message',
-        'active' => $this->context->route == 'order/send-message'
-    ];
     $menuItem []=  ['label' => 'Account Settings',
         'items' => [
             [
@@ -213,12 +210,6 @@ AppAsset::register($this);
                                 ['label' => 'Services',  'active' => $this->context->route == 'service/index', 'url' => Yii::$app->request->baseUrl.'/service/index'],
                                 ['label' => 'Sources', 'active' => $this->context->route == 'source/index','url' => Yii::$app->request->baseUrl.'/source/index'],
                             ]],
-                            ['label' => '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages', 'items' => [
-                                ['label' => 'Unread Messages', 'active' => $this->context->route == 'message/unread', 'url' => Yii::$app->request->baseUrl.'/message/unread?type='.$type.''],
-                                ['label' => 'sent items', 'active' => $this->context->route == 'message/sent', 'url' => Yii::$app->request->baseUrl.'/message/sent?type='.$type.''],
-                                ['label' => 'Inbox', 'active' => $this->context->route == 'message/inbox', 'url' => Yii::$app->request->baseUrl.'/message/inbox?type='.$type.''],
-                            ],
-                            ],
                             ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Account Settings', 'items' => [
                                 ['label' => 'Profile', 'active' => $this->context->route == 'user/settings/profile', 'url' => Yii::$app->request->baseUrl.'/user/settings/profile'],
                                 ['label' => 'Account', 'active' => $this->context->route == 'user/settings/account','url' => Yii::$app->request->baseUrl.'/user/settings/account'],

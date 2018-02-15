@@ -16,7 +16,8 @@ $this->title = 'Additional Files';
     <ul class="nav nav-tabs" style="margin-bottom: 5px">
         <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/view', 'oid'=>$model->ordernumber])?>"><strong>Order details</strong></a></li>
         <li role="presentation" class="active"><a href="<?= \yii\helpers\Url::to(['order/attached', 'oid'=>$model->ordernumber])?>"><strong>Order Files</strong></a></li>
-        <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/messages', 'oid'=>$model->ordernumber])?>"><strong>Messages</strong></a></li>
+        <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/messages', 'oid'=>$model->ordernumber])?>"><strong>Messages</strong>
+                <?php $msgcount != 0 ? '<span class="badge">'.$msgcount.'</span>': ''; ?></a></li>
     </ul>
     <div class="row">
         <div class="col-md-11">
