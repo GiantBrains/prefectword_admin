@@ -33,11 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    <h2>--><?php //$usd[0]?><!--</h2>-->
     <hr>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= \kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'service_id',
