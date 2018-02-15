@@ -3,16 +3,14 @@
  * Created by PhpStorm.
  * User: gits
  * Date: 2/12/18
- * Time: 1:21 PM
+ * Time: 2:34 PM
  */
-
 namespace app\components;
 
 use Yii;
 use app\models\Order;
 use app\models\Message;
 use machour\yii2\notifications\models\Notification as BaseNotification;
-use yii\helpers\Url;
 
 class Notification extends BaseNotification
 {
@@ -46,10 +44,12 @@ class Notification extends BaseNotification
     {
         switch ($this->key) {
             case self::KEY_NEW_ORDER:
-                return Yii::t('app', 'You have a new order');
+                $order = Order::findOne($this->key_id);
+                return Yii::t('app', 'New order #'.$order->ordernumber.' created');
 
             case self::KEY_NEW_MESSAGE:
-                return Yii::t('app', 'You got a new message');
+                $mymessage = Message::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'New message for order #'.$mymessage->order_number.'');
 
             case self::KEY_NO_DISK_SPACE:
                 return Yii::t('app', 'No disk space left');
@@ -64,13 +64,13 @@ class Notification extends BaseNotification
         switch ($this->key) {
             case self::KEY_NEW_ORDER:
                 $order = Order::findOne($this->key_id);
-                return Yii::t('app', '{customer} has created a new order', [
+                return Yii::t('app', '{customer} has created a new order # '.$order->ordernumber.'', [
                     'customer' => $order->createdBy->username
                 ]);
 
             case self::KEY_NEW_MESSAGE:
-                $message = Message::findOne($this->key_id);
-                return Yii::t('app', '{customer} sent you a message', [
+                $message = Message::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', '{customer} sent you a message for order #'.$message->order_number.'', [
                     'customer' => $message->sender->username
                 ]);
 
