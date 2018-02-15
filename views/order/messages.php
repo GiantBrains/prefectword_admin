@@ -110,13 +110,18 @@ $this->registerJs($messages);
                     echo '</div>';
                 }
                 ?>
+                <hr>
                 <div class="message-form">
                     <?php $form = \kartik\form\ActiveForm::begin([
                         'action'=> \yii\helpers\Url::to(['order/messages','oid'=>$model->ordernumber])
                     ]); ?>
-                    <?= $form->field($message, 'message')->textarea(['rows' => 2])->label(false) ?>
-                    <div class="pull-right" >
-                        <?= Html::submitButton('Send', ['class' => 'btn btn-primary btn-lg']) ?>
+                    <div class="row">
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <?= $form->field($message, 'message')->textarea(['rows' => 2])->label(false) ?>
+                        </div>
+                        <div class="col-md-2 col-sm-10 col-xs-4" >
+                            <?= Html::submitButton('Send', ['class' => 'btn btn-primary btn-lg']) ?>
+                        </div>
                     </div>
                     <?php \kartik\form\ActiveForm::end(); ?>
                 </div>
