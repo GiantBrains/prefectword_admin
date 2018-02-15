@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'receiver_id',
             'order_number',
             'message:ntext',
-            'read',
+            'status',
             'created_at',
         ],
     ]) ?>
