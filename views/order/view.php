@@ -78,7 +78,14 @@ $this->registerJs($datetime);
         <li role="presentation"  class="active"><a href="<?= \yii\helpers\Url::to(['order/view', 'oid'=>$model->ordernumber])?>"><strong>Order details</strong></a></li>
         <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/attached', 'oid'=>$model->ordernumber])?>"><strong>Order Files</strong></a></li>
         <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/messages', 'oid'=>$model->ordernumber])?>"><strong>Messages</strong>
-                <?php $msgcount != 0 ? '<span class="badge">'.$msgcount.'</span>': ''; ?></a></li>
+                <?php
+                if ($msgcount != 0){
+                    echo '<span class="badge">'.$msgcount.'</span>';
+                }else{
+                    echo '';
+                }
+                ?>
+            </a></li>
     </ul>
     <?= \kartik\detail\DetailView::widget([
         'model' => $model,

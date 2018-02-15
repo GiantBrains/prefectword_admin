@@ -74,7 +74,14 @@ $this->registerJs($messages);
         <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/view', 'oid'=>$model->ordernumber])?>"><strong>Order details</strong></a></li>
         <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/attached', 'oid'=>$model->ordernumber])?>"><strong>Order Files</strong></a></li>
         <li role="presentation"  class="active"><a href="<?= \yii\helpers\Url::to(['order/messages', 'oid'=>$model->ordernumber])?>"><strong>Messages</strong>
-                <?php $msgcount != 0 ? '<span class="badge">'.$msgcount.'</span>': ''; ?></a></li>
+                <?php
+                if ($msgcount != 0){
+                    echo '<span class="badge">'.$msgcount.'</span>';
+                }else{
+                    echo '';
+                }
+                ?>
+            </a></li>
     </ul>
     <div class="row" style="padding: 0 10px 0 10px">
         <!--            <button style="margin-left: 15px; margin-bottom: 15px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">-->
