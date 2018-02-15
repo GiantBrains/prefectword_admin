@@ -114,9 +114,9 @@ $this->registerJs($messages);
                     <?php $form = \kartik\form\ActiveForm::begin([
                         'action'=> \yii\helpers\Url::to(['order/messages','oid'=>$model->ordernumber])
                     ]); ?>
-                    <?= $form->field($message, 'message')->textarea(['rows' => 4])->label(false) ?>
+                    <?= $form->field($message, 'message')->textarea(['rows' => 2])->label(false) ?>
                     <div class="pull-right" >
-                        <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton('Send', ['class' => 'btn btn-primary btn-lg']) ?>
                     </div>
                     <?php \kartik\form\ActiveForm::end(); ?>
                 </div>
