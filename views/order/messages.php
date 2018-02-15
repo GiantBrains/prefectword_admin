@@ -102,7 +102,7 @@ $this->registerJs($messages);
                         echo '<div style="text-decoration: underline"><span style="font-style: italic; font-size: small">'.$ptime.'</span></div>';
                         echo '</div>';
                     }else{
-                        echo '<div  class="col-md-7 col-md-push-5" style="border-radius: 5px; background-color: #e2e9de">';
+                        echo '<div  class="col-md-7 col-md-push-5" style="border-radius: 5px; background-color: #e9e9e5">';
                         echo '<div style="text-align: left">'.$order_message->message.'</div>';
                         echo '<div style="text-decoration: underline; text-align: left"><span style="font-style: italic; font-size: small">'.$ptime.'</span></div>';
                         echo '</div>';
