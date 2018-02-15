@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\Notification;
+use app\models\Uploaded;
 use Yii;
 use app\models\Message;
 use app\models\MessageSearch;
@@ -1643,17 +1644,87 @@ class OrderController extends Controller
 
     }
 
-    public function actionFileDelete($order, $file)
+    public function actionUploadedFiles($oid)
+    {
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $totaldeposit = $command1->queryScalar();
+        $totalwithdrawal = $command2->queryScalar();
+        $balance = $totaldeposit-$totalwithdrawal;
+        Yii::$app->view->params['balance'] = $balance;
+        $available_count = Order::find()->where(['available'=> 1])->count();
+        Yii::$app->view->params['available_count'] = $available_count;
+        $bids_count = Order::find()->where(['available'=> 1])->count();
+        Yii::$app->view->params['bids_count'] = $bids_count;
+        $unconfirmed_count = Order::find()->where(['confirmed'=> 0])->count();
+        Yii::$app->view->params['unconfirmed_count'] = $unconfirmed_count;
+        $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
+        Yii::$app->view->params['confirmed_count'] = $confirmed_count;
+
+        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        Yii::$app->view->params['pending_count'] = $pending_count;
+        $active_count = Order::find()->where(['active'=> 1])->count();
+        Yii::$app->view->params['active_count'] = $active_count;
+        $revision_count = Order::find()->where(['revision'=> 1])->count();
+        Yii::$app->view->params['revision_count'] = $revision_count;
+        $editing_count = Order::find()->where(['editing'=> 1])->count();
+        Yii::$app->view->params['editing_count'] = $editing_count;
+        $completed_count = Order::find()->where(['completed'=> 1])->count();
+        Yii::$app->view->params['completed_count'] = $completed_count;
+        $approved_count = Order::find()->where(['approved'=> 1])->count();
+        Yii::$app->view->params['approved_count'] = $approved_count;
+        $rejected_count = Order::find()->where(['rejected'=> 1])->count();
+        Yii::$app->view->params['rejected_count'] = $rejected_count;
+        $disputed_count = Order::find()->where(['disputed'=> 1])->count();
+        Yii::$app->view->params['disputed_count'] = $disputed_count;
+        $model = Order::find()->where(['ordernumber'=>$oid])->one();
+        $this->layout = 'order';
+        $upload = new Uploaded();
+        $models = Uploaded::find()->where(['order_number'=>$model->id])->orderBy('id DESC')->all();
+        return $this->render('uploaded-files', [
+            'upload' => $upload,
+            'model'=>$model,
+            'models'=>$models,
+            'id'=>$model->id
+        ]);
+
+    }
+
+
+    public function actionOrderUpload($id)
+    {
+        $user = Yii::$app->user->id;
+        $model = new Uploaded();
+        $order = Order::find()->where(['id'=>$id])->one();
+
+        $model->name = UploadedFile::getInstances($model, 'name');
+        $directory = Yii::getAlias('@app/web/images/uploads') . DIRECTORY_SEPARATOR;
+        if (!is_dir($directory)) {
+            FileHelper::createDirectory($directory);
+        }
+        foreach ($model->name as $key => $file) {
+            $file->saveAs($directory.$file->baseName . '.' . $file->extension);//Upload files to server
+            $sfile = new Uploaded();
+            $sfile->writer_id = $user;
+            $sfile->order_number = $id;
+            $sfile->name = $file->baseName . '.' . $file->extension;//Save file names in database- '**' is for separating images
+            $sfile->save();
+        }
+        return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
+    }
+
+
+    public function actionUploadDelete($order, $file)
     {
         $user = Yii::$app->user->id;
         $myorder = Order::find()->where(['id'=>$order])->one();
-        $myfile = File::find()->where(['user_id'=>$user])->andFilterWhere(['order_id'=>$order])->andFilterWhere(['attached'=>$file])->one();
+        $myfile = Uploaded::find()->where(['writer_id'=>$user])->andFilterWhere(['order_number'=>$order])->andFilterWhere(['name'=>$file])->one();
         $myfile->delete();
-        $directory = Yii::getAlias('@app/web/images/order') . DIRECTORY_SEPARATOR;
+        $directory = Yii::getAlias('@app/web/images/uploads') . DIRECTORY_SEPARATOR;
         if (is_file($directory . DIRECTORY_SEPARATOR . $file)) {
             unlink($directory . DIRECTORY_SEPARATOR . $file);
         }
-        return $this->redirect(['attached', 'oid'=>$myorder->ordernumber]);
+        return $this->redirect(['uploaded-files', 'oid'=>$myorder->ordernumber]);
     }
 
     public function actionSubcat()

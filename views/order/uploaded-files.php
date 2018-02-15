@@ -18,7 +18,7 @@ $this->title = 'Additional Files';
     ?>
     <ul class="nav nav-tabs" style="margin-bottom: 5px">
         <li role="presentation"><a href="<?= \yii\helpers\Url::to(['order/view', 'oid'=>$model->ordernumber])?>"><strong>Order details</strong></a></li>
-        <li role="presentation" class="active"><a href="<?= \yii\helpers\Url::to(['order/attached', 'oid'=>$model->ordernumber])?>"><strong>Order Files</strong></a></li>
+        <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/attached', 'oid'=>$model->ordernumber])?>"><strong>Order Files</strong></a></li>
         <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/messages', 'oid'=>$model->ordernumber])?>"><strong>Messages</strong>
                 <?php
                 if ($msgcount != 0){
@@ -28,7 +28,7 @@ $this->title = 'Additional Files';
                 }
                 ?>
             </a></li>
-        <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber])?>"><strong>Upload Files</strong></a></li>
+        <li role="presentation" class="active"><a href="<?= \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber])?>"><strong>Upload Files</strong></a></li>
     </ul>
     <div class="row">
         <div class="col-md-11">
@@ -39,12 +39,18 @@ $this->title = 'Additional Files';
                 </tr>
                 <?php
                 foreach($models as $model){
-                    echo $this->render('_viewfile',[
+                    echo $this->render('_uploadfile',[
                         'model'=>$model,
                     ]);
                 }
                 ?>
             </table>
+            <div style="margin-top: 20px">
+                <?= $this->render('_upload', [
+                    'upload' => $upload,
+                    'id'=>$id
+                ]) ?>
+            </div>
         </div>
     </div>
 </div>

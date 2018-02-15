@@ -82,6 +82,7 @@ $this->registerJs($messages);
                 }
                 ?>
             </a></li>
+        <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber])?>"><strong>Upload Files</strong></a></li>
     </ul>
     <div class="row" style="padding: 0 10px 0 10px">
         <!--            <button style="margin-left: 15px; margin-bottom: 15px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">-->

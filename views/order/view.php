@@ -86,6 +86,7 @@ $this->registerJs($datetime);
                 }
                 ?>
             </a></li>
+        <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber])?>"><strong>Upload Files</strong></a></li>
     </ul>
     <?= \kartik\detail\DetailView::widget([
         'model' => $model,
