@@ -694,7 +694,7 @@ class OrderController extends Controller
                     $mymessage->save();
                 }
             }
-            $notifications = \app\models\Notification::find()->where(['order_number'=>$oid, 'seen'=>0, 'user_id'=>Yii::$app->user->id])->all();
+            $notifications = \app\models\Notification::find()->where(['order_number'=>$oid])->andWhere(['seen'=>0,])->andFilterWhere(['user_id'=>Yii::$app->user->id])->all();
             foreach ($notifications as $notification) {
                 $notification->seen = 1;
                 $notification->save();
