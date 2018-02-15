@@ -97,14 +97,12 @@ $this->registerJs($messages);
                     $ptime = $startTime->format("M d, Y H:i");
                     echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
                     if ($order_message->sender_id == Yii::$app->user->id){
-                        echo '<div  class="col-md-7" style="text-align: left; border-radius: 5px; background-color: lightcyan">';
-                        echo '<div><strong>You</strong></div>';
+                        echo '<div  class="col-md-7" style="text-align: left; border-radius: 5px; background-color: #ECEFF4">';
                         echo '<div>'.$order_message->message.'</div>';
                         echo '<div style="text-decoration: underline"><span style="font-style: italic; font-size: small">'.$ptime.'</span></div>';
                         echo '</div>';
                     }else{
-                        echo '<div  class="col-md-7 col-md-push-5" style="border-radius: 5px; background-color: #d0e9c6">';
-                        echo '<div style="text-align: left"><strong style="text-transform: capitalize">'.$order_message->sender->username.'</strong> </div>';
+                        echo '<div  class="col-md-7 col-md-push-5" style="border-radius: 5px; background-color: #e2e9de">';
                         echo '<div style="text-align: left">'.$order_message->message.'</div>';
                         echo '<div style="text-decoration: underline; text-align: left"><span style="font-style: italic; font-size: small">'.$ptime.'</span></div>';
                         echo '</div>';
