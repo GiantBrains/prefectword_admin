@@ -9,66 +9,66 @@ $tabactive = 'active';
 $tab2active = 'not';
 $tab3active = 'not';
 $this->title = 'Order #'.$model->ordernumber;
-$this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-$epoch = time();
-$dt = new DateTime("@$epoch");  // convert UNIX timestamp to PHP DateTime
-$myzone = new DateTimeZone('Africa/Nairobi');
-$dt->setTimezone($myzone);
-$dt->format('Y-m-d H:i:s');
-$interval = date_diff( date_create( $dt->format('Y-m-d H:i:s')), date_create($model->deadline));
-
-$date_days = $interval->format('%a');
-$date_hours = $interval->format('%r%H');
-$date_minutes = $interval->format('%r%I');
-if($date_days == 0) {
-    if ($interval->format('%r%I') < 0 && $interval->format('%H') == 0) {
-        $deadline = '<p style="color: red">' . $interval->format('%r%I minutes') . ' </p>';
-    }else if ($interval->format('%r%I') > 0 && $interval->format('%H') == 0) {
-        $deadline = '<p style="color: green">' . $interval->format('%r%I minutes') . ' </p>';
-    }else if($interval->format('%r%H') < 0){
-        $deadline =  '<p style="color: red">'.$interval->format('%r%H hours %I minutes' ).' </p>';
-    }else if($interval->format('%r%H') > 0){
-        $deadline = '<p style="color: green">'.$interval->format('%r%H hours %I minutes' ).' </p>';
-    }else{
-        $deadline = '<p style="color: green">'.$interval->format('%r%H hours %I minutes' ).' </p>';
-    }
-
-}else  if($date_hours == 0) {
-    if ($interval->format('%r%I') < 0 && $interval->format('%a') == 0) {
-        $deadline = '<p style="color: red">' . $interval->format('%r%I minutes') . ' </p>';
-    }else if ($interval->format('%r%I') > 0 && $interval->format('%a') == 0) {
-        $deadline ='<p style="color: green">' . $interval->format('%r%I minutes') . ' </p>';
-    }else if ($interval->format('%r%a') < 0) {
-        $deadline = '<p style="color: red">' . $interval->format('%r%a days %I minutes') . ' </p>';
-    }else if ($interval->format('%r%a') > 0) {
-        $deadline = '<p style="color: green">' . $interval->format('%r%a days %I minutes') . ' </p>';
-    }else{
-        $deadline = '<p style="color: green">'.$interval->format('%r%a days %H hours %I minutes' ).' </p>';
-    }
-
-}
-else if ($interval->format('%r%a') < 0){
-    $deadline =  '<p style="color: red">'.$interval->format('%r%a days %H hours %I minutes' ).' </p>';
-
-}else{
-    $deadline =  '<p  style="color: green">'.$interval->format('%a days %H hours %I minutes' ).' </p>';
-}
 
 $datetime = <<< JS
-var displayMoment = document.getElementById('deadline-date');
-var theMoment = moment("<?php echo $model->deadline; ?>", "YYYY-MM-DD HH-mm-ss").fromNow();
-
-var now = moment();
-const exp = moment("<?php echo $model->deadline; ?>", "YYYY-MM-DD HH-mm-ss");
-days = exp.diff(now, 'days');
-hours = exp.subtract(days, 'days').diff(now, 'hours');
-minutes = exp.subtract(hours, 'hours').diff(now, 'minutes');
-displayMoment.innerHTML = days+' days, '+hours+' hours, '+minutes+' minutes';
+//var displayMoment = document.getElementById('deadline-date');
+/*var theMoment = moment("<?php echo  ?>", "YYYY-MM-DD HH-mm-ss").fromNow();*/
+//
+//var now = moment();
+/*const exp = moment("<?php echo ?>", "YYYY-MM-DD HH-mm-ss");*/
+//days = exp.diff(now, 'days');
+//hours = exp.subtract(days, 'days').diff(now, 'hours');
+//minutes = exp.subtract(hours, 'hours').diff(now, 'minutes');
+//displayMoment.innerHTML = days+' days, '+hours+' hours, '+minutes+' minutes';
 JS;
 $this->registerJs($datetime);
 ?>
 <div class="order-view" style="margin-left: -10px">
+    <?php
+    $epoch = time();
+    $dt = new DateTime("@$epoch");  // convert UNIX timestamp to PHP DateTime
+    $myzone = new DateTimeZone('Africa/Nairobi');
+    $dt->setTimezone($myzone);
+    $dt->format('Y-m-d H:i:s');
+    $interval = date_diff( date_create( $dt->format('Y-m-d H:i:s')), date_create($model->deadline));
+
+    $date_days = $interval->format('%a');
+    $date_hours = $interval->format('%r%H');
+    $date_minutes = $interval->format('%r%I');
+    if($date_days == 0) {
+        if ($interval->format('%r%I') < 0 && $interval->format('%H') == 0) {
+            $deadline = '<p style="color: red">' . $interval->format('%r%I minutes') . ' </p>';
+        }else if ($interval->format('%r%I') > 0 && $interval->format('%H') == 0) {
+            $deadline = '<p style="color: green">' . $interval->format('%r%I minutes') . ' </p>';
+        }else if($interval->format('%r%H') < 0){
+            $deadline =  '<p style="color: red">'.$interval->format('%r%H hours %I minutes' ).' </p>';
+        }else if($interval->format('%r%H') > 0){
+            $deadline = '<p style="color: green">'.$interval->format('%r%H hours %I minutes' ).' </p>';
+        }else{
+            $deadline = '<p style="color: green">'.$interval->format('%r%H hours %I minutes' ).' </p>';
+        }
+
+    }else  if($date_hours == 0) {
+        if ($interval->format('%r%I') < 0 && $interval->format('%a') == 0) {
+            $deadline = '<p style="color: red">' . $interval->format('%r%I minutes') . ' </p>';
+        }else if ($interval->format('%r%I') > 0 && $interval->format('%a') == 0) {
+            $deadline ='<p style="color: green">' . $interval->format('%r%I minutes') . ' </p>';
+        }else if ($interval->format('%r%a') < 0) {
+            $deadline = '<p style="color: red">' . $interval->format('%r%a days %I minutes') . ' </p>';
+        }else if ($interval->format('%r%a') > 0) {
+            $deadline = '<p style="color: green">' . $interval->format('%r%a days %I minutes') . ' </p>';
+        }else{
+            $deadline = '<p style="color: green">'.$interval->format('%r%a days %H hours %I minutes' ).' </p>';
+        }
+
+    }
+    else if ($interval->format('%r%a') < 0){
+        $deadline =  '<p style="color: red">'.$interval->format('%r%a days %H hours %I minutes' ).' </p>';
+
+    }else{
+        $deadline =  '<p  style="color: green">'.$interval->format('%a days %H hours %I minutes' ).' </p>';
+    }
+    ?>
     <h1><?= Html::encode($this->title) ?></h1>
     <hr>
     <?php
