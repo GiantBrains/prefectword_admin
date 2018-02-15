@@ -12,6 +12,7 @@ use app\models\Order;
  */
 class OrderSearch extends Order
 {
+    public $global;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'ordernumber', 'created_by', 'written_by', 'edited_by', 'pagesummary', 'plagreport', 'initialdraft', 'qualitycheck', 'topwriter'], 'integer'],
-            [['topic',  'service_id', 'type_id', 'urgency_id', 'deadline', 'spacing_id', 'pages_id', 'level_id', 'subject_id', 'style_id', 'sources_id', 'language_id', 'instructions', 'phone', 'promocode', 'created_at'], 'safe'],
+            [['topic',  'service_id', 'type_id', 'global','urgency_id', 'deadline', 'spacing_id', 'pages_id', 'level_id', 'subject_id', 'style_id', 'sources_id', 'language_id', 'instructions', 'phone', 'promocode', 'created_at'], 'safe'],
             [['amount'], 'number'],
         ];
     }
@@ -69,41 +70,42 @@ class OrderSearch extends Order
         $query->joinWith('sources');
         $query->joinWith('language');
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'ordernumber' => $this->ordernumber,
-            'created_by' => $this->created_by,
-            'written_by' => $this->written_by,
-            'edited_by' => $this->edited_by,
-            'pagesummary' => $this->pagesummary,
-            'plagreport' => $this->plagreport,
-            'initialdraft' => $this->initialdraft,
-            'qualitycheck' => $this->qualitycheck,
-            'topwriter' => $this->topwriter,
-            'deadline' => $this->deadline,
-            'amount' => $this->amount,
-            'created_at' => $this->created_at,
-        ]);
+//        // grid filtering conditions
+//        $query->andFilterWhere([
+//            'id' => $this->id,
+//            'ordernumber' => $this->ordernumber,
+//            'created_by' => $this->created_by,
+//            'written_by' => $this->written_by,
+//            'edited_by' => $this->edited_by,
+//            'pagesummary' => $this->pagesummary,
+//            'plagreport' => $this->plagreport,
+//            'initialdraft' => $this->initialdraft,
+//            'qualitycheck' => $this->qualitycheck,
+//            'topwriter' => $this->topwriter,
+//            'deadline' => $this->deadline,
+//            'amount' => $this->amount,
+//            'created_at' => $this->created_at,
+//        ]);
 
-        $query->andFilterWhere(['like', 'order.topic', $this->topic])
-            ->andFilterWhere(['like', 'order.instructions', $this->instructions])
-            ->andFilterWhere(['like', 'order.phone', $this->phone])
-            ->andFilterWhere(['like', 'order.promocode', $this->promocode])
+        $query->orFilterWhere(['like', 'order.topic', $this->global])
+            ->orFilterWhere(['like', 'order.ordernumber', $this->global])
+            ->orFilterWhere(['like', 'order.instructions', $this->global])
+            ->orFilterWhere(['like', 'order.phone', $this->global])
+            ->orFilterWhere(['like', 'order.promocode', $this->global])
 
-            ->andFilterWhere(['like', 'service.name', $this->service_id])
-            ->andFilterWhere(['like', 'type.name', $this->type_id])
-            ->andFilterWhere(['like', 'urgency.name', $this->urgency_id])
+            ->orFilterWhere(['like', 'service.name', $this->global])
+            ->orFilterWhere(['like', 'type.name', $this->global])
+            ->orFilterWhere(['like', 'urgency.name', $this->global])
 
-            ->andFilterWhere(['like', 'subject.name', $this->subject_id])
-            ->andFilterWhere(['like', 'style.name', $this->style_id])
-            ->andFilterWhere(['like', 'sources.name', $this->sources_id])
+            ->orFilterWhere(['like', 'subject.name', $this->global])
+            ->orFilterWhere(['like', 'style.name', $this->global])
+            ->orFilterWhere(['like', 'sources.name', $this->global])
 
-            ->andFilterWhere(['like', 'spacing.name', $this->spacing_id])
-            ->andFilterWhere(['like', 'pages.name', $this->pages_id])
-            ->andFilterWhere(['like', 'level.name', $this->level_id])
+            ->orFilterWhere(['like', 'spacing.name', $this->global])
+            ->orFilterWhere(['like', 'pages.name', $this->global])
+            ->orFilterWhere(['like', 'level.name', $this->global])
 
-            ->andFilterWhere(['like', 'language.name', $this->language_id]);
+            ->orFilterWhere(['like', 'language.name', $this->global]);
 
         return $dataProvider;
     }

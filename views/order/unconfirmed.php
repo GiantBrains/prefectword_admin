@@ -26,11 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <hr>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <div class="row">
+        <div class="col-md-4  col-md-push-8">
+            <?php  echo $this->render('_unconfirmed', ['model' => $searchModel]); ?>
+        </div>
+    </div>
     <?= \kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'service_id',
