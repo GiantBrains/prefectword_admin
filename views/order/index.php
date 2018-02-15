@@ -33,7 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    <h2>--><?php //$usd[0]?><!--</h2>-->
     <hr>
     <?php Pjax::begin(); ?>
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+        <div class="col-md-4  col-md-push-8">
+            <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+    </div>
 
     <?= \kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
