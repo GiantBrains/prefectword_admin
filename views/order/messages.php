@@ -119,7 +119,7 @@ $this->registerJs($messages);
                         <div class="col-md-10 col-sm-10 col-xs-12">
                             <?= $form->field($message, 'message')->textarea(['rows' => 2])->label(false) ?>
                         </div>
-                        <div class="col-md-2 col-sm-10 col-xs-4" >
+                        <div class="col-md-2 col-sm-10 col-xs-4" style="margin-top: 5px" >
                             <?= Html::submitButton('Send', ['class' => 'btn btn-primary btn-lg']) ?>
                         </div>
                     </div>
