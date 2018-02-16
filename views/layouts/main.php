@@ -36,17 +36,8 @@ AppAsset::register($this);
         ],
     ]);
 
-    $menuItem []= ['label' => 'Writers', 'url' => ['/'],
+    $menuItem []= ['label' => 'Admin', 'url' => ['/'],
         'active' => $this->context->route == 'site/index',
-    ];
-    $menuItem []= ['label' => 'How it Works', 'url' => ['/about'],
-        'active' => $this->context->route == 'site/about'
-    ];
-    $menuItem []=  ['label' => 'Services', 'url' => ['/contact'],
-        'active' => $this->context->route == 'site/contact'
-    ];
-    $menuItem []=  ['label' => 'About Us', 'url' => ['/contact'],
-        'active' => $this->context->route == 'site/about'
     ];
 
     echo Nav::widget([
