@@ -38,7 +38,7 @@ class Uploaded extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['created_at'], 'safe'],
             [['file_extension'], 'string', 'max' => 50],
-            [['name'],'file', 'maxSize'=>30000000],
+            [['name'],'file', 'maxSize'=>30000000, 'maxFiles' => 4],
             [['order_number'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_number' => 'id']],
             [['writer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['writer_id' => 'id']],
         ];
