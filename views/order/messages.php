@@ -97,7 +97,7 @@ $this->registerJs($messages);
                     $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
                     $ptime = $startTime->format("M d, Y H:i");
                     echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
-                    if ($order_message->sender_id == Yii::$app->user->id){
+                    if ($order_message->sender_id != Yii::$app->user->id){
                         echo '<div  class="col-md-7" style="text-align: left; border-radius: 5px; background-color: #ECEFF4">';
                         echo '<div>'.$order_message->message.'</div>';
                         echo '<div style="text-decoration: underline"><span style="font-style: italic; font-size: small">'.$ptime.'</span></div>';
