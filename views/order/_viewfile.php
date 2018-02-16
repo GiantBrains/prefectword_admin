@@ -9,6 +9,6 @@
         <span><?= $model->attached.'.'.$model->file_extension ?></span>
     </td>
     <td  style="padding-top: 5px; padding-bottom: 5px">
-        <span><a type="button" class="btn btn-md btn-danger" href="<?= \yii\helpers\Url::to('@ordersource').'/images/order/'.$order_file.''?>"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a></span>
+        <span><a type="button" class="btn btn-md btn-danger" href="<?= \yii\helpers\Url::to('@ordersource').'/images/order/'.$order_file.''?>" download><i class="fa fa-download fa-2x" aria-hidden="true"></i></a></span>
     </td>
 </tr>
