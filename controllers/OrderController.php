@@ -38,10 +38,10 @@ class OrderController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'file-upload',
-                    'send-message', 'messages','image-upload','file-view','image-delete','cancel' ],
+                    'send-message', 'messages','image-upload','file-view','image-delete','cancel','uploaded-files' ],
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'file-upload',
+                        'actions' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'uploaded-files', 'file-upload',
                             'send-message', 'messages','image-upload','file-view','image-delete','cancel'],
                         'allow' => true,
                         'roles' => ['@'],
