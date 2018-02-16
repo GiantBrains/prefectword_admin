@@ -10,6 +10,8 @@ use dektrium\user\models\User;
  * @property int $id
  * @property int $order_number
  * @property int $writer_id
+ * @property int $file_date
+ * @property string $file_extension
  * @property string $name
  * @property string $created_at
  *
@@ -32,10 +34,11 @@ class Uploaded extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_number', 'writer_id'], 'integer'],
+            [['order_number', 'writer_id', 'file_date'], 'integer'],
             [['name'], 'required'],
             [['created_at'], 'safe'],
-            [['name'], 'string', 'max' => 255],
+            [['file_extension'], 'string', 'max' => 50],
+            [['name'],'file', 'maxSize'=>30000000],
             [['order_number'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_number' => 'id']],
             [['writer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['writer_id' => 'id']],
         ];
@@ -50,6 +53,8 @@ class Uploaded extends \yii\db\ActiveRecord
             'id' => 'ID',
             'order_number' => 'Order Number',
             'writer_id' => 'Writer ID',
+            'file_date' => 'File Date',
+            'file_extension' => 'File Extension',
             'name' => 'Name',
             'created_at' => 'Created At',
         ];

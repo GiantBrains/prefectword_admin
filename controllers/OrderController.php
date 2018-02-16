@@ -1703,26 +1703,30 @@ class OrderController extends Controller
             FileHelper::createDirectory($directory);
         }
         foreach ($model->name as $key => $file) {
-            $file->saveAs($directory.$file->baseName . '.' . $file->extension);//Upload files to server
+            $file->saveAs($directory.$file->baseName . '-'.date('His'). '.' . $file->extension);//Upload files to server
             $sfile = new Uploaded();
             $sfile->writer_id = $user;
             $sfile->order_number = $id;
-            $sfile->name = $file->baseName . '.' . $file->extension;//Save file names in database- '**' is for separating images
+            $sfile->file_date = date('His');
+            $sfile->file_extension = $file->extension;
+            $sfile->name = $file->baseName;//Save file names in database- '**' is for separating images
             $sfile->save();
         }
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
 
 
-    public function actionUploadDelete($order, $file)
+    public function actionUploadDelete($order, $file, $file_date, $file_extension)
     {
         $user = Yii::$app->user->id;
         $myorder = Order::find()->where(['id'=>$order])->one();
-        $myfile = Uploaded::find()->where(['writer_id'=>$user])->andFilterWhere(['order_number'=>$order])->andFilterWhere(['name'=>$file])->one();
+        $myfile = Uploaded::find()->Where(['order_number'=>$order])->andFilterWhere(['name'=>$file])
+            ->andFilterWhere(['file_date'=>$file_date])->andFilterWhere(['file_extension'=>$file_extension])->one();
         $myfile->delete();
+        $order_file = $file.'-'.$file_date.'.'.$file_extension;
         $directory = Yii::getAlias('@app/web/images/uploads') . DIRECTORY_SEPARATOR;
-        if (is_file($directory . DIRECTORY_SEPARATOR . $file)) {
-            unlink($directory . DIRECTORY_SEPARATOR . $file);
+        if (is_file($directory . DIRECTORY_SEPARATOR . $order_file)) {
+            unlink($directory . DIRECTORY_SEPARATOR . $order_file);
         }
         return $this->redirect(['uploaded-files', 'oid'=>$myorder->ordernumber]);
     }
