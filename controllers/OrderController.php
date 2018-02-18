@@ -645,7 +645,7 @@ class OrderController extends Controller
             $message->status = 0;
             $message->save();
             // $message was just created by the logged in user, and sent to $recipient_id
-           Notification::warning(Notification::KEY_NEW_MESSAGE, $client->created_by, $message->id);
+            Notification::warning(Notification::KEY_NEW_MESSAGE, $client->created_by, $message->id);
             $notify = \app\models\Notification::find()->where(['key_id'=> $message->id])->one();
             $notify->order_number = $oid;
             $notify->save();
@@ -1587,6 +1587,7 @@ class OrderController extends Controller
             unset($session['pages_id']);
             unset($session['level_id']);
             Notification::success(Notification::KEY_NEW_ORDER, 1, $model->id);
+            Notification::success(Notification::KEY_NEW_ORDER, 7, $model->id);
             $notify = \app\models\Notification::find()->where(['key_id'=> $model->id, 'seen'=>0])->one();
             $notify->order_number = $model->ordernumber;
             $notify->save();

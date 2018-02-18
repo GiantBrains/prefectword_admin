@@ -28,7 +28,8 @@
         "kartik-v/yii2-widget-depdrop": "@dev",
         "2amigos/yii2-ckeditor-widget": "^2.1",
         "machour/yii2-notifications": "*",
-        "loveorigami/yii2-reversed-pagination": "~2.0"
+        "loveorigami/yii2-reversed-pagination": "~2.0",
+        "kartik-v/yii2-widget-rating": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
