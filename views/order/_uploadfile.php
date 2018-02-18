@@ -9,7 +9,7 @@
     </td>
     <td  style="padding-top: 5px; padding-bottom: 5px">
         <span> <?= \yii\helpers\Html::a('Delete', ['order/upload-delete', 'order'=>$model->order_number, 'file'=>$model->name, 'file_date'=>$model->file_date, 'file_extension'=>$model->file_extension], [
-                'class' => 'btn btn-md btn-danger',
+                'class' => 'btn btn-xs btn-danger',
                 'data' => [
                     'confirm' => 'Are you sure you want to delete this file?',
                     'method' => 'post',
