@@ -173,13 +173,14 @@ AppAsset::register($this);
                             //
                             //
                             ['label' => '<i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard',  'active' => $this->context->route == 'order/index','url' => Yii::$app->request->baseUrl.'/order/index'],
+
                             ['label' => '<i class="fa fa-plus " aria-hidden="true"></i> Place Order', 'active' => $this->context->route == 'order/create', 'url' => Yii::$app->request->baseUrl.'/order/create'],
                             ['label' => $this->params['pending_count'] ? '<i class="fa fa-list " aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['pending_count'].'</span> Pending':
                                 '<i class="fa fa-list " aria-hidden="true"></i> Pending Orders', 'active' => $this->context->route == 'order/pending','url' => Yii::$app->request->baseUrl.'/order/pending'],
                             ['label' => $this->params['available_count'] ? '<i class="fa fa-clock-o" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['available_count'].'</span> Available Orders':
-                                '<i class="fa fa-clock-o" aria-hidden="true"></i> Available Orders', 'active' => $this->context->route == 'order/available','url' => Yii::$app->request->baseUrl.'/order/available'],
+                                '<i class="fa fa-clock-o" aria-hidden="true"></i> Available Orders', 'active' => $this->context->route == 'order/available', 'url' => Yii::$app->request->baseUrl.'/order/available'],
                             ['label' =>  $this->params['bids_count'] ? '<i class="fa fa-question-circle-o" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['bids_count'].'</span> Bids':
-                                '<i class="fa fa-question-circle-o" aria-hidden="true"></i> Bids', 'active' => $this->context->route == 'order/bids', 'url' => Yii::$app->request->baseUrl.'/order/bids'],
+                                '<i class="fa fa-question-circle-o" aria-hidden="true"></i> Bids',  'options'=>['class'=>'nav-link disabled'], 'active' => $this->context->route == 'order/bids', 'url' => Yii::$app->request->baseUrl.'/#'],
                             ['label' => $this->params['unconfirmed_count'] ? '<i class="fa fa-tasks" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['unconfirmed_count'].'</span> Unconfirmed Orders':
                                 '<i class="fa fa-tasks" aria-hidden="true"></i> Unconfirmed Orders', 'active' => $this->context->route == 'order/unconfirmed','url' => Yii::$app->request->baseUrl.'/order/unconfirmed'],
                             ['label' => $this->params['confirmed_count'] ? '<span class="glyphicon glyphicon-check" aria-hidden="true"></span> <span class="pull-right badge">'.$this->params['confirmed_count'].'</span> Confirmed Orders':

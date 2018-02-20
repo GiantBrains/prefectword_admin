@@ -220,13 +220,7 @@ $this->registerJs($datetime);
         ],
     ]) ?>
     <p>
-        <?php
-        if ($model->active == 0){
-            echo ''. Html::a('Update', ['update', 'oid' => $model->ordernumber], ['class' => 'btn btn-primary']).'';
-        }else{
-            echo '';
-        }
-        ?>
+
         <?php
         if ($model->completed == 0){
             echo ' <!-- Button trigger modal -->
@@ -238,7 +232,7 @@ $this->registerJs($datetime);
         }
         ?>
         <?php
-        if ($model->paid == 0){
+        if ($model->available == 0){
             echo ' <!-- Button trigger modal -->
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#takeModal">
               Take Order

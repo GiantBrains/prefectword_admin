@@ -114,6 +114,7 @@ class SiteController extends Controller
         if ($agree == 'true'){
             $order = Order::find()->where(['ordernumber'=>$oid])->one();
             $order->active = 1;
+            $order->available = 0;
             $order->written_by = Yii::$app->user->id;
             $order->save();
 
