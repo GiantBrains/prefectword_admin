@@ -1697,28 +1697,32 @@ class OrderController extends Controller
         $user = Yii::$app->user->id;
         $order = Order::find()->where(['id'=>$id])->one();
         $model = new Uploaded();
+
         if ($model->load(Yii::$app->request->post())) {
+            if ($model->file_type == 1) {
+                $order->completed = 1;
+                $order->active = 0;
+                $order->save();
+            }
             $model->name = UploadedFile::getInstances($model, 'name');
             $directory = Yii::getAlias('@app/web/images/uploads') . DIRECTORY_SEPARATOR;
             if (!is_dir($directory)) {
                 FileHelper::createDirectory($directory);
             }
             foreach ($model->name as $key => $file) {
-                $file->saveAs($directory.$file->baseName . '-'.date('His'). '.' . $file->extension);//Upload files to server
-                if ($model->file_type == 1){
-                    $model->file_type = 1;
-                    $order->completed = 1;
-                    $order->active = 0;
-                    $order->save();
+                $file->saveAs($directory . $file->baseName . '-' . date('His') . '.' . $file->extension);//Upload files to server
+                $sfile = new Uploaded();
+                if($model->file_type == 1){
+                    $sfile->file_type =1;
                 }else{
-                    $model->file_type = 0;
+                    $sfile->file_type = 0;
                 }
-                $model->writer_id = $user;
-                $model->order_number = $id;
-                $model->file_date = date('His');
-                $model->file_extension = $file->extension;
-                $model->name = $file->baseName;//Save file names in database- '**' is for separating images
-                $model->save();
+                $sfile->writer_id = $user;
+                $sfile->order_number = $id;
+                $sfile->file_date = date('His');
+                $sfile->file_extension = $file->extension;
+                $sfile->name = $file->baseName;//Save file names in database- '**' is for separating images
+                $sfile->save();
             }
         }
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
