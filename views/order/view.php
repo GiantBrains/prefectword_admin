@@ -222,7 +222,7 @@ $this->registerJs($datetime);
     <p>
 
         <?php
-        if ($model->completed == 0){
+        if ($model->active != 1 && $model->completed != 1){
             echo ' <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cancelModal">
                Cancel
@@ -232,7 +232,7 @@ $this->registerJs($datetime);
         }
         ?>
         <?php
-        if ($model->available == 0){
+        if ($model->available == 1 && $model->paid == 1){
             echo ' <!-- Button trigger modal -->
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#takeModal">
               Take Order
