@@ -31,6 +31,7 @@ class File extends \yii\db\ActiveRecord
         return [
             [['user_id', 'order_id'], 'integer'],
             [['created_at'], 'safe'],
+            [['file_extension',  'file_date'], 'string', 'max' => 50],
             [['attached'], 'string', 'max' => 255],
         ];
     }

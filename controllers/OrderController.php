@@ -1710,7 +1710,7 @@ class OrderController extends Controller
                 FileHelper::createDirectory($directory);
             }
             foreach ($model->name as $key => $file) {
-                $file->saveAs($directory . $file->baseName . '-' . date('his') . '.' . $file->extension);//Upload files to server
+                $file->saveAs($directory . $file->baseName . '-' . date('His') . '.' . $file->extension);//Upload files to server
                 $sfile = new Uploaded();
                 if($model->file_type == 1){
                     $sfile->file_type =1;

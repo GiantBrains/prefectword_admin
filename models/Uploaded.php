@@ -35,10 +35,10 @@ class Uploaded extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_number', 'writer_id', 'file_type', 'file_date'], 'integer'],
+            [['order_number', 'writer_id', 'file_type'], 'integer'],
             [['name'], 'required'],
             [['created_at'], 'safe'],
-            [['file_extension'], 'string', 'max' => 50],
+            [['file_extension',  'file_date'], 'string', 'max' => 50],
             [['name'],'file', 'maxSize'=>30000000, 'maxFiles' => 4],
             [['order_number'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_number' => 'id']],
             [['writer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['writer_id' => 'id']],
