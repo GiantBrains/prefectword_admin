@@ -109,6 +109,17 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionTake($oid, $agree)
+    {
+        if ($agree == 'true'){
+            $order = Order::find()->where(['ordernumber'=>$oid])->one();
+            $order->active = 1;
+            $order->written_by = Yii::$app->user->id;
+            $order->save();
+
+            return $this->redirect(['order/view','oid'=>$oid]);
+        }
+    }
     /**
      * Login action.
      *

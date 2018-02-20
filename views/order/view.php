@@ -220,13 +220,78 @@ $this->registerJs($datetime);
         ],
     ]) ?>
     <p>
-        <?= Html::a('Update', ['update', 'oid' => $model->ordernumber], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Cancel', ['cancel', 'oid' => $model->ordernumber], [
-            'class' => 'btn btn-warning',
-            'data' => [
-                'confirm' => 'Are you sure you want to cancel this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php
+        if ($model->active == 0){
+            echo ''. Html::a('Update', ['update', 'oid' => $model->ordernumber], ['class' => 'btn btn-primary']).'';
+        }else{
+            echo '';
+        }
+        ?>
+        <?php
+        if ($model->completed == 0){
+            echo ' <!-- Button trigger modal -->
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cancelModal">
+               Cancel
+            </button>';
+        }else{
+            echo '';
+        }
+        ?>
+        <?php
+        if ($model->paid == 0){
+            echo ' <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#takeModal">
+              Take Order
+            </button>';
+        }else{
+            echo '';
+        }
+        ?>
     </p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="takeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-align: center" id="myModalLabel">Take Order</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding: 10px">
+                    <p>Please read and agree to our terms and conditions before taking the order.<br>
+                        Ensure that all the instructions are followed and submit final product in time.</p>
+                    <form action="<?= Yii::$app->request->baseUrl?>/site/take">
+                        <input name="oid"  type="hidden" value="<?=$model->ordernumber ?>">
+                        <p><input required type="checkbox" name="agree" value="true"> Agree to <a href="#">Terms and Conditions</a>.</p> <br>
+                        <input name="submit" type="submit" class="btn btn-primary" value="Take Order">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-align: center" id="myModalLabel">Cancel Order</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding: 10px">
+                    Cancel Order
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
