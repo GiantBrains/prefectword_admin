@@ -46,10 +46,20 @@ $this->title = 'Additional Files';
                 ?>
             </table>
             <div style="margin-top: 20px">
-                <?= $this->render('_upload', [
+                <?php
+                \yii\bootstrap\Modal::begin([
+                'header'=>'<h4 style="text-align: center">Upload Order</h4>',
+                'id'=>'supaModal',
+                'toggleButton' => [
+                'label'=>'<i class="fa fa-upload" aria-hidden="true"></i> Upload files', 'class'=>'btn btn-primary'
+                ],
+                ]);
+                echo $this->render('_upload', [
                     'upload' => $upload,
                     'id'=>$id
-                ]) ?>
+                ]);
+                \yii\bootstrap\Modal::end();
+                ?>
             </div>
         </div>
     </div>

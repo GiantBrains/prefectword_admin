@@ -45,7 +45,7 @@ body {
     padding: 0;
 }
 
-#takeModal .modal-dialog  {width:38%;}
+#takeModal #supaModal .modal-dialog  {width:38%;}
 
 #navigation ul li
 {

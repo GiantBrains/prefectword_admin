@@ -18,7 +18,7 @@ class UploadedSearch extends Uploaded
     public function rules()
     {
         return [
-            [['id', 'order_number', 'client_id'], 'integer'],
+            [['id', 'order_number', 'file_type', 'writer_id'], 'integer'],
             [['name', 'created_at'], 'safe'],
         ];
     }
@@ -61,7 +61,8 @@ class UploadedSearch extends Uploaded
         $query->andFilterWhere([
             'id' => $this->id,
             'order_number' => $this->order_number,
-            'client_id' => $this->client_id,
+            'client_id' => $this->writer_id,
+            'file_type' => $this->file_type,
             'created_at' => $this->created_at,
         ]);
 

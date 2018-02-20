@@ -1706,13 +1706,20 @@ class OrderController extends Controller
         foreach ($model->name as $key => $file) {
             $file->saveAs($directory.$file->baseName . '-'.date('His'). '.' . $file->extension);//Upload files to server
             $sfile = new Uploaded();
+
+            if ($sfile->file_type == 1){
+                $sfile->file_type = 1;
+                $order->completed = 1;
+            }else{
+                $sfile->file_type = 0;
+            }
             $sfile->writer_id = $user;
             $sfile->order_number = $id;
             $sfile->file_date = date('His');
             $sfile->file_extension = $file->extension;
             $sfile->name = $file->baseName;//Save file names in database- '**' is for separating images
-            $sfile->save();
         }
+        $sfile->save();
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
 
