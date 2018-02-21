@@ -28,7 +28,11 @@ $this->title = 'Additional Files';
                 }
                 ?>
             </a></li>
-        <li role="presentation" ><a href="<?= \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber])?>"><strong>Upload Files</strong></a></li>
+        <?php
+        if ($model->active == 1 || $model->revision == 1){
+            echo '<li role="presentation"><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
+        }
+        ?>
     </ul>
     <div class="row">
         <div class="col-md-11">
