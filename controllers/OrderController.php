@@ -38,11 +38,15 @@ class OrderController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['create', 'view', 'index', 'cancel', 'update','attached', 'file-delete', 'file-upload',
-                    'send-message', 'messages','image-upload','file-view','image-delete','cancel','uploaded-files' ],
+                    'send-message', 'messages','image-upload','file-view','image-delete','uploaded-files',
+                    'pending','available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed', 'revision',
+                    'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete'],
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'uploaded-files', 'file-upload',
-                            'send-message', 'messages','image-upload','file-view','image-delete','cancel','view'],
+                        'actions' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'uploaded-files',
+                            'file-upload', 'send-message', 'messages','image-upload','file-view','image-delete','cancel',
+                            'view','pending','available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed',
+                            'revision', 'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -109,8 +113,6 @@ class OrderController extends Controller
             'usd'=>$usd
         ]);
     }
-
-
     public function actionPending()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -152,7 +154,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionAvailable()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -194,7 +195,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionActive()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -237,7 +237,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionConfirmed()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -279,7 +278,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionUnconfirmed()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -321,7 +319,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionEditing()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -363,7 +360,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionCompleted()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -405,7 +401,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionRevision()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -447,7 +442,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionRejected()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -489,7 +483,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionDisputed()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -531,7 +524,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionApproved()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -573,7 +565,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
 
     public function actionSendMessage()
     {
@@ -618,7 +609,6 @@ class OrderController extends Controller
             ]);
         }
     }
-
     public function actionMessages($oid)
     {
          $message = new Message();
@@ -711,7 +701,6 @@ class OrderController extends Controller
             ]);
         }
     }
-
     public function actionView($oid)
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -749,7 +738,6 @@ class OrderController extends Controller
             'model' => $this->findModelByNumber($oid),
         ]);
     }
-
     /**
      * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -1597,8 +1585,6 @@ class OrderController extends Controller
             'model' => $model,
         ]);
     }
-
-
     public function actionAttached($oid)
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -1644,7 +1630,6 @@ class OrderController extends Controller
         ]);
 
     }
-
     public function actionUploadedFiles($oid)
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -1694,8 +1679,6 @@ class OrderController extends Controller
         }
 
     }
-
-
     public function actionOrderUpload($id)
     {
         $user = Yii::$app->user->id;
@@ -1733,8 +1716,6 @@ class OrderController extends Controller
         }
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
-
-
     public function actionUploadDelete($order, $file, $file_date, $file_extension)
     {
         $user = Yii::$app->user->id;
@@ -1749,7 +1730,6 @@ class OrderController extends Controller
         }
         return $this->redirect(['uploaded-files', 'oid'=>$myorder->ordernumber]);
     }
-
     public function actionSubcat()
     {
         $out = [];
@@ -1764,8 +1744,6 @@ class OrderController extends Controller
         }
         return json_encode(['output'=>'', 'selected'=>'']);
     }
-
-
     public function actionFileUpload($id)
     {
         $user = Yii::$app->user->id;
@@ -1787,9 +1765,7 @@ class OrderController extends Controller
         }
         return $this->redirect(['order/attached', 'oid' => $order->ordernumber]);
     }
-
     // action examples
-
     public function actionImageUpload($id)
     {
         $model = new File();
@@ -1828,15 +1804,12 @@ class OrderController extends Controller
         }
         return null;
     }
-
     public function actionFileView($id)
     { $models = File::find()->where(['order_id'=>$id])->all();
         return $this->render('file-view',[
             'models'=>$models
         ]);
     }
-
-
     public function actionImageDelete($name)
     {
         $directory = Yii::getAlias('@app/web/images/order') . DIRECTORY_SEPARATOR;
@@ -2694,7 +2667,6 @@ class OrderController extends Controller
             'model' => $model,
         ]);
     }
-
     /**
      * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -2714,7 +2686,6 @@ class OrderController extends Controller
         }
         return $this->redirect(['index']);
     }
-
     /**
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
