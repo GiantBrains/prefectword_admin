@@ -40,9 +40,6 @@ AppAsset::register($this);
     $menuItem []= ['label' => 'Orders', 'url' => Yii::$app->request->baseUrl.'/order/index',
         'active' => $this->context->route == 'order/index',
     ];
-    $menuItem []= ['label' => 'Create Order', 'url' => Yii::$app->request->baseUrl.'/order/create',
-        'active' => $this->context->route == 'order/create'
-    ];
     $menuItem []=  ['label' => 'Account Settings',
         'items' => [
             [
