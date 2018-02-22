@@ -174,7 +174,7 @@ AppAsset::register($this);
                             //
                             ['label' => '<i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard',  'active' => $this->context->route == 'order/index','url' => Yii::$app->request->baseUrl.'/order/index'],
 
-                            ['label' => '<i class="fa fa-plus " aria-hidden="true"></i> Place Order', 'active' => $this->context->route == 'order/create', 'url' => Yii::$app->request->baseUrl.'/order/create'],
+//                            ['label' => '<i class="fa fa-plus " aria-hidden="true"></i> Place Order', 'active' => $this->context->route == 'order/create', 'url' => Yii::$app->request->baseUrl.'/order/create'],
                             ['label' => $this->params['pending_count'] ? '<i class="fa fa-list " aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['pending_count'].'</span> Pending':
                                 '<i class="fa fa-list " aria-hidden="true"></i> Pending Orders', 'active' => $this->context->route == 'order/pending','url' => Yii::$app->request->baseUrl.'/order/pending'],
                             ['label' => $this->params['available_count'] ? '<i class="fa fa-clock-o" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['available_count'].'</span> Available Orders':
