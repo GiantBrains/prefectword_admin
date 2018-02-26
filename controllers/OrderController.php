@@ -245,7 +245,6 @@ class OrderController extends Controller
            'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionCancelled()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -290,7 +289,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionConfirmed()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -635,7 +633,6 @@ class OrderController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionSendMessage()
     {
         $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
@@ -2783,7 +2780,6 @@ class OrderController extends Controller
             throw new NotFoundHttpException();
         }
     }
-
     public function  apiContext()
     {
         // After Step 1
@@ -2795,7 +2791,6 @@ class OrderController extends Controller
         );
         return  $apiContext;
     }
-
     protected function findModel($id)
     {
         if (($model = Order::findOne($id)) !== null) {

@@ -9,11 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property int $order_number
- * @property int $new_time
  * @property string $instructions
  * @property string $created_at
- *
- * @property Urgency $newTime
  */
 class Revision extends \yii\db\ActiveRecord
 {
@@ -31,11 +28,10 @@ class Revision extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_number', 'new_time', 'instructions'], 'required'],
-            [['order_number', 'new_time'], 'integer'],
+            [['order_number', 'instructions'], 'required'],
+            [['order_number'], 'integer'],
             [['instructions'], 'string'],
             [['created_at'], 'safe'],
-            [['new_time'], 'exist', 'skipOnError' => true, 'targetClass' => Urgency::className(), 'targetAttribute' => ['new_time' => 'id']],
         ];
     }
 
@@ -47,18 +43,9 @@ class Revision extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'order_number' => 'Order Number',
-            'new_time' => 'New Time',
             'instructions' => 'Instructions',
             'created_at' => 'Created At',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getNewTime()
-    {
-        return $this->hasOne(Urgency::className(), ['id' => 'new_time']);
     }
 
     /**
