@@ -45,6 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     return   Html::a($model->ordernumber, ['/order/view','oid'=>$model->ordernumber]);
                 }
             ],
+            [
+                'attribute'=>'subject_id',
+                'value'=>'subject.name'
+            ],
 
             [
                 'attribute'=>'deadline',
@@ -122,15 +126,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                         return '<p>$0.00</p>';
                     }
-                }
-            ],
-            [
-                'attribute'=>'ordernumber',
-                'label'=>'Re-Submit',
-                'width'=>'100px',
-                'format' => 'raw',
-                'value'=> function ($model, $key, $index, $column) {
-                    return   Html::a('Re-Submit', ['order/resubmit','oid'=>$model->ordernumber], ['class' => 'btn btn-primary']);
                 }
             ],
             //'sources_id',
