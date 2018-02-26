@@ -26,9 +26,14 @@ class SiteController extends Controller
                 'only' => ['logout', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['admin'],
                     ],
                 ],
             ],
@@ -81,6 +86,8 @@ class SiteController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
