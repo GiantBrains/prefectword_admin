@@ -10,7 +10,7 @@
     <?php
     //get the time from the db in UTC and convert it client timezone
     $startTime = new \DateTime(''.$model->created_at.'', new \DateTimeZone('UTC'));
-    $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+    $startTime->setTimezone(new \DateTimeZone(Yii::$app->timezone->name));
     $uptime = $startTime->format("M d, Y g:i a");
     ?>
     <td><span><?= $uptime; ?></span></td>
@@ -19,7 +19,7 @@
     if ($model->dowload_date != null){
         //get the time from the db in UTC and convert it client timezone
         $startTime = new \DateTime(''.$model->dowload_date.'', new \DateTimeZone('UTC'));
-        $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+        $startTime->setTimezone(new \DateTimeZone(Yii::$app->timezone->name));
         $dowtime = $startTime->format("M d, Y g:i a");
     }else{
         $dowtime = 'not downloaded';
