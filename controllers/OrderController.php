@@ -1744,7 +1744,7 @@ class OrderController extends Controller
         $disputed_count = Order::find()->where(['disputed'=> 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
         $model = Order::find()->where(['ordernumber'=>$oid])->one();
-        if ($model->active == 1 || $model->revision == 1) {
+        if ($model->paid == 1) {
             $this->layout = 'order';
             $upload = new Uploaded();
             $models = Uploaded::find()->where(['order_number'=>$model->id])->orderBy('id DESC')->all();
