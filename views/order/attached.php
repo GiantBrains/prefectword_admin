@@ -30,7 +30,7 @@ $this->title = 'Additional Files';
             </a></li>
         <?php
         if ($model->paid == 1){
-            echo '<li role="presentation" class="active"><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
+            echo '<li role="presentation"><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
         }
         ?>
     </ul>
