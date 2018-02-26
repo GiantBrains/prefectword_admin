@@ -11,7 +11,8 @@ use dektrium\user\models\User;
  * @property int $order_number
  * @property int $writer_id
  * @property int $file_type
- * @property int $file_date
+ * @property string $file_date
+ * @property string $dowload_date
  * @property string $file_extension
  * @property string $name
  * @property string $created_at
@@ -37,7 +38,7 @@ class Uploaded extends \yii\db\ActiveRecord
         return [
             [['order_number', 'writer_id', 'file_type'], 'integer'],
             [['name'], 'required'],
-            [['created_at'], 'safe'],
+            [['dowload_date', 'created_at'], 'safe'],
             [['file_extension',  'file_date'], 'string', 'max' => 50],
             [['name'],'file', 'maxSize'=>30000000, 'maxFiles' => 4],
             [['order_number'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_number' => 'id']],
@@ -56,6 +57,7 @@ class Uploaded extends \yii\db\ActiveRecord
             'writer_id' => 'Writer ID',
             'file_type' => 'File Type',
             'file_date' => 'File Date',
+            'dowload_date' => 'Dowload Date',
             'file_extension' => 'File Extension',
             'name' => 'Name',
             'created_at' => 'Created At',

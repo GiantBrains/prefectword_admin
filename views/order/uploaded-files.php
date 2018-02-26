@@ -39,6 +39,8 @@ $this->title = 'Additional Files';
             <table id="files" cellspacing="0">
                 <tr>
                     <th class="col-md-4" style="padding-left:15px">File Name</th>
+                    <th class="col-md-4" style="padding-left:15px">Time Uploaded</th>
+                    <th class="col-md-4" style="padding-left:15px">Time Downloaded</th>
                     <th class="col-md-2" style="padding-left:15px">Action</th>
                 </tr>
                 <?php
