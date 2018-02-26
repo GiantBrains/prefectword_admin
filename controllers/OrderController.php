@@ -73,6 +73,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -121,6 +123,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -162,6 +166,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -203,6 +209,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -234,7 +242,7 @@ class OrderController extends Controller
         $dataProvider->query->andFilterWhere(['active'=>1]);
         return $this->render('active', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+           'dataProvider' => $dataProvider,
         ]);
     }
     public function actionConfirmed()
@@ -245,6 +253,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -286,6 +296,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -327,6 +339,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -368,6 +382,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -409,6 +425,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -450,6 +468,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -491,6 +511,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -532,6 +554,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -574,6 +598,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -647,6 +673,8 @@ class OrderController extends Controller
             $totalwithdrawal = $command2->queryScalar();
             $balance = $totaldeposit-$totalwithdrawal;
             Yii::$app->view->params['balance'] = $balance;
+            $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+            Yii::$app->view->params['cancel_count'] = $cancel_count;
             $available_count = Order::find()->where(['available'=> 1])->count();
             Yii::$app->view->params['available_count'] = $available_count;
             $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -709,6 +737,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -1593,6 +1623,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -1638,6 +1670,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -1848,6 +1882,8 @@ class OrderController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
