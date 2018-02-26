@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'My Orders';
+$this->title = 'All Orders';
 $this->params['breadcrumbs'][] = $this->title;
 //$deadline = <<< JS
 //var displayMoment = document.getElementById('deadline-date');
@@ -23,14 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //$this->registerJs($deadline);
 ?>
 <div class="myorder" style="margin-left: -10px">
-    <h1><?php echo Html::encode($this->title) ?></h1>
-<!--    <h2>--><?php //foreach ($rol as $item) {
-//            echo '<h2>'.$item->name.' <span style="color: red">'.$item->type.'</span> '.$item->description.'</h2>';
-//        } ?><!--</h2>-->
-<!--    <h2>--><?php //foreach ($perm as $item) {
-//            echo '<h2>'.$item->name.' <span style="color: red">'.$item->type.'</span> '.$item->description.'</h2>';
-//    } ?><!--</h2>-->
-<!--    <h2>--><?php //$usd[0]?><!--</h2>-->
+    <h1><?= Html::encode($this->title) ?></h1>
     <hr>
     <?php Pjax::begin(); ?>
     <div class="row">
@@ -51,10 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> function ($model, $key, $index, $column) {
                     return   Html::a($model->ordernumber, ['/order/view','oid'=>$model->ordernumber]);
                 }
-            ],
-            [
-                'attribute'=>'subject_id',
-                'value'=>'subject.name'
             ],
 
             [
@@ -135,6 +124,30 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 }
             ],
+            [
+                'label'=>'Status',
+                'format'=>'raw',
+                'value'=>  function ($model, $key, $index, $column) {
+                    if ($model->active == 1){
+                        $status = '<span class="text-primary">Active</span>';
+                    }elseif ($model->completed == 1){
+                        $status = '<span class="text-success">Completed</span>';
+                    }elseif ($model->paid == 0){
+                        $status = '<span class="text-warning">Pending</span>';
+                    }elseif($model->approved == 1){
+                        $status = '<span class="text-success">Approved</span>';
+                    }elseif ($model->revision == 1){
+                        $status = '<span class="text-danger">Revision</span>';
+                    }elseif($model->available == 1){
+                        $status = '<span class="text-light bg-dark">Not Assigned</span>';
+                    }elseif($model->rejected == 1){
+                        $status = '<span class="text-danger">Rejected</span>';
+                    }else{
+                        $status = '<span class="text-dark">Others</span>';
+                    }
+                    return   '<strong>'.$status.'</strong>';
+                }
+            ]
             //'sources_id',
             //'language_id',
             //'pagesummary',

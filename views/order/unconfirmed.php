@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'My Orders';
+$this->title = 'Unconfirmed Orders';
 $this->params['breadcrumbs'][] = $this->title;
 //$deadline = <<< JS
 //var displayMoment = document.getElementById('deadline-date');
