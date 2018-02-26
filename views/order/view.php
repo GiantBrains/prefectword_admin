@@ -87,8 +87,8 @@ $this->registerJs($datetime);
                 ?>
             </a></li>
         <?php
-        if ($model->active == 1 || $model->revision == 1){
-            echo '<li role="presentation"><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
+        if ($model->paid == 1){
+            echo '<li role="presentation" class="active"><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
         }
         ?>
     </ul>
