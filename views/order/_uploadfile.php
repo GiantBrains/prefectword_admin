@@ -16,10 +16,14 @@
     <td><span><?= $uptime; ?></span></td>
 
     <?php
-    //get the time from the db in UTC and convert it client timezone
-    $startTime = new \DateTime(''.$model->dowload_date.'', new \DateTimeZone('UTC'));
-    $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
-    $dowtime = $startTime->format("M d, Y g:i a");
+    if ($model->dowload_date != null){
+        //get the time from the db in UTC and convert it client timezone
+        $startTime = new \DateTime(''.$model->dowload_date.'', new \DateTimeZone('UTC'));
+        $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+        $dowtime = $startTime->format("M d, Y g:i a");
+    }else{
+        $dowtime = 'not downloaded';
+    }
     ?>
     <td><span><?= $dowtime; ?></span></td>
 
