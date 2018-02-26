@@ -140,6 +140,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         $status = '<span class="text-danger">Revision</span>';
                     }elseif($model->available == 1){
                         $status = '<span class="text-light bg-dark">Not Assigned</span>';
+                    }elseif($model->cancelled == 1){
+                        $status = '<span class="text-dark">Cancelled</span>';
                     }elseif($model->rejected == 1){
                         $status = '<span class="text-danger">Rejected</span>';
                     }else{
