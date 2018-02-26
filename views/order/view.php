@@ -226,7 +226,9 @@ $this->registerJs($datetime);
     <p>
 
         <?php
-        if ($model->active != 1 && $model->completed != 1){
+        $cancancel= $model->active == 1 || $model->available == 1;
+        $cancelled = $model->paid == 0 && $model->cancelled == 0;
+        if ($cancelled){
             echo ' <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cancelModal">
                Cancel
