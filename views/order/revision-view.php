@@ -27,7 +27,7 @@
                 ?> </a></li>
         <?php
         if ($submittedfile){
-            echo '<li role="presentation" ><a href="'.\yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Download & Review</strong></a></li>';
+            echo '<li role="presentation" ><a href="'.\yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Submit Order</strong></a></li>';
         }else{
             echo '';
         }

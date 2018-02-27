@@ -106,7 +106,7 @@ $this->registerJs($datetime);
             </a></li>
         <?php
         if ($model->paid == 1){
-            echo '<li role="presentation" ><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
+            echo '<li role="presentation" ><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Submit Order</strong></a></li>';
         }
 
         $order_revisions = \app\models\Revision::find()->where(['order_number'=>$model->ordernumber])->all();
