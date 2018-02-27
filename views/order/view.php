@@ -68,6 +68,24 @@ $this->registerJs($datetime);
     }else{
         $deadline =  '<p  style="color: green">'.$interval->format('%a days %H hours %I minutes' ).' </p>';
     }
+
+    $rejected = \app\models\Reject::find()->where(['order_number'=>$model->ordernumber])->one();
+    if ($rejected){
+        $reject_msg = '<div><p><strong>Reason: <span style="color: red">'.$rejected->reason->name.'</span></strong></p>
+                        <p><strong>Description:</strong> '.$rejected->description.'</p>
+                        </div>';
+    }else{
+        $reject_msg = null;
+    }
+
+    $cancelled = \app\models\Cancel::find()->where(['order_number'=>$model->ordernumber])->one();
+    if ($cancelled){
+        $cancel_msg = '<div><p><strong>Reason: <span style="color: red">'.$cancelled->title0->name.'</span></strong></p>
+                        <p><strong>Description:</strong> '.$cancelled->description.'</p>
+                        </div>';
+    }else{
+        $cancel_msg = null;
+    }
     ?>
     <h1><?= Html::encode($this->title) ?></h1>
     <hr>
@@ -228,6 +246,28 @@ $this->registerJs($datetime);
                 'format'=>'raw',
                 'value'=> '<p>$'.$model->amount.'</p>'
             ],
+            $reject_msg != null ?
+                [
+                    'label'=>'Rejected',
+                    'value'=>$reject_msg,
+                    'format' => 'raw',
+                ] :
+                [
+                    'label'=>'',
+                    'value'=>'',
+                    'format' => 'raw',
+                ],
+
+            $cancel_msg != null ?
+                [
+                    'label'=>'Cancelled',
+                    'value'=>$cancel_msg,
+                    'format' => 'raw',
+                ] :
+                [
+                    'attribute'=>'',
+                    'value'=>'',
+                ]
         ],
     ]) ?>
     <p>
