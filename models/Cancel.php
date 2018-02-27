@@ -13,7 +13,7 @@ use Yii;
  * @property string $description
  * @property string $created_at
  *
- * @property Reason $title0
+ * @property Whycancel $title0
  */
 class Cancel extends \yii\db\ActiveRecord
 {
@@ -35,7 +35,7 @@ class Cancel extends \yii\db\ActiveRecord
             [['order_number', 'title'], 'integer'],
             [['description'], 'string'],
             [['created_at'], 'safe'],
-            [['title'], 'exist', 'skipOnError' => true, 'targetClass' => Reason::className(), 'targetAttribute' => ['title' => 'id']],
+            [['title'], 'exist', 'skipOnError' => true, 'targetClass' => Whycancel::className(), 'targetAttribute' => ['title' => 'id']],
         ];
     }
 
@@ -58,7 +58,7 @@ class Cancel extends \yii\db\ActiveRecord
      */
     public function getTitle0()
     {
-        return $this->hasOne(Reason::className(), ['id' => 'title']);
+        return $this->hasOne(Whycancel::className(), ['id' => 'title']);
     }
 
     /**
