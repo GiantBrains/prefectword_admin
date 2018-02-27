@@ -27,7 +27,7 @@ $this->registerJs($datetime);
     <?php
     $epoch = time();
     $dt = new DateTime("@$epoch");  // convert UNIX timestamp to PHP DateTime
-    $myzone = new DateTimeZone('Africa/Nairobi');
+    $myzone = new DateTimeZone(Yii::$app->timezone->name);
     $dt->setTimezone($myzone);
     $dt->format('Y-m-d H:i:s');
     $interval = date_diff( date_create( $dt->format('Y-m-d H:i:s')), date_create($model->deadline));
@@ -89,6 +89,13 @@ $this->registerJs($datetime);
         <?php
         if ($model->paid == 1){
             echo '<li role="presentation" ><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
+        }
+
+        $order_revisions = \app\models\Revision::find()->where(['order_number'=>$model->ordernumber])->all();
+        if ($order_revisions){
+            echo '<li role="presentation" ><a href="'.\yii\helpers\Url::to(['order/revision-view', 'oid'=>$model->ordernumber]).'"><strong>Revision Instructions</strong></a></li>';
+        }else{
+            echo '';
         }
         ?>
     </ul>

@@ -9,8 +9,11 @@ use Yii;
  *
  * @property int $id
  * @property int $order_number
- * @property string $reason
+ * @property int $reason_id
+ * @property string $description
  * @property string $created_at
+ *
+ * @property Reason $reason
  */
 class Reject extends \yii\db\ActiveRecord
 {
@@ -28,10 +31,11 @@ class Reject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_number', 'reason'], 'required'],
-            [['order_number'], 'integer'],
-            [['reason'], 'string'],
+            [['order_number', 'description'], 'required'],
+            [['order_number', 'reason_id'], 'integer'],
+            [['description'], 'string'],
             [['created_at'], 'safe'],
+            [['reason_id'], 'exist', 'skipOnError' => true, 'targetClass' => Reason::className(), 'targetAttribute' => ['reason_id' => 'id']],
         ];
     }
 
@@ -43,9 +47,18 @@ class Reject extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'order_number' => 'Order Number',
-            'reason' => 'Reason',
+            'reason_id' => 'Reason ID',
+            'description' => 'Description',
             'created_at' => 'Created At',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReason()
+    {
+        return $this->hasOne(Reason::className(), ['id' => 'reason_id']);
     }
 
     /**

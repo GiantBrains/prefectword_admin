@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>function ($model, $key, $index, $column) {
                     $epoch = time();
                     $dt = new DateTime("@$epoch");  // convert UNIX timestamp to PHP DateTime
-                    $myzone = new DateTimeZone('Africa/Nairobi');
+                    $myzone = new DateTimeZone(Yii::$app->timezone->name);
                     $dt->setTimezone($myzone);
                     $dt->format('Y-m-d H:i:s');
                     $interval = date_diff( date_create( $dt->format('Y-m-d H:i:s')), date_create($model->deadline));

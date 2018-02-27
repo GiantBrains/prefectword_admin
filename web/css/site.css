@@ -57,6 +57,38 @@ body {
     content: " | ";
 }
 
+#revisions {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#revisions td, #revisions th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#revisions tr:nth-child(even){background-color: #f2f2f2;}
+
+#revisions tr:hover {background-color: #ddd;}
+
+#revisions th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #adadad;
+    color: white;
+}
+
+#revisions {
+    counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+#revisions td:first-child:before {
+    counter-increment: serial-number;  /* Increment the serial number counter */
+    content: counter(serial-number);  /* Display the counter */
+}
+
 .pay-cards li{
     list-style-type: none;
     display: inline-block;

@@ -2733,7 +2733,7 @@ class OrderController extends Controller
             $hrsanddays = $dt1->diff($dt2)->format('+%a day +%h hour');
             //get the time from the db in UTC and convert it client timezone
             $startTime = new \DateTime(''.$model->created_at.'', new \DateTimeZone('UTC'));
-            $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+            $startTime->setTimezone(new \DateTimeZone(Yii::$app->timezone->name));
             $ptime = $startTime->format("Y-m-d H:i:s");
             // calculate the future deadline and display it
             $cenvertedTime = date('Y-m-d H:i:s',strtotime(''.$hrsanddays.'',strtotime($ptime)));
@@ -2765,6 +2765,40 @@ class OrderController extends Controller
         }
         return $this->redirect(['index']);
     }
+    public function actionRevisionView($oid)
+    {
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
+        $available_count = Order::find()->where(['available'=> 1])->count();
+        Yii::$app->view->params['available_count'] = $available_count;
+        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        Yii::$app->view->params['pending_count'] = $pending_count;
+        $active_count = Order::find()->where(['active'=> 1])->count();
+        Yii::$app->view->params['active_count'] = $active_count;
+        $revision_count = Order::find()->where(['revision'=> 1])->count();
+        Yii::$app->view->params['revision_count'] = $revision_count;
+        $editing_count = Order::find()->where(['editing'=> 1])->count();
+        Yii::$app->view->params['editing_count'] = $editing_count;
+        $completed_count = Order::find()->where(['completed'=> 1])->count();
+        Yii::$app->view->params['completed_count'] = $completed_count;
+        $approved_count = Order::find()->where(['approved'=> 1])->count();
+        Yii::$app->view->params['approved_count'] = $approved_count;
+        $rejected_count = Order::find()->where(['rejected'=> 1])->count();
+        Yii::$app->view->params['rejected_count'] = $rejected_count;
+        $disputed_count = Order::find()->where(['disputed'=> 1])->count();
+        Yii::$app->view->params['disputed_count'] = $disputed_count;
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $totaldeposit = $command1->queryScalar();
+        $totalwithdrawal = $command2->queryScalar();
+        $balance = $totaldeposit-$totalwithdrawal;
+        Yii::$app->view->params['balance'] = $balance;
+        $model = $this->findModelByNumber($oid);
+        return $this->render('revision-view',[
+            'model'=>$model
+        ]);
+    }
+
     /**
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

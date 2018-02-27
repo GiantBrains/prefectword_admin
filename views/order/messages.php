@@ -86,6 +86,12 @@ $this->registerJs($messages);
         if ($model->paid == 1){
             echo '<li role="presentation"><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Upload Files</strong></a></li>';
         }
+        $order_revisions = \app\models\Revision::find()->where(['order_number'=>$model->ordernumber])->all();
+        if ($order_revisions){
+            echo '<li role="presentation" ><a href="'.\yii\helpers\Url::to(['order/revision-view', 'oid'=>$model->ordernumber]).'"><strong>Revision Instructions</strong></a></li>';
+        }else{
+            echo '';
+        }
         ?>
     </ul>
     <div class="row" style="padding: 0 10px 0 10px">
@@ -98,7 +104,7 @@ $this->registerJs($messages);
                 foreach ($order_messages as $order_message) {
                     //get the time from the db in UTC and convert it client timezone
                     $startTime = new \DateTime(''.$order_message->created_at.'', new \DateTimeZone('UTC'));
-                    $startTime->setTimezone(new \DateTimeZone('Africa/Nairobi'));
+                    $startTime->setTimezone(new \DateTimeZone(Yii::$app->timezone->name));
                     $ptime = $startTime->format("M d, Y H:i");
                     echo '<div class="mymessage row" style="height: auto; padding: 5px 10px 5px 10px">';
                     if ($order_message->sender_id != Yii::$app->user->id){
