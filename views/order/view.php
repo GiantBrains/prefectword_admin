@@ -105,7 +105,7 @@ $this->registerJs($datetime);
                 ?>
             </a></li>
         <?php
-        if ($model->paid == 1){
+        if ($model->paid == 1 && $model->available != 1){
             echo '<li role="presentation" ><a href="'. \yii\helpers\Url::to(['order/uploaded-files', 'oid'=>$model->ordernumber]).'"><strong>Submit Order</strong></a></li>';
         }
 
