@@ -125,7 +125,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -134,9 +134,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -169,7 +169,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -178,9 +178,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -213,7 +213,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -223,9 +223,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -258,7 +258,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -268,9 +268,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -302,7 +302,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -311,9 +311,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -345,7 +345,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -354,9 +354,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -388,7 +388,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -397,9 +397,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -431,7 +431,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -440,9 +440,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -474,7 +474,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -483,9 +483,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -517,7 +517,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -526,9 +526,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -560,7 +560,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -569,9 +569,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -603,7 +603,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -612,9 +612,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -646,7 +646,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -655,9 +655,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -721,7 +721,7 @@ class OrderController extends Controller
             Yii::$app->view->params['balance'] = $balance;
             $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
             Yii::$app->view->params['cancel_count'] = $cancel_count;
-            $available_count = Order::find()->where(['available'=> 1])->count();
+            $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
             Yii::$app->view->params['available_count'] = $available_count;
             $bids_count = Order::find()->where(['available'=> 1])->count();
             Yii::$app->view->params['bids_count'] = $bids_count;
@@ -730,9 +730,9 @@ class OrderController extends Controller
             $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
             Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-            $pending_count = Order::find()->where(['paid'=> 0])->count();
+            $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
             Yii::$app->view->params['pending_count'] = $pending_count;
-            $active_count = Order::find()->where(['active'=> 1])->count();
+            $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
             Yii::$app->view->params['active_count'] = $active_count;
             $revision_count = Order::find()->where(['revision'=> 1])->count();
             Yii::$app->view->params['revision_count'] = $revision_count;
@@ -785,7 +785,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -794,9 +794,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -1671,7 +1671,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -1680,9 +1680,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -1718,7 +1718,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -1727,9 +1727,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -1930,7 +1930,7 @@ class OrderController extends Controller
         Yii::$app->view->params['balance'] = $balance;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
@@ -1939,9 +1939,9 @@ class OrderController extends Controller
         $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
@@ -2772,11 +2772,11 @@ class OrderController extends Controller
     {
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->count();
+        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
-        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->count();
+        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
         $revision_count = Order::find()->where(['revision'=> 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
