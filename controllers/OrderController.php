@@ -153,6 +153,7 @@ class OrderController extends Controller
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andFilterWhere(['paid'=>0]);
+        $dataProvider->query->andFilterWhere(['cancelled'=>0]);
         return $this->render('pending', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -196,6 +197,7 @@ class OrderController extends Controller
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andFilterWhere(['available'=>1]);
+        $dataProvider->query->andFilterWhere(['cancelled'=>0]);
         return $this->render('available', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -240,6 +242,7 @@ class OrderController extends Controller
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andFilterWhere(['active'=>1]);
+        $dataProvider->query->andFilterWhere(['cancelled'=>0]);
         return $this->render('active', [
             'searchModel' => $searchModel,
            'dataProvider' => $dataProvider,
