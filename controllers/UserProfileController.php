@@ -7,6 +7,7 @@ use app\models\Withdraw;
 use Yii;
 use app\models\UserProfile;
 use app\models\UserProfileSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,6 +24,17 @@ class UserProfileController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create', 'view', 'index', 'delete', 'update'],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'index', 'delete', 'update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
