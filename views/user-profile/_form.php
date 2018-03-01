@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 
     <?php $form = ActiveForm::begin(); ?>
-    <div class="col-md-10">
+    <div class="col-md-9">
         <div class="col-md-6">
             <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'gender')->dropDownList([0 => 'Male',1 => 'Female'], ['prompt'=>'--select--']) ?>
         </div>
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Save Profile', ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 

@@ -57,7 +57,7 @@ AppAsset::register($this);
         ];
 
         $menuItems[] = '<a data-method="post" href="'.Yii::$app->request->baseUrl.'/user/security/logout">
-<button type="button" class="btn btn-danger navbar-btn essay-font">Logout ('.Yii::$app->user->identity->username.')</button></a>';
+                        <button type="button" class="btn btn-danger navbar-btn essay-font">Logout ('.Yii::$app->user->identity->username.')</button></a>';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
