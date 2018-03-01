@@ -5,7 +5,12 @@
  * Date: 3/1/18
  * Time: 4:33 PM
  */
+$this->title = 'Withdrawal Requests';
 ?>
+
+<h1><?= \yii\helpers\Html::encode($this->title) ?></h1>
+<hr>
+
 <div class="col-md-8" style="margin-top: 20px;">
     <table id="transactions">
         <tr>
