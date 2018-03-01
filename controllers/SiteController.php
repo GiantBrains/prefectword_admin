@@ -119,6 +119,49 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionRequest()
+    {
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $totaldeposit = $command1->queryScalar();
+        $totalwithdrawal = $command2->queryScalar();
+        $balance = $totaldeposit-$totalwithdrawal;
+        Yii::$app->view->params['balance'] = $balance;
+        $withdraw_count = Withdraw::find()->Where(['status'=>0])->count();
+        Yii::$app->view->params['withdraw_count'] = $withdraw_count;
+        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        Yii::$app->view->params['cancel_count'] = $cancel_count;
+        $available_count = Order::find()->where(['available'=> 1])->count();
+        Yii::$app->view->params['available_count'] = $available_count;
+        $bids_count = Order::find()->where(['available'=> 1])->count();
+        Yii::$app->view->params['bids_count'] = $bids_count;
+        $unconfirmed_count = Order::find()->where(['confirmed'=> 0])->count();
+        Yii::$app->view->params['unconfirmed_count'] = $unconfirmed_count;
+        $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
+        Yii::$app->view->params['confirmed_count'] = $confirmed_count;
+
+        $pending_count = Order::find()->where(['paid'=> 0])->count();
+        Yii::$app->view->params['pending_count'] = $pending_count;
+        $active_count = Order::find()->where(['active'=> 1])->count();
+        Yii::$app->view->params['active_count'] = $active_count;
+        $revision_count = Order::find()->where(['revision'=> 1])->count();
+        Yii::$app->view->params['revision_count'] = $revision_count;
+        $editing_count = Order::find()->where(['editing'=> 1])->count();
+        Yii::$app->view->params['editing_count'] = $editing_count;
+        $completed_count = Order::find()->where(['completed'=> 1])->count();
+        Yii::$app->view->params['completed_count'] = $completed_count;
+        $approved_count = Order::find()->where(['approved'=> 1])->count();
+        Yii::$app->view->params['approved_count'] = $approved_count;
+        $rejected_count = Order::find()->where(['rejected'=> 1])->count();
+        Yii::$app->view->params['rejected_count'] = $rejected_count;
+        $disputed_count = Order::find()->where(['disputed'=> 1])->count();
+        Yii::$app->view->params['disputed_count'] = $disputed_count;
+        $withdraw_trasc = Withdraw::find()->Where(['user_id'=>Yii::$app->user->id])->all();
+        return $this->render('request',[
+            'withdraws'=> $withdraw_trasc,
+        ]);
+    }
+
     public function actionTake($oid, $agree)
     {
         if ($agree == 'true'){

@@ -194,8 +194,8 @@ AppAsset::register($this);
 //                                '<i class="fa fa-legal" aria-hidden="true"></i> Disputed', 'active' => $this->context->route == 'order/disputed', 'url' => Yii::$app->request->baseUrl.'/order/disputed'],
                             ['label' => $this->params['approved_count'] ? '<i class="fa fa-check" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['approved_count'].'</span> Approved':
                                 '<i class="fa fa-check " aria-hidden="true"></i> Approved', 'active' => $this->context->route == 'order/approved', 'url' => Yii::$app->request->baseUrl.'/order/approved'],
-                            ['label' => $this->params['withdraw_count'] ? '<i class="fa fa-remove" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['withdraw_count'].'</span> Withdrawal Request':
-                                '<i class="fa fa-check " aria-hidden="true"></i> Withdrawal Request', 'active' => $this->context->route == 'wallet/request', 'url' => Yii::$app->request->baseUrl.'/wallet/request'],
+                            ['label' => $this->params['withdraw_count'] ? '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> <span class="pull-right badge">'.$this->params['withdraw_count'].'</span> Withdrawal Request':
+                                '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> Withdrawal Request', 'active' => $this->context->route == 'site/request', 'url' => Yii::$app->request->baseUrl.'/site/request'],
                             ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Settings', 'items' => [
                                 ['label' => 'Academic Levels', 'active' => $this->context->route == 'level/index', 'url' => Yii::$app->request->baseUrl.'/level/index'],
                                 ['label' => 'Styles', 'active' => $this->context->route == 'style/index','url' => Yii::$app->request->baseUrl.'/style/index'],
