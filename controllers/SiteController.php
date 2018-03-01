@@ -156,7 +156,7 @@ class SiteController extends Controller
         Yii::$app->view->params['rejected_count'] = $rejected_count;
         $disputed_count = Order::find()->where(['disputed'=> 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
-        $withdraw_trasc = Withdraw::find()->Where(['user_id'=>Yii::$app->user->id])->all();
+        $withdraw_trasc = Withdraw::find()->where(['status'=>0])->all();
         return $this->render('request',[
             'withdraws'=> $withdraw_trasc,
         ]);
