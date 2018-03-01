@@ -165,13 +165,17 @@ class SiteController extends Controller
 
     public function actionApproveRequest($user_id, $amount)
     {
-         //record the transactions
+              //record the transactions
                 $wallet = new Wallet();
                 $wallet->withdraw = $amount;
                 $wallet->customer_id = $user_id;
                 $wallet->narrative = 'withdrawal request';
                 $wallet->approved = 1;
                 $wallet->save();
+                // change the status
+                $withdraw = Withdraw::find()->where(['user_id'=>$user_id])->andWhere(['amount'=>$amount])->one();
+                $withdraw->status = 1;
+                $withdraw->save();
         Yii::$app->session->setFlash('success','The withdrawal request has been approved.');
         return $this->redirect(['request']);
     }
