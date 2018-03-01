@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\Withdraw;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -86,6 +87,8 @@ class SiteController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $withdraw_count = Withdraw::find()->Where(['status'=>0])->count();
+        Yii::$app->view->params['withdraw_count'] = $withdraw_count;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
         $available_count = Order::find()->where(['available'=> 1])->count();
