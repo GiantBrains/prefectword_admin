@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\Wallet;
 use app\models\Withdraw;
 use Yii;
 use yii\filters\AccessControl;
@@ -162,6 +163,18 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionApproveRequest($user_id, $amount)
+    {
+         //record the transactions
+                $wallet = new Wallet();
+                $wallet->withdraw = $amount;
+                $wallet->customer_id = $user_id;
+                $wallet->narrative = 'withdrawal request';
+                $wallet->approved = 1;
+                $wallet->save();
+        Yii::$app->session->setFlash('success','The withdrawal request has been approved.');
+        return $this->redirect(['request']);
+    }
     public function actionTake($oid, $agree)
     {
         if ($agree == 'true'){
