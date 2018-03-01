@@ -44,8 +44,8 @@ AppAsset::register($this);
         'items' => [
             [
                 'label' => '<i class="fa fa-user" aria-hidden="true"></i> &nbsp; <span>Profile</span>',
-                'url' => Yii::$app->request->baseUrl.'/user/settings/profile',
-                'active' => $this->context->route == 'user/settings/profile'
+                'url' => Yii::$app->request->baseUrl.'/user-profile/create',
+                'active' => $this->context->route == 'user-profile/create'
             ],
             '<li role="separator" class="divider"></li>',
             [
@@ -116,8 +116,8 @@ AppAsset::register($this);
             'items' => [
                 [
                     'label' => '<i class="fa fa-user fa-2x" aria-hidden="true"></i> &nbsp; <span style="font-size: 20px">Profile</span>',
-                    'url' => Yii::$app->request->baseUrl.'/user/settings/profile',
-                    'active' => $this->context->route == 'user/settings/profile'
+                    'url' => Yii::$app->request->baseUrl.'/user-profile/create',
+                    'active' => $this->context->route == 'user-profile/create'
                 ],
                 '<li role="separator" class="divider"></li>',
                 [
@@ -209,7 +209,7 @@ AppAsset::register($this);
                                 ['label' => 'Sources', 'active' => $this->context->route == 'source/index','url' => Yii::$app->request->baseUrl.'/source/index'],
                             ]],
                             ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Account Settings', 'items' => [
-                                ['label' => 'Profile', 'active' => $this->context->route == 'user/settings/profile', 'url' => Yii::$app->request->baseUrl.'/user/settings/profile'],
+                                ['label' => 'Profile', 'active' => $this->context->route == 'user-profile/create', 'url' => Yii::$app->request->baseUrl.'/user-profile/create'],
                                 ['label' => 'Account', 'active' => $this->context->route == 'user/settings/account','url' => Yii::$app->request->baseUrl.'/user/settings/account'],
                                 ['label' => 'Networks', 'active' => $this->context->route == 'user/settings/networks','url' => Yii::$app->request->baseUrl.'/user/settings/networks'],
                             ],

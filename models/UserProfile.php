@@ -11,6 +11,7 @@ use dektrium\user\models\User;
  * @property int $user_id
  * @property string $first_name
  * @property string $last_name
+ * @property string $timezone
  * @property string $city
  * @property string $phone
  * @property int $country
@@ -40,6 +41,7 @@ class UserProfile extends \yii\db\ActiveRecord
             [['user_id', 'country', 'gender'], 'integer'],
             [['created_at'], 'safe'],
             [['first_name', 'last_name', 'city'], 'string', 'max' => 255],
+            [['timezone'], 'string', 'max' => 150],
             [['phone'], 'string', 'max' => 100],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['country'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::className(), 'targetAttribute' => ['country' => 'id']],
@@ -56,6 +58,7 @@ class UserProfile extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
+            'timezone' => 'Timezone',
             'city' => 'City',
             'phone' => 'Phone',
             'country' => 'Country',
