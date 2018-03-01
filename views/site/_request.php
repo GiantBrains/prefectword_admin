@@ -19,7 +19,7 @@
     <td><?= $ptime; ?></td>
     <?php
     if ($withdraw->status == 0){
-        echo ' <td><span class="text-warning">Pending</span></td>';
+        echo ' <td><span><a class="btn btn-md btn-primary" href="'.\yii\helpers\Url::to(['site/approve-request', 'user_id'=> $withdraw->user_id, 'amount'=>$withdraw->amount]).'">Approve</a></span></td>';
     }else{
         echo '<td><span class="text-success">Approved</span></td>';
     }
