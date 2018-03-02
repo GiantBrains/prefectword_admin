@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $status
  * @property int $user_id
+ * @property int $uniqueid
  * @property double $amount
  * @property string $created_at
  */
@@ -29,8 +30,8 @@ class Withdraw extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'user_id', 'amount'], 'required'],
-            [['status', 'user_id'], 'integer'],
+            [['status', 'user_id', 'uniqueid', 'amount'], 'required'],
+            [['status', 'user_id', 'uniqueid'], 'integer'],
             [['amount'], 'number'],
             [['created_at'], 'safe'],
         ];
@@ -45,6 +46,7 @@ class Withdraw extends \yii\db\ActiveRecord
             'id' => 'ID',
             'status' => 'Status',
             'user_id' => 'User ID',
+            'uniqueid' => 'Uniqueid',
             'amount' => 'Amount',
             'created_at' => 'Created At',
         ];

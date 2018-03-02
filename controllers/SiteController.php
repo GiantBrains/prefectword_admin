@@ -164,7 +164,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionApproveRequest($user_id, $amount)
+    public function actionApproveRequest($user_id, $amount, $uniqueid)
     {
               //record the transactions
                 $wallet = new Wallet();
@@ -174,7 +174,7 @@ class SiteController extends Controller
                 $wallet->approved = 1;
                 $wallet->save();
                 // change the status
-                $withdraw = Withdraw::find()->where(['user_id'=>$user_id])->andWhere(['amount'=>$amount])->one();
+                $withdraw = Withdraw::find()->where(['user_id'=>$user_id])->andWhere(['amount'=>$amount])->andWhere(['uniqueid'=>$uniqueid])->one();
                 $withdraw->status = 1;
                 $withdraw->save();
         Yii::$app->session->setFlash('success','The withdrawal request has been approved.');
