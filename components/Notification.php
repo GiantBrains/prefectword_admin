@@ -58,10 +58,7 @@ class Notification extends BaseNotification
                 return Yii::t('app', 'New message for order #'.$mymessage->order_number.'');
 
             case self::KEY_WITHDRAWAL_REQUEST:
-                $request_withdraw = Withdraw::find()->where(['id'=>$this->key_id])->one();
-                $user = User::find()->where(['username'=> $request_withdraw->user_id])->one();
-                return Yii::t('app', 'New Withdrawal Request from '.$user->username.'');
-
+                return Yii::t('app', 'New Withdrawal Request');
 
             case self::KEY_TAKE_ORDER:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
@@ -92,9 +89,7 @@ class Notification extends BaseNotification
                 ]);
 
             case self::KEY_WITHDRAWAL_REQUEST:
-                $request_withdraw = Withdraw::find()->where(['id'=>$this->key_id])->one();
-                $user = User::find()->where(['username'=> $request_withdraw->user_id])->one();
-                return Yii::t('app', 'Check the withdrawal request made by #'.$user->username.'');
+                return Yii::t('app', 'New Withdrawal Request');
 
             case self::KEY_TAKE_ORDER:
                 // We don't have a key_id here
