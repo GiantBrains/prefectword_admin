@@ -6,6 +6,7 @@ use app\models\Order;
 use app\models\Wallet;
 use app\models\Withdraw;
 use Yii;
+use \app\components\Notification;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -187,6 +188,8 @@ class SiteController extends Controller
             $order->available = 0;
             $order->written_by = Yii::$app->user->id;
             $order->save();
+
+            Notification::warning(Notification::KEY_TAKE_ORDER, $order->created_by, $order->id);
 
             return $this->redirect(['order/view','oid'=>$oid]);
         }

@@ -7,6 +7,8 @@
  */
 namespace app\components;
 
+use app\models\Withdraw;
+use dektrium\user\models\User;
 use Yii;
 use app\models\Order;
 use app\models\Message;
@@ -22,11 +24,13 @@ class Notification extends BaseNotification
     /**
      * A meeting reminder notification
      */
+    const KEY_WITHDRAWAL_REQUEST = 'withdraw_request';
     const KEY_NEW_ORDER = 'new_order_created';
     /**
      * No disk space left !
      */
-    const KEY_NO_DISK_SPACE = 'no_disk_space';
+    const KEY_TAKE_ORDER = 'take_order';
+    const KEY_ORDER_REVISION = 'order_revision';
 
     /**
      * @var array Holds all usable notifications
@@ -34,7 +38,9 @@ class Notification extends BaseNotification
     public static $keys = [
         self::KEY_NEW_MESSAGE,
         self::KEY_NEW_ORDER,
-        self::KEY_NO_DISK_SPACE,
+        self::KEY_WITHDRAWAL_REQUEST,
+        self::KEY_TAKE_ORDER,
+        self::KEY_ORDER_REVISION,
     ];
 
     /**
@@ -51,8 +57,19 @@ class Notification extends BaseNotification
                 $mymessage = Message::find()->where(['id'=>$this->key_id])->one();
                 return Yii::t('app', 'New message for order #'.$mymessage->order_number.'');
 
-            case self::KEY_NO_DISK_SPACE:
-                return Yii::t('app', 'No disk space left');
+            case self::KEY_WITHDRAWAL_REQUEST:
+                $request_withdraw = Withdraw::find()->where(['id'=>$this->key_id])->one();
+                $user = User::find()->where(['username'=> $request_withdraw->user_id])->one();
+                return Yii::t('app', 'New Withdrawal Request from '.$user->username.'');
+
+
+            case self::KEY_TAKE_ORDER:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'Your order #'.$order->ordernumber.' has been assigned');
+
+            case self::KEY_ORDER_REVISION:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'Revision has been requested for rder #'.$order->ordernumber.'');
         }
     }
 
@@ -74,9 +91,19 @@ class Notification extends BaseNotification
                     'customer' => $message->sender->username
                 ]);
 
-            case self::KEY_NO_DISK_SPACE:
+            case self::KEY_WITHDRAWAL_REQUEST:
+                $request_withdraw = Withdraw::find()->where(['id'=>$this->key_id])->one();
+                $user = User::find()->where(['username'=> $request_withdraw->user_id])->one();
+                return Yii::t('app', 'Check the withdrawal request made by #'.$user->username.'');
+
+            case self::KEY_TAKE_ORDER:
                 // We don't have a key_id here
-                return 'Please buy more space immediately';
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'Your order #'.$order->ordernumber.' has been assigned');
+
+            case self::KEY_ORDER_REVISION:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'Check revision for rder #'.$order->ordernumber.'');
         }
     }
 
@@ -94,8 +121,16 @@ class Notification extends BaseNotification
                 $mymessage = Message::find()->where(['id'=>$this->key_id])->one();
                 return Yii::$app->request->baseUrl.'/order/messages?oid='.$mymessage->order_number.'';
 
-            case self::KEY_NO_DISK_SPACE:
-                return 'https://aws.amazon.com/';
+            case self::KEY_WITHDRAWAL_REQUEST:
+                return Yii::$app->request->baseUrl.'/site/request';
+
+            case self::KEY_TAKE_ORDER:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::$app->request->baseUrl.'/order/view?oid='.$order->ordernumber.'';
+
+            case self::KEY_ORDER_REVISION:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::$app->request->baseUrl.'/order/order-revision?oid='.$order->ordernumber.'';
         };
     }
 
