@@ -1831,6 +1831,7 @@ class OrderController extends Controller
                 $sfile->save();
             }
         }
+        Notification::warning(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
     public function actionUploadDelete($order, $file, $file_date, $file_extension)

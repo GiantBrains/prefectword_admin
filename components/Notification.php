@@ -21,16 +21,13 @@ class Notification extends BaseNotification
      * A new message notification
      */
     const KEY_NEW_MESSAGE = 'new_message';
-    /**
-     * A meeting reminder notification
-     */
     const KEY_WITHDRAWAL_REQUEST = 'withdraw_request';
     const KEY_NEW_ORDER = 'new_order_created';
-    /**
-     * No disk space left !
-     */
     const KEY_TAKE_ORDER = 'take_order';
     const KEY_ORDER_REVISION = 'order_revision';
+    const KEY_ORDER_COMPLETED = 'order_completed';
+    const KEY_ORDER_APPROVED = 'order_approved';
+    const KEY_ORDER_REJECTED = 'order_rejected';
 
     /**
      * @var array Holds all usable notifications
@@ -41,6 +38,9 @@ class Notification extends BaseNotification
         self::KEY_WITHDRAWAL_REQUEST,
         self::KEY_TAKE_ORDER,
         self::KEY_ORDER_REVISION,
+        self::KEY_ORDER_COMPLETED,
+        self::KEY_ORDER_APPROVED,
+        self::KEY_ORDER_REJECTED,
     ];
 
     /**
@@ -67,6 +67,18 @@ class Notification extends BaseNotification
             case self::KEY_ORDER_REVISION:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
                 return Yii::t('app', 'Revision has been requested for rder #'.$order->ordernumber.'');
+
+            case self::KEY_ORDER_COMPLETED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', ''.$order->ordernumber.' has been completed');
+
+            case self::KEY_ORDER_APPROVED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', ''.$order->ordernumber.' has been approved');
+
+            case self::KEY_ORDER_REJECTED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', ''.$order->ordernumber.' has been rejected');
         }
     }
 
@@ -99,6 +111,18 @@ class Notification extends BaseNotification
             case self::KEY_ORDER_REVISION:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
                 return Yii::t('app', 'Check revision for rder #'.$order->ordernumber.'');
+
+            case self::KEY_ORDER_COMPLETED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', ''.$order->ordernumber.' has been completed. Please check');
+
+            case self::KEY_ORDER_APPROVED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', ''.$order->ordernumber.' has been approved');
+
+            case self::KEY_ORDER_REJECTED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', ''.$order->ordernumber.' has been rejected');
         }
     }
 
@@ -126,6 +150,18 @@ class Notification extends BaseNotification
             case self::KEY_ORDER_REVISION:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
                 return Yii::$app->request->baseUrl.'/order/order-revision?oid='.$order->ordernumber.'';
+
+            case self::KEY_ORDER_COMPLETED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::$app->request->baseUrl.'/order/download-review?oid='.$order->ordernumber.'';
+
+            case self::KEY_ORDER_APPROVED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::$app->request->baseUrl.'/order/download-review?oid='.$order->ordernumber.'';
+
+            case self::KEY_ORDER_REJECTED:
+                $order = Order::find()->where(['id'=>$this->key_id])->one();
+                return Yii::$app->request->baseUrl.'/order/view?oid='.$order->ordernumber.'';
         };
     }
 
