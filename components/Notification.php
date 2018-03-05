@@ -149,7 +149,7 @@ class Notification extends BaseNotification
 
             case self::KEY_ORDER_REVISION:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
-                return Yii::$app->request->baseUrl.'/order/order-revision?oid='.$order->ordernumber.'';
+                return Yii::$app->request->baseUrl.'/order/revision-view?oid='.$order->ordernumber.'';
 
             case self::KEY_ORDER_COMPLETED:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
