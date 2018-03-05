@@ -190,6 +190,9 @@ class SiteController extends Controller
             $order->save();
 
             Notification::warning(Notification::KEY_TAKE_ORDER, $order->created_by, $order->id);
+            $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['status'=>0])->one();
+            $notify->order_number = $oid;
+            $notify->save();
 
             return $this->redirect(['order/view','oid'=>$oid]);
         }
