@@ -990,7 +990,7 @@ class OrderController extends Controller
             }
         }
         Notification::warning(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
-        $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['status'=>0])->one();
+        $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
         $notify->order_number = $order->ordernumber;
         $notify->save();
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
