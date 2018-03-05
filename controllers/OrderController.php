@@ -989,7 +989,7 @@ class OrderController extends Controller
                 $sfile->save();
             }
         }
-        Notification::warning(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
+        Notification::success(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
         $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
         $notify->order_number = $order->ordernumber;
         $notify->save();
