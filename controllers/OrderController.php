@@ -990,9 +990,12 @@ class OrderController extends Controller
             }
         }
         Notification::success(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
-        $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
-        $notify->order_number = $order->ordernumber;
-        $notify->save();
+        $supernote = \app\models\Notification::find()->where(['key'=>'order_rejected'])->andWhere(['key_id'=>$order->id])->one();
+        if (!$supernote){
+            $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
+            $notify->order_number = $order->ordernumber;
+            $notify->save();
+        }
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
     public function actionUploadDelete($order, $file, $file_date, $file_extension)
