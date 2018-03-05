@@ -990,7 +990,7 @@ class OrderController extends Controller
             }
         }
         Notification::success(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
-        $supernote = \app\models\Notification::find()->where(['key'=>'order_rejected'])->andWhere(['key_id'=>$order->id])->one();
+        $supernote = \app\models\Notification::find()->where(['key'=>'order_completed'])->andWhere(['key_id'=>$order->id])->one();
         if (empty($supernote)){
             $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
             $notify->order_number = $order->ordernumber;
