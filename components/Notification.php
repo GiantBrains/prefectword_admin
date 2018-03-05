@@ -7,6 +7,7 @@
  */
 namespace app\components;
 
+use app\models\Revision;
 use app\models\Withdraw;
 use dektrium\user\models\User;
 use Yii;
@@ -65,8 +66,8 @@ class Notification extends BaseNotification
                 return Yii::t('app', 'Your order #'.$order->ordernumber.' has been assigned');
 
             case self::KEY_ORDER_REVISION:
-                $order = Order::find()->where(['id'=>$this->key_id])->one();
-                return Yii::t('app', 'Revision has been requested for rder #'.$order->ordernumber.'');
+                $order = Revision::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'Revision has been requested for rder #'.$order->order_number.'');
 
             case self::KEY_ORDER_COMPLETED:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
@@ -109,8 +110,8 @@ class Notification extends BaseNotification
                 return Yii::t('app', 'Your order #'.$order->ordernumber.' has been assigned');
 
             case self::KEY_ORDER_REVISION:
-                $order = Order::find()->where(['id'=>$this->key_id])->one();
-                return Yii::t('app', 'Check revision for rder #'.$order->ordernumber.'');
+                $order = Revision::find()->where(['id'=>$this->key_id])->one();
+                return Yii::t('app', 'Check revision for rder #'.$order->order_number.'');
 
             case self::KEY_ORDER_COMPLETED:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
@@ -148,8 +149,8 @@ class Notification extends BaseNotification
                 return Yii::$app->request->baseUrl.'/order/view?oid='.$order->ordernumber.'';
 
             case self::KEY_ORDER_REVISION:
-                $order = Order::find()->where(['id'=>$this->key_id])->one();
-                return Yii::$app->request->baseUrl.'/order/revision-view?oid='.$order->ordernumber.'';
+                $order = Revision::find()->where(['id'=>$this->key_id])->one();
+                return Yii::$app->request->baseUrl.'/order/revision-view?oid='.$order->order_number.'';
 
             case self::KEY_ORDER_COMPLETED:
                 $order = Order::find()->where(['id'=>$this->key_id])->one();
