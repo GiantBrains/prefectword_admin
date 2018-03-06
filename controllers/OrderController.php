@@ -41,13 +41,13 @@ class OrderController extends Controller
                 'only' => ['create', 'view', 'index', 'cancel', 'update','attached', 'file-delete', 'file-upload',
                     'send-message', 'messages','image-upload','file-view','image-delete','uploaded-files',
                     'pending','available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed', 'revision',
-                    'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete'],
+                    'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete','revision-view'],
                 'rules' => [
                     [
                         'actions' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'uploaded-files',
                             'file-upload', 'send-message', 'messages','image-upload','file-view','image-delete','cancel',
                             'view','pending','available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed',
-                            'revision', 'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete'],
+                            'revision', 'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete','revision-view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
