@@ -10,32 +10,35 @@ use yii\widgets\Pjax;
 $this->title = 'Wallets';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="wallet-index">
+<div class="container">
+    <div class="wallet-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?php Pjax::begin(); ?>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <p>
+            <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'customer_id',
-            'order_id',
-            'deposit',
-            'withdraw',
-            //'narrative',
-            //'created_at',
+                'id',
+                'customer_id',
+                'order_id',
+                'deposit',
+                'withdraw',
+                //'narrative',
+                //'created_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-    <?php Pjax::end(); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+        <?php Pjax::end(); ?>
+    </div>
+
 </div>
