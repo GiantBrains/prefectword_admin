@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Order;
 use app\models\Wallet;
 use app\models\Withdraw;
+use dektrium\user\models\User;
 use Yii;
 use \app\components\Notification;
 use yii\filters\AccessControl;
@@ -89,6 +90,7 @@ class SiteController extends Controller
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
         Yii::$app->view->params['balance'] = $balance;
+        $users_count = User::find()->count();
         $withdraw_count = Withdraw::find()->Where(['status'=>0])->count();
         Yii::$app->view->params['withdraw_count'] = $withdraw_count;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
@@ -118,7 +120,12 @@ class SiteController extends Controller
         Yii::$app->view->params['rejected_count'] = $rejected_count;
         $disputed_count = Order::find()->where(['disputed'=> 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
-        return $this->render('index');
+        return $this->render('index',[
+            'available_count'=>$available_count,
+            'users_count'=>$users_count,
+            'balance'=>$balance,
+            'approved_count'=>$approved_count
+        ]);
     }
 
     public function actionRequest()

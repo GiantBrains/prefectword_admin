@@ -78,6 +78,7 @@ class OrderController extends Controller
         Yii::$app->view->params['withdraw_count'] = $withdraw_count;
         $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
+
         $available_count = Order::find()->where(['available'=> 1])->count();
         Yii::$app->view->params['available_count'] = $available_count;
         $bids_count = Order::find()->where(['available'=> 1])->count();
@@ -112,6 +113,7 @@ class OrderController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'available_count'=>$available_count,
             'dataProvider' => $dataProvider,
             'perm'=>$perm,
             'rol'=>$rol,

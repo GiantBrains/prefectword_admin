@@ -19,26 +19,47 @@ $this->title = Yii::$app->name;
     <div class="row">
         <div class="col-md-3 col-md-3 col-sm-6 col-xs-12" style="height: auto">
             <div class="white-box analytics-info" style="background-color: #00c0ef; color: white; height: 150px; padding: 10px">
-                <i class="fa fa-list fa-4x" aria-hidden="true"></i>
-                <h4 class="box-title">Available Orders</h4>
+                <div class="row"><div class="col-md-3"><i class="fa fa-list fa-3x" aria-hidden="true"></i></div>
+                <div class="col-md-9"><h4 class="box-title">Available Orders</h4></div></div>
+                <div><h1 style="text-align: center"><?= $available_count?></h1></div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="height: auto">
             <div class="white-box analytics-info" style="background-color: #dd4b39; color: white; height: 150px; padding: 10px">
-                <i class="fa fa-users fa-4x" aria-hidden="true"></i>
-                <h4 class="box-title">Registered Clients</h4>
+               <div class="row"><div class="col-md-3">
+                       <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+                   </div>
+                   <div class="col-md-9">
+                       <h4 class="box-title">Registered Clients</h4>
+                   </div>
+               </div>
+                <div><h1 style="text-align: center"><?= $users_count ?></h1></div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="height: auto">
             <div class="white-box analytics-info" style="background-color: #00a65a; color: white; height: 150px; padding: 10px">
-                <i class="fa fa-money fa-4x" aria-hidden="true"></i>
-                <h4>Total Amount (USD)</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <i class="fa fa-money fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-9">
+                        <h4>Total Amount (USD)</h4>
+                    </div>
+                </div>
+                <div><h1 style="text-align: center"><?= $balance ?></h1></div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="height: auto">
             <div class="white-box analytics-info" style="background-color: #f39c12; color: white; height: 150px; padding: 10px">
-                <span class="glyphicon glyphicon-check check-icon" aria-hidden="true"></span>
-                <h4 class="box-title">Completed Orders</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="glyphicon glyphicon-check check-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="box-title">Approved Orders</h4>
+                    </div>
+                </div>
+                <div><h1 style="text-align: center"><?= $approved_count ?></h1></div>
             </div>
         </div>
     </div>
