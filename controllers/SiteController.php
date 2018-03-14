@@ -84,8 +84,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -130,8 +130,8 @@ class SiteController extends Controller
 
     public function actionRequest()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet ');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
