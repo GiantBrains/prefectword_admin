@@ -68,8 +68,8 @@ class OrderController extends Controller
      */
     public function actionIndex()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -122,8 +122,8 @@ class OrderController extends Controller
     }
     public function actionPending()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -168,8 +168,8 @@ class OrderController extends Controller
     }
     public function actionAvailable()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet ');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -214,8 +214,8 @@ class OrderController extends Controller
     }
     public function actionActive()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -261,8 +261,8 @@ class OrderController extends Controller
     }
     public function actionCancelled()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -307,8 +307,8 @@ class OrderController extends Controller
     }
     public function actionConfirmed()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -352,8 +352,8 @@ class OrderController extends Controller
     }
     public function actionUnconfirmed()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -397,8 +397,8 @@ class OrderController extends Controller
     }
     public function actionEditing()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -442,8 +442,8 @@ class OrderController extends Controller
     }
     public function actionCompleted()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -487,8 +487,8 @@ class OrderController extends Controller
     }
     public function actionRevision()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -532,8 +532,8 @@ class OrderController extends Controller
     }
     public function actionRejected()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet ');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -577,8 +577,8 @@ class OrderController extends Controller
     }
     public function actionDisputed()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -622,8 +622,8 @@ class OrderController extends Controller
     }
     public function actionApproved()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet ');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -667,8 +667,8 @@ class OrderController extends Controller
     }
     public function actionSendMessage()
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -744,8 +744,8 @@ class OrderController extends Controller
             $notify->save();
             return $this->redirect(['messages','oid'=>$oid]);
         }else{
-            $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-            $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+            $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+            $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
             $totaldeposit = $command1->queryScalar();
             $totalwithdrawal = $command2->queryScalar();
             $balance = $totaldeposit-$totalwithdrawal;
@@ -810,8 +810,8 @@ class OrderController extends Controller
     }
     public function actionView($oid)
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -856,8 +856,8 @@ class OrderController extends Controller
      */
     public function actionAttached($oid)
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -905,8 +905,8 @@ class OrderController extends Controller
     }
     public function actionUploadedFiles($oid)
     {
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
@@ -1167,8 +1167,8 @@ class OrderController extends Controller
         Yii::$app->view->params['rejected_count'] = $rejected_count;
         $disputed_count = Order::find()->where(['disputed'=> 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
-        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
-        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet WHERE customer_id ='.Yii::$app->user->id.'');
+        $command1 = Yii::$app->db->createCommand('SELECT SUM(deposit) FROM wallet');
+        $command2 = Yii::$app->db->createCommand('SELECT SUM(withdraw) FROM wallet');
         $totaldeposit = $command1->queryScalar();
         $totalwithdrawal = $command2->queryScalar();
         $balance = $totaldeposit-$totalwithdrawal;
