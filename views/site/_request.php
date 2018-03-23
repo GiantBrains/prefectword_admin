@@ -8,6 +8,7 @@
 ?>
 
 <tr>
+    <td><?=  \dektrium\user\models\User::find()->where(['id'=>$withdraw->user_id])->one()->username ?></td>
     <td><?= '$'.number_format(floatval($withdraw->amount), 2, '.', ',') ?></td>
 
     <?php
