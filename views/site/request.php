@@ -14,7 +14,7 @@ $this->title = 'Withdrawal Requests';
 <div class="col-md-8" style="margin-top: 20px;">
     <table id="transactions">
         <tr>
-            <th>Customer</th>
+            <th>Client</th>
             <th>Amount</th>
             <th>Date</th>
             <th>Verify</th>
