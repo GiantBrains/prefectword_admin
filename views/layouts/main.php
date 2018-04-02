@@ -32,7 +32,7 @@ AppAsset::register($this);
         'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Doctorate</strong><strong style="color: midnightblue; font-size: 20px;">Essays</strong>',
         'brandUrl' => Yii::$app->request->baseUrl.'/',
         'options' => [
-            'class' => 'navbar navbar-default1 navbar-fixed-top',
+            'class' => 'navbar navbar-default navbar-fixed-top',
         ],
     ]);
 

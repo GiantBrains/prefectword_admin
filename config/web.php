@@ -69,7 +69,7 @@ $config = [
             'rememberFor'=>1209600,
             'recoverWithin'=>21600,
             'cost' => 12,
-            'admins' => ['gits']
+            'admins' => ['gits','jay']
             // you will configure your module inside this file
             // or if need different configuration for frontend and backend you may
             // configure in needed configs
