@@ -294,6 +294,15 @@ $this->registerJs($datetime);
             echo '';
         }
         ?>
+
+        <?php
+        if ($model->paid == 0){
+            echo ' <!-- Button trigger modal -->
+            <a href="'.\yii\helpers\Url::to(['order/mark-paid','oid'=>$model->ordernumber]).'"><button type="button" class="btn btn-success">Mark as paid</button></a>';
+        }else{
+            echo '';
+        }
+        ?>
     </p>
 </div>
 

@@ -1179,6 +1179,15 @@ class OrderController extends Controller
         ]);
     }
 
+    public function actionMarkPaid($oid)
+    {
+        $model = $this->findModelByNumber($oid);
+        $model->available = 1;
+        $model->paid = 1;
+        $model->save();
+
+        return $this->redirect(['order/view', 'oid' => $oid]);
+    }
     /**
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
