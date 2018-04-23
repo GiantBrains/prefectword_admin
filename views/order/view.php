@@ -30,6 +30,7 @@ $this->registerJs($datetime);
     $myzone = new DateTimeZone(Yii::$app->timezone->name);
     $dt->setTimezone($myzone);
     $dt->format('Y-m-d H:i:s');
+
     if ($model->createdBy->timezone != null){
         $clienttimezone = $model->createdBy->timezone;
     }else{

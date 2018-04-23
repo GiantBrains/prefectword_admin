@@ -59,7 +59,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     $myzone = new DateTimeZone(Yii::$app->timezone->name);
                     $dt->setTimezone($myzone);
                     $dt->format('Y-m-d H:i:s');
-                    $interval = date_diff( date_create( $dt->format('Y-m-d H:i:s')), date_create($model->deadline));
+
+                    if ($model->createdBy->timezone != null){
+                        $clienttimezone = $model->createdBy->timezone;
+                    }else{
+                        $clienttimezone = Yii::$app->timezone->name;
+                    }
+
+                    $date = new DateTime(''.$model->deadline.'', new DateTimeZone(''.$clienttimezone.''));
+                    $date->setTimezone(new DateTimeZone(''.Yii::$app->timezone->name.''));
+                    $mytime = $date->format('Y-m-d H:i:s');
+                    $interval = date_diff( date_create( $dt->format('Y-m-d H:i:s')), date_create($mytime));
 
                     $date_days = $interval->format('%a');
                     $date_hours = $interval->format('%r%H');
