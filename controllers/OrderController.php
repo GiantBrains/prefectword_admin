@@ -1188,6 +1188,27 @@ class OrderController extends Controller
 
         return $this->redirect(['order/view', 'oid' => $oid]);
     }
+
+
+    public function actionMarkApproved($oid)
+    {
+        $order = $this->findModelByNumber($oid);
+        $order->completed = 0;
+        $order->active = 0;
+        $order->revision = 0;
+        $order->approved = 1;
+        $order->save();
+
+        Notification::success(Notification::KEY_ORDER_APPROVED, $order->written_by, $order->id);
+        $supernote = \app\models\Notification::find()->where(['key'=>'order_approved'])->andWhere(['key_id'=>$order->id])->one();
+        if (empty($supernote)){
+            $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
+            $notify->order_number = $oid;
+            $notify->save();
+        }
+        Yii::$app->session->setFlash('success','Order has been marked as completed successfully. Thank you');
+        return $this->redirect(['order/view', 'oid' => $oid]);
+    }
     /**
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
