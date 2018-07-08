@@ -314,14 +314,6 @@ $this->registerJs($datetime);
             echo '';
         }
         ?>
-        <?php
-        if ($model->completed == 1){
-            echo ' <!-- Button trigger modal -->
-            <a href="'.\yii\helpers\Url::to(['order/mark-approved','oid'=>$model->ordernumber]).'"><button type="button" class="btn btn-info">Mark as Approved</button></a>';
-        }else{
-            echo '';
-        }
-        ?>
     </p>
 </div>
 
