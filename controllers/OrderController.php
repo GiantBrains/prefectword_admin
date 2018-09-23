@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\Notification;
 use app\models\Uploaded;
 use app\models\Withdraw;
+use dektrium\user\models\User;
 use Yii;
 use app\models\Message;
 use app\models\MessageSearch;
@@ -998,6 +999,17 @@ class OrderController extends Controller
             $notify->order_number = $order->ordernumber;
             $notify->save();
         }
+        $writer = User::findOne($order->written_by);
+        $client = User::findOne($order->created_by);
+        Yii::$app->supportMailer->htmlLayout = "layouts/order";
+        Yii::$app->supportMailer->compose('order-completed', [
+            'order' => $order,
+            'client'=> $client,
+            'writer'=> $writer
+        ])->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' support'])
+            ->setTo($client->email)
+            ->setSubject('Order '.$order->ordernumber.' completed')
+            ->send();
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
     public function actionUploadDelete($order, $file, $file_date, $file_extension)
