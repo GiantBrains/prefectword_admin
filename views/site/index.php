@@ -9,7 +9,7 @@ $this->title = Yii::$app->name;
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <h4 class="page-title">Dashboard</h4> </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <a href="<?= Yii::$app->request->baseUrl?>/site/sales" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Go to Sales</a>
+            <a href="<?= Yii::$app->request->baseUrl?>/" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Go to Sales</a>
             <ol class="breadcrumb">
                 <li><a href="<?= Yii::$app->request->baseUrl?>/">Dashboard</a></li>
             </ol>
