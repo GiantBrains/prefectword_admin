@@ -46,7 +46,7 @@ $this->title = Yii::$app->name;
                         <h4>Total Amount (USD)</h4>
                     </div>
                 </div>
-                <div><h1 style="text-align: center"><?= $balance ?></h1></div>
+                <div><h1 style="text-align: center"><?= abs($balance) ?></h1></div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="height: auto">
