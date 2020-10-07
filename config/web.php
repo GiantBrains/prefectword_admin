@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name'=>'Doctorate Essays',
+    'name'=>'Verified Professors',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log','timezone'],
     'aliases' => [
