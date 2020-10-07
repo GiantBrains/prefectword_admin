@@ -3,6 +3,7 @@
 namespace app\models;
 
 use dektrium\user\models\User;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "message".
@@ -74,6 +75,18 @@ class Message extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'sender_id']);
     }
 
+    public static function testArrayMap(){
+        $orders = Order::find()->all();
+        $myOrders = [];
+        $orderResults = ArrayHelper::index($orders, 'id');
+        $users = User::find()->all();
+        $userResults = ArrayHelper::index($users, 'id');
+        foreach ($orderResults as $orderResult) {
+            $myOrders[] = $userResults[$orderResult['created_by']];
+        }
+
+        return $myOrders;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

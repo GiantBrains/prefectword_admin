@@ -1221,6 +1221,11 @@ class OrderController extends Controller
         Yii::$app->session->setFlash('success','Order has been marked as completed successfully. Thank you');
         return $this->redirect(['order/view', 'oid' => $oid]);
     }
+
+    public function actionTest(){
+        return print_r(Message::testArrayMap());
+    }
+
     /**
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -1236,6 +1241,7 @@ class OrderController extends Controller
             throw new NotFoundHttpException();
         }
     }
+
     public function  apiContext()
     {
         // After Step 1
