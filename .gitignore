@@ -9,13 +9,6 @@ nbproject
 .project
 .settings
 
-# config
-config/db.php
-config/params.php
-
-#ignore index.php
-web/index.php
-
 # windows thumbnail cache
 Thumbs.db
 
