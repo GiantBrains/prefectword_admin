@@ -46,8 +46,8 @@ AppAsset::register($this);
     ]);
 
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Log In ' , 'url' => Yii::$app->request->baseUrl.'/user/security/login',
-            'active' => $this->context->route == 'user/security/login',
+        $menuItems[] = ['label' => 'Log In ' , 'url' => Yii::$app->request->baseUrl.'/site/login',
+            'active' => $this->context->route == 'site/login',
         ];
     } else {
         $menuItems[] = [
@@ -56,7 +56,7 @@ AppAsset::register($this);
             'active' => $this->context->route == 'site/index'
         ];
 
-        $menuItems[] = '<a data-method="post" href="'.Yii::$app->request->baseUrl.'/user/security/logout">
+        $menuItems[] = '<a data-method="post" href="'.Yii::$app->request->baseUrl.'/site/logout">
                         <button type="button" class="btn btn-danger navbar-btn essay-font">Logout ('.Yii::$app->user->identity->username.')</button></a>';
     }
     echo Nav::widget([

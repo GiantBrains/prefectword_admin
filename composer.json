@@ -30,7 +30,10 @@
         "machour/yii2-notifications": "*",
         "loveorigami/yii2-reversed-pagination": "~2.0",
         "kartik-v/yii2-widget-rating": "*",
-        "yiithings/yii2-dotenv": "*"
+        "yiithings/yii2-dotenv": "*",
+        "sizeg/yii2-jwt": "^2.0",
+        "bizley/jwt": "^2.0",
+        "kakadu-dev/yii2-jwt-auth": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

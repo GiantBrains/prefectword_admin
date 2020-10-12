@@ -49,15 +49,9 @@ AppAsset::register($this);
             ],
             '<li role="separator" class="divider"></li>',
             [
-                'label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/profile1.png" style="height: 16px; " > &nbsp;<span>Account</span>',
-                'url' => Yii::$app->request->baseUrl.'/user/settings/account',
-                'active' => $this->context->route == 'user/settings/account'
-            ],
-            '<li role="separator" class="divider"></li>',
-            [
-                'label' => '<i class="fa fa-share-square" aria-hidden="true"></i> &nbsp; <span>Networks</span>',
-                'url' => Yii::$app->request->baseUrl.'/user/settings/networks',
-                'active' => $this->context->route == 'user/settings/networks'
+                'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/user.png" style="height: 16px; " > &nbsp;<span>Account</span>',
+                'url' => Yii::$app->request->baseUrl . '/site/account',
+                'active' => $this->context->route == 'site/account'
             ],
         ],
     ];
@@ -70,10 +64,10 @@ AppAsset::register($this);
 
     if (Yii::$app->user->isGuest) {
         $menuItems[] = [
-            'label' => 'Log In ' , 'url' => Yii::$app->request->baseUrl.'/user/security/login',
-            'active' => $this->context->route == 'user/security/login',
+            'label' => 'Log In ' , 'url' => Yii::$app->request->baseUrl.'/site/login',
+            'active' => $this->context->route == 'site/login',
         ];
-        $menuItems[] = '<a href="'.Yii::$app->request->baseUrl.'/user/register"><button type="button" class="btn btn-primary navbar-btn essay-font">Sign Up</button></a>';
+        $menuItems[] = '<a href="'.Yii::$app->request->baseUrl.'/site/register"><button type="button" class="btn btn-primary navbar-btn essay-font">Sign Up</button></a>';
     } else {
 //        $menuItems[] = [
 //            'label' => $this->params['balance']?
@@ -128,7 +122,7 @@ AppAsset::register($this);
                 '<li role="separator" class="divider"></li>',
                 [
                     'label' => '<i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> &nbsp; <span style="font-size: 20px"> Logout ('.Yii::$app->user->identity->username.')</span>',
-                    'url' => Yii::$app->request->baseUrl.'/user/security/logout',
+                    'url' => Yii::$app->request->baseUrl.'/site/logout',
                     'linkOptions' => ['data-method' => 'post']
                 ],
             ],

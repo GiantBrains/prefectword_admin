@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\models\Order;
 use app\models\Wallet;
 use app\models\Withdraw;
-use dektrium\user\models\User;
+use app\models\User;
 use Yii;
 use \app\components\Notification;
 use yii\filters\AccessControl;
@@ -211,6 +211,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'main';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

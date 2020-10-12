@@ -36,49 +36,11 @@ $config = [
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
         ],
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            'controllerMap' => [
-                'settings' => [
-                    'class' => 'dektrium\user\controllers\SettingsController',
-                    'layout' => '@app/views/layouts/order',
-                ],
-                'registration' => [
-                    'class' => \dektrium\user\controllers\RegistrationController::className(),
-                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
-                        $user = \dektrium\user\models\User::findOne(['username'=>$e->form->username, 'email'=>$e->form->email]);
-                        if ($user) {
-                            Yii::$app->user->switchIdentity($user);
-                        }
-                        \Yii::$app->response->redirect(\Yii::$app->user->returnUrl);
-                    },
-                ],
-            ],
-            'mailer' => [
-                'sender'                => ['no-reply@doctorateessays.com'=>'Doctorate Essays'], // or ['no-reply@myhost.com' => 'Sender name']
-                'welcomeSubject'        => 'Welcome to Doctorate Essays',
-                'confirmationSubject'   => 'Please confirm your email by clicking on the link below',
-                'reconfirmationSubject' => 'Please re-confirm your email by clicking on the link below',
-                'recoverySubject'       => 'The following are instructions on how to recover your password',
-            ],
-            'enableUnconfirmedLogin' => true,
-            // 'enableGeneratingPassword'=>true,
-            'emailChangeStrategy'=>\dektrium\user\Module::STRATEGY_SECURE,
-            'enableConfirmation'=>true,
-            'confirmWithin' => 86400,
-            'rememberFor'=>1209600,
-            'recoverWithin'=>21600,
-            'cost' => 12,
-            'admins' => ['gits','Jay']
-            // you will configure your module inside this file
-            // or if need different configuration for frontend and backend you may
-            // configure in needed configs
-        ],
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'adminportalfordoctorateessays.com',
+            'cookieValidationKey' => 'adminportalforverifiedprofessors.com',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -93,7 +55,7 @@ $config = [
             'actionRoute' => '/site/timezone' //optional param - full path to page must be specified
         ],
         'user' => [
-            'identityClass' => 'dektrium\user\models\User',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
