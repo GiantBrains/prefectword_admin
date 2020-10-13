@@ -14,7 +14,7 @@ $this->title = Yii::$app->name;
         <div class="col-sm-6 col-xs-12" style="background-color: #ABD7DE; border-radius: 10px 0px 0px 10px; color:black; height: 110px;padding: 10px">
         <div class="white-box analytics-info">
                 <div class="row">
-                    <div class="col-md-3"><i class="fa fa-free-code-camp fa-3x" aria-hidden="true"></i></div>
+                    <div class="col-md-3"><i class="fa fa-free-code-camp fa-3x" aria-hidden="true"></i></div><br>
                     <div class="col-md-9"><h4 class="box-title">Available Orders</h4></div>
                 </div>
         </div>
@@ -28,7 +28,7 @@ $this->title = Yii::$app->name;
         <div class="col-sm-6 col-xs-12" style="background-color: #ABD7DE; border-radius: 10px 0px 0px 10px; color:black; height: 110px; padding: 10px">
         <div class="white-box analytics-info">
                 <div class="row">
-                    <div class="col-md-3"><i class="fa fa-users fa-3x" aria-hidden="true"></i></div>
+                    <div class="col-md-3"><i class="fa fa-users fa-3x" aria-hidden="true"></i></div><br>
                     <div class="col-md-9"><h4 class="box-title">Registered Clients</h4></div>
                 </div>
         </div>
@@ -42,7 +42,7 @@ $this->title = Yii::$app->name;
         <div class="col-sm-6 col-xs-12" style="background-color: #ABD7DE; border-radius: 10px 0px 0px 10px; color:black; height: 110px; padding: 10px">
         <div class="white-box analytics-info">
                 <div class="row">
-                    <div class="col-md-3"><i class="fa fa-money fa-3x" aria-hidden="true"></i></div>
+                    <div class="col-md-3"><i class="fa fa-money fa-3x" aria-hidden="true"></i></div><br>
                     <div class="col-md-9"><h4 class="box-title">Total Amount</h4></div>
                 </div>
         </div>
@@ -56,7 +56,7 @@ $this->title = Yii::$app->name;
         <div class="col-sm-6 col-xs-12" style="background-color: #ABD7DE ;border-radius: 10px 0px 0px 10px; color:black; height: 110px; padding: 10px">
         <div class="white-box analytics-info">
                 <div class="row">
-                    <div class="col-md-3"><i class="fa fa-check fa-3x" aria-hidden="true"></i></div>
+                    <div class="col-md-3"><i class="fa fa-check fa-3x" aria-hidden="true"></i></div><br>
                     <div class="col-md-9"><h4 class="box-title">Approved Orders</h4></div>
                 </div>
         </div>

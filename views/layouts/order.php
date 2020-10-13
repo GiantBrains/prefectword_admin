@@ -141,7 +141,7 @@ AppAsset::register($this);
     <div class="mycontent">
         <div class="row" style="margin-right: 0; margin-left: 0;">
             <div class="col-md-3">
-                <div class="sidebar">
+                <div class="sidebar hidden-xs">
                     <?php
                     $type = 'info';
                     $item = 'home';
