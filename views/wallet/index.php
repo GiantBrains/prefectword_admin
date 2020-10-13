@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <ul class="nav nav-tabs" style="margin-bottom: 5px">
         <li role="presentation" class="<?=$deposit?>"><a href="<?= Yii::$app->request->baseUrl?>/wallet/index"><strong>Deposit</strong></a></li>
-        <li role="presentation" class="<?=$withdraw?>"><a href="<?=  Yii::$app->request->baseUrl?>/wallet/order-withdrawals"><strong>Withdraw</strong></a></li>
+        <li role="presentation" class="<?=$withdraw?>"><a href="<?=  Yii::$app->request->baseUrl?>/wallet/order-withdrawals"><strong>Order Payments</strong></a></li>
     </ul>
 </div>
 </div>
