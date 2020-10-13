@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //JS;
 //$this->registerJs($deadline);
 ?>
-<div class="myorder" style="margin-left: -10px">
+<div class="myorder" style="margin-left: -10px; color:black">
     <h1><?= Html::encode($this->title) ?></h1>
     <hr>
     <?php Pjax::begin(); ?>

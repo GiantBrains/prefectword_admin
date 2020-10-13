@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Doctorate</strong><strong style="color: midnightblue; font-size: 20px;">Essays</strong>',
+        'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Verified</strong><strong style="color: midnightblue; font-size: 20px;">Professors</strong>',
         'brandUrl' => Yii::$app->request->baseUrl.'/',
         'options' => [
             'class' => 'navbar navbar-default2 navbar-fixed-top',
@@ -143,7 +143,7 @@ AppAsset::register($this);
             <div class="col-md-3">
                 <div class="sidebar">
                     <?php
-                    $type = 'primary';
+                    $type = 'info';
                     $item = 'home';
                     echo SideNav::widget([
                         'type' => $type,

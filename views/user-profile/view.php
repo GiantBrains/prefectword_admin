@@ -62,6 +62,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <p>
-        <?= Html::a('Update', ['update', 'user' => $model->user_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'user' => $model->user_id], ['class' => 'btn btn-info']) ?>
     </p>
 </div>
