@@ -14,13 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="container">
 <div style="margin-top:10px">
-<h1><?= Html::encode($this->title) ?></h1>
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-        <p>
-            <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-info']) ?>
-        </p>
-
     <ul class="nav nav-tabs" style="margin-bottom: 5px">
         <li role="presentation" class="<?=$deposit?>"><a href="<?= Yii::$app->request->baseUrl?>/wallet/index"><strong>Deposit</strong></a></li>
         <li role="presentation" class="<?=$withdraw?>"><a href="<?=  Yii::$app->request->baseUrl?>/wallet/order-withdrawals"><strong>Order Payments</strong></a></li>
