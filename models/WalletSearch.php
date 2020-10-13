@@ -63,7 +63,6 @@ class WalletSearch extends Wallet
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'customer_id' => $this->customer_id,
             'order_id' => $this->order_id,
             'deposit' => $this->deposit,
             'withdraw' => $this->withdraw,
