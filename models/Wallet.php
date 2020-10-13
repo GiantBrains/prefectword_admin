@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use dektrium\user\models\User;
+use app\models\User;
 
 /**
  * This is the model class for table "wallet".

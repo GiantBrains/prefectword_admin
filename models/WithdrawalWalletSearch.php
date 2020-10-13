@@ -10,7 +10,7 @@ use app\models\Wallet;
 /**
  * WalletSearch represents the model behind the search form of `app\models\Wallet`.
  */
-class WalletSearch extends Wallet
+class WithdrawalWalletSearch extends Wallet
 {
     /**
      * @inheritdoc
@@ -42,7 +42,7 @@ class WalletSearch extends Wallet
      */
     public function search($params)
     {
-        $query = Wallet::find()->where(['IS', 'order_id', null]);
+        $query = Wallet::find()->where(['IS NOT', 'order_id', null]);
 
         // add conditions that should always apply here
 
