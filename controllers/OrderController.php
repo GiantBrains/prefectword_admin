@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\components\Notification;
 use app\models\Uploaded;
 use app\models\Withdraw;
-use dektrium\user\models\User;
+use app\models\User;
 use Yii;
 use app\models\Message;
 use app\models\MessageSearch;
