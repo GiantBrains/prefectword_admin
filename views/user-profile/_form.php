@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'gender')->dropDownList([0 => 'Male',1 => 'Female'], ['prompt'=>'--select--']) ?>
         </div>
         <div class="form-group">
-            <?= Html::submitButton('Save Profile', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Save Profile', ['class' => 'btn btn-info']) ?>
         </div>
     </div>
 

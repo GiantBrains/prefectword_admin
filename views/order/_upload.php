@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Upload', ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

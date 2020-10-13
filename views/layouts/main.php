@@ -26,7 +26,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap" style="background-image: url('/adminverified/web/images/background.jpg')">
     <?php
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #71D8EC; font-size: 20px;">Verified</strong><strong style="color: #3D715B; font-size: 20px;">Professors</strong>',
@@ -68,7 +68,7 @@ AppAsset::register($this);
     <div style="margin-top: 60px">
         <?= Alert::widget() ?>
     </div>
-    <div style="margin-top: -10px">
+    <div style="margin-top: -50px">
         <?= $content ?>
     </div>
 </div>

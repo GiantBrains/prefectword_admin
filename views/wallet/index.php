@@ -18,23 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <p>
-            <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-info']) ?>
         </p>
 
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-
-                'id',
-                'customer_id',
-                'order_id',
-                'deposit',
-                'withdraw',
-                //'narrative',
-                //'created_at',
-
+            [
+                'attribute'=>'order_id',
+                'format' => 'raw',
+                'value'=> function ($model, $key, $index, $column) {
+                    if (!$model->order_id) {
+                        return '<p style="color: red"> Deposit: ' . $model->deposit . ' </p>';
+                    }else {
+                        return '<p style="color: midnightblue"> Withdraw: ' . $model->withdraw . ' </p>';
+                    }
+        
+                }
+            ],
+            
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
