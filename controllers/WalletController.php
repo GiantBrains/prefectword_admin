@@ -37,7 +37,22 @@ class WalletController extends Controller
     {
         $searchModel = new WalletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andFilterWhere(['order_id'=>null]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
+    /**
+     * Lists all Wallet models.
+     * @return mixed
+     */
+    public function actionOrderWithdrawals()
+    {
+        $searchModel = new WalletSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andFilterWhere(['IS NOT', 'order_id', null]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
