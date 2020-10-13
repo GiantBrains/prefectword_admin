@@ -11,28 +11,25 @@ use app\models\User;
 $this->title = 'Wallets';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container">
-<div style="margin-top:100px">
-    <ul class="nav nav-tabs" style="margin-bottom: 5px">
-        <li role="presentation" ><a href="<?= Yii::$app->request->baseUrl?>/wallet/index"><strong>Deposit</strong></a></li>
-        <li role="presentation" ><a href="<?=  Yii::$app->request->baseUrl?>/wallet/withdraw"><strong>Withdraw Requests</strong></a></li>
-        <li role="presentation" ><a href="<?=Yii::$app->request->baseUrl ?>/wallet/transactions"><strong>Transactions</strong></a></li>
-    </ul>
-</div>
-</div>
-<div class="wallet-index">
-    <div class="container">
-    <div class="wallet-index">
 
-        <h1><?= Html::encode($this->title) ?></h1>
-        <?php Pjax::begin(); ?>
+<div class="container">
+<div style="margin-top:10px">
+<h1><?= Html::encode($this->title) ?></h1>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <p>
             <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-info']) ?>
         </p>
 
-        <?= GridView::widget([
+    <ul class="nav nav-tabs" style="margin-bottom: 5px">
+        <li role="presentation" class="<?=$deposit?>"><a href="<?= Yii::$app->request->baseUrl?>/wallet/index"><strong>Deposit</strong></a></li>
+        <li role="presentation" class="<?=$withdraw?>"><a href="<?=  Yii::$app->request->baseUrl?>/wallet/order-withdrawals"><strong>Withdraw</strong></a></li>
+    </ul>
+</div>
+</div>
+<div class="wallet-index">
+    <div class="container">
+    <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => [
@@ -52,20 +49,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         return  $model->narrative;
                     }
                 ],
+
             [
-                'attribute'=>'order_id',
+                'attribute'=>'deposit',
+                'visible' => $deposit == 'active',
                 'label' => 'Amount',
                 'format' => 'raw',
                 'value'=> function ($model, $key, $index, $column) {
-                    return $model->deposit;
+                   return $model->deposit;
+                }
+            ],
+            [
+                'attribute'=>'withdraw',
+                'visible' => $withdraw == 'active',
+                'label' => 'Amount',
+                'format' => 'raw',
+                'value'=> function ($model, $key, $index, $column) {
+                    return $model->withdraw;
                 }
             ],
             
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
-        <?php Pjax::end(); ?>
     </div>
-
-</div>
 </div>

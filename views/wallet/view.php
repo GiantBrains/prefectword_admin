@@ -10,8 +10,9 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Wallets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<
 <div class="wallet-view">
-
+<div class="container">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -37,5 +38,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at',
         ],
     ]) ?>
-
+</div>
 </div>

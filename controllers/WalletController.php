@@ -36,11 +36,17 @@ class WalletController extends Controller
      */
     public function actionIndex()
     {
+        $deposit = 'active';
+        Yii::$app->view->params['deposit']=$deposit;
+        $withdraw = 'not';
+        Yii::$app->view->params['withdraw']=$withdraw;
         $searchModel = new WalletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'deposit' => $deposit,
+            'withdraw' => $withdraw
         ]);
     }
 
@@ -50,11 +56,17 @@ class WalletController extends Controller
      */
     public function actionOrderWithdrawals()
     {
+        $deposit = 'not';
+        Yii::$app->view->params['deposit']=$deposit;
+        $withdraw = 'active';
+        Yii::$app->view->params['withdraw']=$withdraw;
         $searchModel = new WithdrawalWalletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'deposit' => $deposit,
+            'withdraw' => $withdraw
         ]);
     }
 
