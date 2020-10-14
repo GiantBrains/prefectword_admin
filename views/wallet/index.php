@@ -32,14 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value'=> function ($model, $key, $index, $column) {
                         $user = User::findOne($model->customer_id);
-                        return  $user->username;
+                        return $user->username;
                     }
                 ],
                 [
                     'attribute'=>'narrative',
                     'format' => 'raw',
                     'value'=> function ($model, $key, $index, $column) {
-                        return  $model->narrative;
+                        return $model->narrative;
                     }
                 ],
 
@@ -60,9 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> function ($model, $key, $index, $column) {
                     return $model->withdraw;
                 }
-            ],
-            
-                ['class' => 'yii\grid\ActionColumn'],
+            ]
             ],
         ]); ?>
     </div>
