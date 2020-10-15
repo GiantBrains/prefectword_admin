@@ -67,21 +67,34 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'no-reply@doctorateessays.com',
-                'password' => 'Essays@2018',
+                'username' => 'no-reply@verifiedprofessors.com',
+                'password' => 'verifiedprofessors8994',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
         ],
 
-        'payments_mailer' => [
+        'adminMailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'payments.no-reply@doctorateessays.com',
-                'password' => 'Essays@2018',
+                'username' => 'admin@verifiedprofessors.com',
+                'password' => 'verifiedprofessors8994',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
+        ],
+
+        'managerMailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.zoho.com',
+                'username' => 'olivia@verifiedprofessors.com',
+                'password' => 'verifiedprofessors8994',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -93,8 +106,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'support@doctorateessays.com',
-                'password' => 'Essays@2018',
+                'username' => 'support@verifiedprofessors.com',
+                'password' => 'verifiedprofessors8994',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
