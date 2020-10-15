@@ -9,7 +9,7 @@ namespace app\components;
 
 use app\models\Revision;
 use app\models\Withdraw;
-use dektrium\user\models\User;
+use app\models\User;
 use Yii;
 use app\models\Order;
 use app\models\Message;
