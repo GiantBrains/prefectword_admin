@@ -19,6 +19,7 @@ use app\models\User;
 class WalletController extends Controller
 {
     public $layout = 'order';
+
     /**
      * @inheritdoc
      */
@@ -40,46 +41,49 @@ class WalletController extends Controller
      */
     public function actionIndex()
     {
-        $withdraw_count = Withdraw::find()->Where(['status'=>0])->count();
+        $withdraw_count = Withdraw::find()->Where(['status' => 0])->count();
         Yii::$app->view->params['withdraw_count'] = $withdraw_count;
-        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        $cancel_count = Order::find()->where(['cancelled' => 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
+        $available_count = Order::find()->where(['available' => 1])->andWhere(['cancelled' => 0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
-        $bids_count = Order::find()->where(['available'=> 1])->count();
+        $bids_count = Order::find()->where(['available' => 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
-        $unconfirmed_count = Order::find()->where(['confirmed'=> 0])->count();
+        $unconfirmed_count = Order::find()->where(['confirmed' => 0])->count();
         Yii::$app->view->params['unconfirmed_count'] = $unconfirmed_count;
-        $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
+        $confirmed_count = Order::find()->where(['confirmed' => 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
+        $pending_count = Order::find()->where(['paid' => 0])->andWhere(['cancelled' => 0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
+        $active_count = Order::find()->where(['active' => 1])->andWhere(['cancelled' => 0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
-        $revision_count = Order::find()->where(['revision'=> 1])->count();
+        $revision_count = Order::find()->where(['revision' => 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
-        $editing_count = Order::find()->where(['editing'=> 1])->count();
+        $editing_count = Order::find()->where(['editing' => 1])->count();
         Yii::$app->view->params['editing_count'] = $editing_count;
-        $completed_count = Order::find()->where(['completed'=> 1])->count();
+        $completed_count = Order::find()->where(['completed' => 1])->count();
         Yii::$app->view->params['completed_count'] = $completed_count;
-        $approved_count = Order::find()->where(['approved'=> 1])->count();
+        $approved_count = Order::find()->where(['approved' => 1])->count();
         Yii::$app->view->params['approved_count'] = $approved_count;
-        $rejected_count = Order::find()->where(['rejected'=> 1])->count();
+        $rejected_count = Order::find()->where(['rejected' => 1])->count();
         Yii::$app->view->params['rejected_count'] = $rejected_count;
-        $disputed_count = Order::find()->where(['disputed'=> 1])->count();
+        $disputed_count = Order::find()->where(['disputed' => 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
         $deposit = 'active';
-        Yii::$app->view->params['deposit']=$deposit;
+        Yii::$app->view->params['deposit'] = $deposit;
         $withdraw = 'not';
-        Yii::$app->view->params['withdraw']=$withdraw;
+        Yii::$app->view->params['withdraw'] = $withdraw;
+        $paypal = 'not';
+        Yii::$app->view->params['paypal'] = $paypal;
         $searchModel = new WalletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'deposit' => $deposit,
-            'withdraw' => $withdraw
+            'withdraw' => $withdraw,
+            'paypal' => $paypal
         ]);
     }
 
@@ -89,46 +93,49 @@ class WalletController extends Controller
      */
     public function actionOrderWithdrawals()
     {
-        $withdraw_count = Withdraw::find()->Where(['status'=>0])->count();
+        $withdraw_count = Withdraw::find()->Where(['status' => 0])->count();
         Yii::$app->view->params['withdraw_count'] = $withdraw_count;
-        $cancel_count = Order::find()->where(['cancelled'=> 1])->count();
+        $cancel_count = Order::find()->where(['cancelled' => 1])->count();
         Yii::$app->view->params['cancel_count'] = $cancel_count;
-        $available_count = Order::find()->where(['available'=> 1])->andWhere(['cancelled'=>0])->count();
+        $available_count = Order::find()->where(['available' => 1])->andWhere(['cancelled' => 0])->count();
         Yii::$app->view->params['available_count'] = $available_count;
-        $bids_count = Order::find()->where(['available'=> 1])->count();
+        $bids_count = Order::find()->where(['available' => 1])->count();
         Yii::$app->view->params['bids_count'] = $bids_count;
-        $unconfirmed_count = Order::find()->where(['confirmed'=> 0])->count();
+        $unconfirmed_count = Order::find()->where(['confirmed' => 0])->count();
         Yii::$app->view->params['unconfirmed_count'] = $unconfirmed_count;
-        $confirmed_count = Order::find()->where(['confirmed'=> 1])->count();
+        $confirmed_count = Order::find()->where(['confirmed' => 1])->count();
         Yii::$app->view->params['confirmed_count'] = $confirmed_count;
 
-        $pending_count = Order::find()->where(['paid'=> 0])->andWhere(['cancelled'=>0])->count();
+        $pending_count = Order::find()->where(['paid' => 0])->andWhere(['cancelled' => 0])->count();
         Yii::$app->view->params['pending_count'] = $pending_count;
-        $active_count = Order::find()->where(['active'=> 1])->andWhere(['cancelled'=>0])->count();
+        $active_count = Order::find()->where(['active' => 1])->andWhere(['cancelled' => 0])->count();
         Yii::$app->view->params['active_count'] = $active_count;
-        $revision_count = Order::find()->where(['revision'=> 1])->count();
+        $revision_count = Order::find()->where(['revision' => 1])->count();
         Yii::$app->view->params['revision_count'] = $revision_count;
-        $editing_count = Order::find()->where(['editing'=> 1])->count();
+        $editing_count = Order::find()->where(['editing' => 1])->count();
         Yii::$app->view->params['editing_count'] = $editing_count;
-        $completed_count = Order::find()->where(['completed'=> 1])->count();
+        $completed_count = Order::find()->where(['completed' => 1])->count();
         Yii::$app->view->params['completed_count'] = $completed_count;
-        $approved_count = Order::find()->where(['approved'=> 1])->count();
+        $approved_count = Order::find()->where(['approved' => 1])->count();
         Yii::$app->view->params['approved_count'] = $approved_count;
-        $rejected_count = Order::find()->where(['rejected'=> 1])->count();
+        $rejected_count = Order::find()->where(['rejected' => 1])->count();
         Yii::$app->view->params['rejected_count'] = $rejected_count;
-        $disputed_count = Order::find()->where(['disputed'=> 1])->count();
+        $disputed_count = Order::find()->where(['disputed' => 1])->count();
         Yii::$app->view->params['disputed_count'] = $disputed_count;
         $deposit = 'not';
-        Yii::$app->view->params['deposit']=$deposit;
+        Yii::$app->view->params['deposit'] = $deposit;
         $withdraw = 'active';
-        Yii::$app->view->params['withdraw']=$withdraw;
+        Yii::$app->view->params['withdraw'] = $withdraw;
+        $paypal = 'not';
+        Yii::$app->view->params['paypal'] = $paypal;
         $searchModel = new WithdrawalWalletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'deposit' => $deposit,
-            'withdraw' => $withdraw
+            'withdraw' => $withdraw,
+            'paypal' => $paypal
         ]);
     }
 
