@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'hash',
             [
                 'attribute' => 'complete',
-                'label' => 'Username',
+                'label' => 'Status',
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
                     if ($model->complete == 1) {
