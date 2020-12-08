@@ -191,7 +191,7 @@ AppAsset::register($this);
                             ['label' => $this->params['withdraw_count'] ? '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> <span class="pull-right badge">'.$this->params['withdraw_count'].'</span> Withdrawal Request':
                                 '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> Withdrawal Request', 'active' => $this->context->route == 'site/request', 'url' => Yii::$app->request->baseUrl.'/site/request'],
                             ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Settings', 'items' => [
-                                ['label' => 'Settings', 'active' => $this->context->route == 'settings/view','url' => Yii::$app->request->baseUrl.'/settings/view','id'=> 1],
+                                ['label' => 'Settings', 'active' => $this->context->route == 'settings/view','url' => Yii::$app->request->baseUrl.'/settings/view?id=1'],
                                 ['label' => 'Academic Levels', 'active' => $this->context->route == 'level/index', 'url' => Yii::$app->request->baseUrl.'/level/index'],
                                 ['label' => 'Styles', 'active' => $this->context->route == 'style/index','url' => Yii::$app->request->baseUrl.'/style/index'],
                                 ['label' => 'Languages','active' => $this->context->route == 'language/index', 'url' => Yii::$app->request->baseUrl.'/language/index'],
