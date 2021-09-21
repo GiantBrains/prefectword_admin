@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Verified</strong><strong style="color: midnightblue; font-size: 20px;">Professors</strong>',
+        'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 20px; border-color: #46b8da;">Prefect</strong><strong style="color: midnightblue; font-size: 20px;">Word</strong>',
         'brandUrl' => Yii::$app->request->baseUrl.'/',
         'options' => [
             'class' => 'navbar navbar-default2 navbar-fixed-top',
@@ -46,12 +46,6 @@ AppAsset::register($this);
                 'label' => '<i class="fa fa-user" aria-hidden="true"></i> &nbsp; <span>Profile</span>',
                 'url' => Yii::$app->request->baseUrl.'/user-profile/create',
                 'active' => $this->context->route == 'user-profile/create'
-            ],
-            '<li role="separator" class="divider"></li>',
-            [
-                'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/user.png" style="height: 16px; " > &nbsp;<span>Account</span>',
-                'url' => Yii::$app->request->baseUrl . '/site/account',
-                'active' => $this->context->route == 'site/account'
             ],
         ],
     ];
@@ -188,8 +182,8 @@ AppAsset::register($this);
 //                                '<i class="fa fa-legal" aria-hidden="true"></i> Disputed', 'active' => $this->context->route == 'order/disputed', 'url' => Yii::$app->request->baseUrl.'/order/disputed'],
                             ['label' => $this->params['approved_count'] ? '<i class="fa fa-check" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['approved_count'].'</span> Approved':
                                 '<i class="fa fa-check " aria-hidden="true"></i> Approved', 'active' => $this->context->route == 'order/approved', 'url' => Yii::$app->request->baseUrl.'/order/approved'],
-                            ['label' => $this->params['withdraw_count'] ? '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> <span class="pull-right badge">'.$this->params['withdraw_count'].'</span> Withdrawal Request':
-                                '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> Withdrawal Request', 'active' => $this->context->route == 'site/request', 'url' => Yii::$app->request->baseUrl.'/site/request'],
+//                            ['label' => $this->params['withdraw_count'] ? '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> <span class="pull-right badge">'.$this->params['withdraw_count'].'</span> Withdrawal Request':
+//                                '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> Withdrawal Request', 'active' => $this->context->route == 'site/request', 'url' => Yii::$app->request->baseUrl.'/site/request'],
                             ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Settings', 'items' => [
                                 ['label' => 'Settings', 'active' => $this->context->route == 'settings/view','url' => Yii::$app->request->baseUrl.'/settings/view?id=1'],
                                 ['label' => 'Academic Levels', 'active' => $this->context->route == 'level/index', 'url' => Yii::$app->request->baseUrl.'/level/index'],
@@ -205,8 +199,6 @@ AppAsset::register($this);
                             ]],
                             ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Account Settings', 'items' => [
                                 ['label' => 'Profile', 'active' => $this->context->route == 'user-profile/create', 'url' => Yii::$app->request->baseUrl.'/user-profile/create'],
-                                ['label' => 'Account', 'active' => $this->context->route == 'user/settings/account','url' => Yii::$app->request->baseUrl.'/user/settings/account'],
-                                ['label' => 'Networks', 'active' => $this->context->route == 'user/settings/networks','url' => Yii::$app->request->baseUrl.'/user/settings/networks'],
                             ],
                             ],
                         ],
@@ -228,7 +220,6 @@ AppAsset::register($this);
             <div class="col-md-5 navigation" style="margin-top: 5px">
                 <ul class="pull-left">
                     <li><p  class="essay-font" style="font-size: 13px; color: #666666;"><?= Yii::$app->name?> &copy; <?= date('Y') ?>  All Rights Reserved &nbsp; </p></li>
-                    <li><a href="<?= \yii\helpers\Url::to(['site/termss'])?>"> &nbsp; Terms and Conditions</a></li>
                 </ul>
             </div>
             <div class="col-md-5">

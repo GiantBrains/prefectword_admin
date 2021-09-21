@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name'=>'Verified Professors',
+    'name'=>'Prefectword',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log','timezone'],
     'aliases' => [
@@ -40,7 +40,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'adminportalforverifiedprofessors.com',
+            'cookieValidationKey' => 'adminportalforprefectword.com',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -67,8 +67,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'no-reply@verifiedprofessors.com',
-                'password' => 'VN@_8994',
+                'username' => 'info@nokiakenya.co.ke',
+                'password' => 'Hp28188685',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -80,8 +80,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'admin@verifiedprofessors.com',
-                'password' => 'verifiedprofessors8994',
+                'username' => 'info@nokiakenya.co.ke',
+                'password' => 'Hp28188685',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -93,8 +93,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'olivia@verifiedprofessors.com',
-                'password' => 'VO@_8994',
+                'username' => 'info@nokiakenya.co.ke',
+                'password' => 'Hp28188685',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -106,8 +106,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'support@verifiedprofessors.com',
-                'password' => 'VS@_8994',
+                'username' => 'info@nokiakenya.co.ke',
+                'password' => 'Hp28188685',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],

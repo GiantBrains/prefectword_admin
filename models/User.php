@@ -193,7 +193,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $user = User::findOne(Yii::$app->user->id);
         $siteCode = $user->site_code;
         if ($siteCode == 1){
-            $name = '<strong style="color: #5bc0de; font-size: 20px; border-color: #71D8EC;">Verified</strong><strong style="color: #3D715B; font-size: 20px;">Professors</strong>';
+            $name = '<strong style="color: #5bc0de; font-size: 20px; border-color: #71D8EC;">Prefect</strong><strong style="color: #3D715B; font-size: 20px;">Word</strong>';
         }else{
             $name = '<strong style="font-size: 20px;"></strong>';
         }
