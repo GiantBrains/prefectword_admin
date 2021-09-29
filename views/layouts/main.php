@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap" style="background-image: url('/images/background.jpg')">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #71D8EC; font-size: 20px;">Verified</strong><strong style="color: #3D715B; font-size: 20px;">Professors</strong>',
+        'brandLabel' => Html::img('@web/images/logo.png', ['style'=>'display:inline-block; height:32px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #71D8EC; font-size: 20px;">Prefect</strong><strong style="color: #3D715B; font-size: 20px;">Word</strong>',
         'brandUrl' => Yii::$app->request->baseUrl.'/',
         'options' => [
             'class' => 'navbar navbar-default navbar-fixed-top',
@@ -77,12 +77,6 @@ AppAsset::register($this);
     <div class="container" style="height: auto">
         <div id="navigation" style=" height: 40px; margin-bottom: 30px">
             <ul class="pull-left footer-link essay-font" style="font-size: 13px; color: #a1a9b3">
-                <li><a href="#">&nbsp; Become a Writer &nbsp;</a></li>
-                <li><a href="#">&nbsp; Affiliate Program &nbsp;</a></li>
-                <li><a href="#">&nbsp; Blog &nbsp;</a></li>
-                <li><a href="#">&nbsp; FAQ &nbsp;</a></li>
-                <li><a href="#">&nbsp; Reviews &nbsp;</a></li>
-                <li><a href="#">&nbsp; Contact Us &nbsp;</a></li>
             </ul>
 
             <ul class="pull-right">
@@ -90,8 +84,6 @@ AppAsset::register($this);
                 <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/amex.png" width="57px" height="19px" data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/amex.png" alt="American Express" class="pm ae"></li>
                 <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/mastercard.png" width="45px" height="27px" data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/mastercard.png" alt="MasterCard" class="pm mc"></li>
                 <li><img src="<?= Yii::$app->request->baseUrl?>/images/payment/paypal.png" width="60px" height="17px" data-rjs="<?= Yii::$app->request->baseUrl?>/images/payment/paypal.png" alt="PayPal" class="pm paypal"></li>
-                <li><a class="f-link essay-font" style="font-size: 13px;" href="#">Terms and Conditions</a></li>
-                <li><a class="f-link essay-font" style="font-size: 13px;"  href="#">Privacy Policy</a></li>
             </ul>
         </div><!-- navigation -->
 

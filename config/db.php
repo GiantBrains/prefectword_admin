@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname='.env('DB_NAME'),
+    'dsn' => 'mysql:host=perfectword.cwt10kna2qzo.eu-central-1.rds.amazonaws.com;dbname='.env('DB_NAME'),
     'username' => env('DB_USER'),
     'password' => env('DB_PASSWORD'),
     'charset' => 'utf8',

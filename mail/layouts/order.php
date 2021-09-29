@@ -17,7 +17,7 @@ $logolink = \yii\helpers\Url::to('/images/logo.png', true);
 <body>
 <?php $this->beginBody() ?>
 <header>
-    <?= Html::img($logolink, ['style'=>'display:inline-block; height:50px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 30px; border-color: #46b8da;">Verified</strong><strong style="color: midnightblue; font-size: 30px;">Professors</strong>'?>
+    <?= Html::img($logolink, ['style'=>'display:inline-block; height:50px;', 'alt'=>Yii::$app->name]). ' <strong style="color: #5bc0de; font-size: 30px; border-color: #46b8da;">Prefect</strong><strong style="color: midnightblue; font-size: 30px;">Word</strong>'?>
 </header>
 <?= $content ?>
 <footer> <?= Yii::$app->name ?> &copy; <?= date(' Y') ?></footer>
