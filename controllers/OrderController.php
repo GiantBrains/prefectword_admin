@@ -31,6 +31,7 @@ use yii\web\UploadedFile;
 class OrderController extends Controller
 {
     public $layout = 'order';
+
     /**
      * @inheritdoc
      */
@@ -39,16 +40,16 @@ class OrderController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create', 'view', 'index', 'cancel', 'update','attached', 'file-delete', 'file-upload',
-                    'send-message', 'messages','image-upload','file-view','image-delete','uploaded-files',
-                    'pending','available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed', 'revision',
-                    'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete','revision-view'],
+                'only' => ['create', 'view', 'index', 'cancel', 'update', 'attached', 'file-delete', 'file-upload',
+                    'send-message', 'messages', 'image-upload', 'file-view', 'image-delete', 'uploaded-files',
+                    'pending', 'available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed', 'revision',
+                    'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete', 'revision-view'],
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'cancel', 'update','attached', 'file-delete', 'uploaded-files',
-                            'file-upload', 'send-message', 'messages','image-upload','file-view','image-delete','cancel',
-                            'view','pending','available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed',
-                            'revision', 'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete','revision-view'],
+                        'actions' => ['create', 'index', 'cancel', 'update', 'attached', 'file-delete', 'uploaded-files',
+                            'file-upload', 'send-message', 'messages', 'image-upload', 'file-view', 'image-delete', 'cancel',
+                            'view', 'pending', 'available', 'active', 'confirmed', 'unconfirmed', 'editing', 'completed',
+                            'revision', 'rejected', 'disputed', 'approved', 'order-upload', 'upload-delete', 'revision-view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -80,160 +81,173 @@ class OrderController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'available_count'=>$available_count,
+            'available_count' => $available_count,
             'dataProvider' => $dataProvider,
-            'perm'=>$perm,
-            'rol'=>$rol,
-            'usd'=>$usd
+            'perm' => $perm,
+            'rol' => $rol,
+            'usd' => $usd
         ]);
     }
+
     public function actionPending()
     {
-       Order::getWalletBalance();
-       Order::getOrdersCount();
+        Order::getWalletBalance();
+        Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['paid'=>0]);
-        $dataProvider->query->andFilterWhere(['cancelled'=>0]);
+        $dataProvider->query->andFilterWhere(['paid' => 0]);
+        $dataProvider->query->andFilterWhere(['cancelled' => 0]);
         return $this->render('pending', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionAvailable()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['available'=>1]);
-        $dataProvider->query->andFilterWhere(['cancelled'=>0]);
+        $dataProvider->query->andFilterWhere(['available' => 1]);
+        $dataProvider->query->andFilterWhere(['cancelled' => 0]);
         return $this->render('available', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionActive()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['active'=>1]);
-        $dataProvider->query->andFilterWhere(['cancelled'=>0]);
+        $dataProvider->query->andFilterWhere(['active' => 1]);
+        $dataProvider->query->andFilterWhere(['cancelled' => 0]);
         return $this->render('active', [
             'searchModel' => $searchModel,
-           'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionCancelled()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['cancelled'=>1]);
+        $dataProvider->query->andFilterWhere(['cancelled' => 1]);
         return $this->render('cancelled', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionConfirmed()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['confirmed'=>1]);
+        $dataProvider->query->andFilterWhere(['confirmed' => 1]);
         return $this->render('confirmed', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionUnconfirmed()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['confirmed'=>0]);
+        $dataProvider->query->andFilterWhere(['confirmed' => 0]);
         return $this->render('unconfirmed', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionEditing()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['editing'=>1]);
+        $dataProvider->query->andFilterWhere(['editing' => 1]);
         return $this->render('editing', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionCompleted()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['completed'=>1]);
+        $dataProvider->query->andFilterWhere(['completed' => 1]);
         return $this->render('completed', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionRevision()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['revision'=>1]);
+        $dataProvider->query->andFilterWhere(['revision' => 1]);
         return $this->render('revision', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionRejected()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['rejected'=>1]);
+        $dataProvider->query->andFilterWhere(['rejected' => 1]);
         return $this->render('rejected', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionDisputed()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['disputed'=>1]);
+        $dataProvider->query->andFilterWhere(['disputed' => 1]);
         return $this->render('disputed', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionApproved()
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['approved'=>1]);
+        $dataProvider->query->andFilterWhere(['approved' => 1]);
         return $this->render('approved', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionSendMessage()
     {
         Order::getWalletBalance();
@@ -248,10 +262,11 @@ class OrderController extends Controller
             ]);
         }
     }
+
     public function actionMessages($oid)
     {
-         $message = new Message();
-        $order_messages = Message::find()->where(['order_number'=>$oid])->orderBy('id ASC')->all();
+        $message = new Message();
+        $order_messages = Message::find()->where(['order_number' => $oid])->orderBy('id ASC')->all();
 //        $countQuery = clone $order_messages;
 //        $pages = new \loveorigami\pagination\ReversePagination(
 //            [
@@ -264,53 +279,54 @@ class OrderController extends Controller
 //        $models = $order_messages->offset($pages->offset)
 //            ->limit($pages->limit)
 //            ->all();
-        $client = Order::find()->where(['ordernumber'=>$oid])->one();
+        $client = Order::find()->where(['ordernumber' => $oid])->one();
         if ($message->load(Yii::$app->request->post())) {
             $message->order_number = $oid;
             $message->sender_id = Yii::$app->user->id;
-            if ($message->receiver_id == 919){
+            if ($message->receiver_id == intval(env('NOTIFICATION_USER_ID'))) {
                 $message->receiver_id = $client->created_by;
             }
             $message->status = 0;
             $message->save();
             // $message was just created by the logged in user, and sent to $recipient_id
             Notification::warning(Notification::KEY_NEW_MESSAGE, $client->created_by, $message->id);
-            $notify = \app\models\Notification::find()->where(['key_id'=> $message->id])->one();
+            $notify = \app\models\Notification::find()->where(['key_id' => $message->id])->one();
             $notify->order_number = $oid;
             $notify->save();
-            return $this->redirect(['messages','oid'=>$oid]);
-        }else{
+            return $this->redirect(['messages', 'oid' => $oid]);
+        } else {
             Order::getWalletBalance();
             Order::getOrdersCount();
             $model = $this->findModelByNumber($oid);
-            $messages = Message::find()->where(['order_number'=> $oid])->one();
+            $messages = Message::find()->where(['order_number' => $oid])->one();
             $searchModel = new MessageSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProvider->query->andFilterWhere(['sender_id'=>Yii::$app->user->id])->orFilterWhere(['receiver_id'=>Yii::$app->user->id]);
-            $mymessages = Message::find()->where(['order_number'=>$oid])->andWhere(['or', ['receiver_id'=>Yii::$app->user->id]
-            ])->orWhere(['and', ['receiver_id'=>null]])->all();
+            $dataProvider->query->andFilterWhere(['sender_id' => Yii::$app->user->id])->orFilterWhere(['receiver_id' => Yii::$app->user->id]);
+            $mymessages = Message::find()->where(['order_number' => $oid])->andWhere(['or', ['receiver_id' => Yii::$app->user->id]
+            ])->orWhere(['and', ['receiver_id' => null]])->all();
             foreach ($mymessages as $mymessage) {
-                if ($mymessage->status == 0){
+                if ($mymessage->status == 0) {
                     $mymessage->status = 1;
                     $mymessage->save();
                 }
             }
-            $notifications = \app\models\Notification::find()->where(['order_number'=>$oid])->andWhere(['seen'=>0,])->andFilterWhere(['user_id'=>Yii::$app->user->id])->all();
+            $notifications = \app\models\Notification::find()->where(['order_number' => $oid])->andWhere(['seen' => 0,])->andFilterWhere(['user_id' => Yii::$app->user->id])->all();
             foreach ($notifications as $notification) {
                 $notification->seen = 1;
                 $notification->save();
             }
             return $this->render('messages', [
                 'searchModel' => $searchModel,
-                'order_messages'=>$order_messages,
+                'order_messages' => $order_messages,
                 'dataProvider' => $dataProvider,
-                'model'=>$model,
-                'messages'=>$messages,
-                'message'=>$message,
+                'model' => $model,
+                'messages' => $messages,
+                'message' => $message,
 //                'pagination'=>$pages
             ]);
         }
     }
+
     public function actionView($oid)
     {
         Order::getWalletBalance();
@@ -319,6 +335,7 @@ class OrderController extends Controller
             'model' => $this->findModelByNumber($oid),
         ]);
     }
+
     /**
      * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -328,42 +345,44 @@ class OrderController extends Controller
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
-        $model = Order::find()->where(['ordernumber'=>$oid])->one();
+        $model = Order::find()->where(['ordernumber' => $oid])->one();
         $this->layout = 'order';
         $file = new File();
-        $models = File::find()->where(['order_id'=>$model->id])->orderBy('id DESC')->all();
+        $models = File::find()->where(['order_id' => $model->id])->orderBy('id DESC')->all();
         return $this->render('attached', [
             'file' => $file,
-            'model'=>$model,
-            'models'=>$models,
-            'id'=>$model->id
+            'model' => $model,
+            'models' => $models,
+            'id' => $model->id
         ]);
 
     }
+
     public function actionUploadedFiles($oid)
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
-        $model = Order::find()->where(['ordernumber'=>$oid])->one();
+        $model = Order::find()->where(['ordernumber' => $oid])->one();
         if ($model->paid == 1) {
             $this->layout = 'order';
             $upload = new Uploaded();
-            $models = Uploaded::find()->where(['order_number'=>$model->id])->orderBy('id DESC')->all();
+            $models = Uploaded::find()->where(['order_number' => $model->id])->orderBy('id DESC')->all();
             return $this->render('uploaded-files', [
                 'upload' => $upload,
-                'model'=>$model,
-                'models'=>$models,
-                'id'=>$model->id
+                'model' => $model,
+                'models' => $models,
+                'id' => $model->id
             ]);
-        }else{
-            return $this->redirect(['order/view','oid'=>$oid]);
+        } else {
+            return $this->redirect(['order/view', 'oid' => $oid]);
         }
 
     }
+
     public function actionOrderUpload($id)
     {
         $user = Yii::$app->user->id;
-        $order = Order::find()->where(['id'=>$id])->one();
+        $order = Order::find()->where(['id' => $id])->one();
         $model = new Uploaded();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -382,9 +401,9 @@ class OrderController extends Controller
             foreach ($model->name as $key => $file) {
                 $file->saveAs($directory . $file->baseName . '-' . date('His') . '.' . $file->extension);//Upload files to server
                 $sfile = new Uploaded();
-                if($model->file_type == 1){
-                    $sfile->file_type =1;
-                }else{
+                if ($model->file_type == 1) {
+                    $sfile->file_type = 1;
+                } else {
                     $sfile->file_type = 0;
                 }
                 $sfile->writer_id = $user;
@@ -396,58 +415,66 @@ class OrderController extends Controller
             }
         }
         Notification::success(Notification::KEY_ORDER_COMPLETED, $order->created_by, $order->id);
-        $supernote = \app\models\Notification::find()->where(['key'=>'order_completed'])->andWhere(['key_id'=>$order->id])->one();
-        if (empty($supernote)){
-            $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
+        $supernote = \app\models\Notification::find()->where(['key' => 'order_completed'])->andWhere(['key_id' => $order->id])->one();
+        if (empty($supernote)) {
+            $notify = \app\models\Notification::find()->where(['key_id' => $order->id])->andWhere(['seen' => 0])->one();
             $notify->order_number = $order->ordernumber;
             $notify->save();
         }
         $writer = User::findOne($order->written_by);
         $client = User::findOne($order->created_by);
-        Yii::$app->supportMailer->htmlLayout = "layouts/order";
-        Yii::$app->supportMailer->compose('order-completed', [
-            'order' => $order,
-            'client'=> $client,
-            'writer'=> $writer
-        ])->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' support'])
-            ->setTo($client->email)
-            ->setSubject('Order '.$order->ordernumber.' completed')
-            ->send();
+        try {
+            Yii::$app->supportMailer->htmlLayout = "layouts/order";
+            Yii::$app->supportMailer->compose('order-completed', [
+                'order' => $order,
+                'client' => $client,
+                'writer' => $writer
+            ])->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' support'])
+                ->setTo($client->email)
+                ->setSubject('Order ' . $order->ordernumber . ' completed')
+                ->send();
+        } catch (\Swift_TransportException $e) {
+            Yii::info($e);
+        }
+
         return $this->redirect(['order/uploaded-files', 'oid' => $order->ordernumber]);
     }
+
     public function actionUploadDelete($order, $file, $file_date, $file_extension)
     {
         $user = Yii::$app->user->id;
-        $myorder = Order::find()->where(['id'=>$order])->one();
-        $myfile = Uploaded::find()->Where(['order_number'=>$order])->andFilterWhere(['name'=>$file])
-            ->andFilterWhere(['file_date'=>$file_date])->andFilterWhere(['file_extension'=>$file_extension])->one();
+        $myorder = Order::find()->where(['id' => $order])->one();
+        $myfile = Uploaded::find()->Where(['order_number' => $order])->andFilterWhere(['name' => $file])
+            ->andFilterWhere(['file_date' => $file_date])->andFilterWhere(['file_extension' => $file_extension])->one();
         $myfile->delete();
-        $order_file = $file.'-'.$file_date.'.'.$file_extension;
+        $order_file = $file . '-' . $file_date . '.' . $file_extension;
         $directory = Yii::getAlias('@app/web/images/uploads') . DIRECTORY_SEPARATOR;
         if (is_file($directory . DIRECTORY_SEPARATOR . $order_file)) {
             unlink($directory . DIRECTORY_SEPARATOR . $order_file);
         }
-        return $this->redirect(['uploaded-files', 'oid'=>$myorder->ordernumber]);
+        return $this->redirect(['uploaded-files', 'oid' => $myorder->ordernumber]);
     }
+
     public function actionSubcat()
     {
         $out = [];
-        if(isset($_POST['depdrop_parents'])){
+        if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
-            if(!empty($parents)){
+            if (!empty($parents)) {
                 $spacing_id = $parents[0];
                 $out = Pages::getSpacingList($spacing_id);
 
-                return json_encode(['output'=> $out, 'selected'=>'']);
+                return json_encode(['output' => $out, 'selected' => '']);
             }
         }
-        return json_encode(['output'=>'', 'selected'=>'']);
+        return json_encode(['output' => '', 'selected' => '']);
     }
+
     public function actionFileUpload($id)
     {
         $user = Yii::$app->user->id;
         $model = new File();
-        $order = Order::find()->where(['id'=>$id])->one();
+        $order = Order::find()->where(['id' => $id])->one();
 
         $model->attached = UploadedFile::getInstances($model, 'attached');
         $directory = Yii::getAlias('@app/web/images/order') . DIRECTORY_SEPARATOR;
@@ -455,7 +482,7 @@ class OrderController extends Controller
             FileHelper::createDirectory($directory);
         }
         foreach ($model->attached as $key => $file) {
-            $file->saveAs($directory.$file->baseName . '.' . $file->extension);//Upload files to server
+            $file->saveAs($directory . $file->baseName . '.' . $file->extension);//Upload files to server
             $sfile = new File();
             $sfile->user_id = $user;
             $sfile->order_id = $id;
@@ -464,6 +491,7 @@ class OrderController extends Controller
         }
         return $this->redirect(['order/attached', 'oid' => $order->ordernumber]);
     }
+
     // action examples
     public function actionImageUpload($id)
     {
@@ -476,7 +504,7 @@ class OrderController extends Controller
             FileHelper::createDirectory($directory);
         }
         if ($imageFile) {
-            $uid = $imageFile->baseName.'-'.$user.'-'.$order->id;
+            $uid = $imageFile->baseName . '-' . $user . '-' . $order->id;
             $fileName = $uid . '.' . $imageFile->extension;
             $filePath = $directory . $fileName;
             //
@@ -487,7 +515,7 @@ class OrderController extends Controller
             $file->save();
             //
             if ($imageFile->saveAs($filePath)) {
-                $path = Yii::$app->request->baseUrl.'/images/order/'.$imageFile->baseName.'-'.$user.'-'.$order->id. '.' . $imageFile->extension;
+                $path = Yii::$app->request->baseUrl . '/images/order/' . $imageFile->baseName . '-' . $user . '-' . $order->id . '.' . $imageFile->extension;
                 return Json::encode([
                     'files' => [
                         [
@@ -503,16 +531,19 @@ class OrderController extends Controller
         }
         return null;
     }
+
     public function actionFileView($id)
-    { $models = File::find()->where(['order_id'=>$id])->all();
-        return $this->render('file-view',[
-            'models'=>$models
+    {
+        $models = File::find()->where(['order_id' => $id])->all();
+        return $this->render('file-view', [
+            'models' => $models
         ]);
     }
+
     public function actionImageDelete($name)
     {
         $directory = Yii::getAlias('@app/web/images/order') . DIRECTORY_SEPARATOR;
-        $sfiles = File::find()->where(['attached'=>$name])->one();
+        $sfiles = File::find()->where(['attached' => $name])->one();
         $sfiles->delete();
         if (is_file($directory . DIRECTORY_SEPARATOR . $name)) {
             unlink($directory . DIRECTORY_SEPARATOR . $name);
@@ -521,7 +552,7 @@ class OrderController extends Controller
         $output = [];
         foreach ($files as $file) {
             $fileName = basename($file);
-            $path = Yii::$app->request->baseUrl.'/images/order/'. $fileName;
+            $path = Yii::$app->request->baseUrl . '/images/order/' . $fileName;
             $output['files'][] = [
                 'name' => $fileName,
                 'size' => filesize($file),
@@ -550,21 +581,22 @@ class OrderController extends Controller
     {
         $payment = new \PayPal\Api\Payment();
         $payment->create($this->apiContext());
-        if($this->findModelByNumber($oid)->cancelled == 0){
+        if ($this->findModelByNumber($oid)->cancelled == 0) {
             $this->findModelByNumber($oid)->cancelled = 1;
             return $this->redirect(['index']);
-        }else{
+        } else {
             $this->findModelByNumber($oid)->cancelled = 0;
         }
         return $this->redirect(['index']);
     }
+
     public function actionRevisionView($oid)
     {
         Order::getWalletBalance();
         Order::getOrdersCount();
         $model = $this->findModelByNumber($oid);
-        return $this->render('revision-view',[
-            'model'=>$model
+        return $this->render('revision-view', [
+            'model' => $model
         ]);
     }
 
@@ -589,17 +621,18 @@ class OrderController extends Controller
         $order->save();
 
         Notification::success(Notification::KEY_ORDER_APPROVED, $order->written_by, $order->id);
-        $supernote = \app\models\Notification::find()->where(['key'=>'order_approved'])->andWhere(['key_id'=>$order->id])->one();
-        if (empty($supernote)){
-            $notify = \app\models\Notification::find()->where(['key_id'=> $order->id])->andWhere(['seen'=>0])->one();
+        $supernote = \app\models\Notification::find()->where(['key' => 'order_approved'])->andWhere(['key_id' => $order->id])->one();
+        if (empty($supernote)) {
+            $notify = \app\models\Notification::find()->where(['key_id' => $order->id])->andWhere(['seen' => 0])->one();
             $notify->order_number = $oid;
             $notify->save();
         }
-        Yii::$app->session->setFlash('success','Order has been marked as completed successfully. Thank you');
+        Yii::$app->session->setFlash('success', 'Order has been marked as completed successfully. Thank you');
         return $this->redirect(['order/view', 'oid' => $oid]);
     }
 
-    public function actionTest(){
+    public function actionTest()
+    {
         return print_r(Message::testArrayMap());
     }
 
@@ -619,7 +652,7 @@ class OrderController extends Controller
         }
     }
 
-    public function  apiContext()
+    public function apiContext()
     {
         // After Step 1
         $apiContext = new ApiContext(
@@ -628,8 +661,9 @@ class OrderController extends Controller
                 'ENWVtcPHt28veqXfiWxyCGdiyuP_l3ExsL2M9Cj2606RDhhCjazHBfdKkznx7a_YMa7Zqpavxc1ob84Y'      // ClientSecret
             )
         );
-        return  $apiContext;
+        return $apiContext;
     }
+
     protected function findModel($id)
     {
         if (($model = Order::findOne($id)) !== null) {

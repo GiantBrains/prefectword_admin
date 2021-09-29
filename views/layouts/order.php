@@ -188,8 +188,6 @@ AppAsset::register($this);
 //                                '<i class="fa fa-legal" aria-hidden="true"></i> Disputed', 'active' => $this->context->route == 'order/disputed', 'url' => Yii::$app->request->baseUrl.'/order/disputed'],
                             ['label' => $this->params['approved_count'] ? '<i class="fa fa-check" aria-hidden="true"></i> <span class="pull-right badge">'.$this->params['approved_count'].'</span> Approved':
                                 '<i class="fa fa-check " aria-hidden="true"></i> Approved', 'active' => $this->context->route == 'order/approved', 'url' => Yii::$app->request->baseUrl.'/order/approved'],
-                            ['label' => $this->params['withdraw_count'] ? '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> <span class="pull-right badge">'.$this->params['withdraw_count'].'</span> Withdrawal Request':
-                                '<span class="glyphicon glyphicon-export" aria-hidden="true"></span> Withdrawal Request', 'active' => $this->context->route == 'site/request', 'url' => Yii::$app->request->baseUrl.'/site/request'],
                             ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Settings', 'items' => [
                                 ['label' => 'Settings', 'active' => $this->context->route == 'settings/view','url' => Yii::$app->request->baseUrl.'/settings/view?id=1'],
                                 ['label' => 'Academic Levels', 'active' => $this->context->route == 'level/index', 'url' => Yii::$app->request->baseUrl.'/level/index'],
@@ -203,6 +201,7 @@ AppAsset::register($this);
                                 ['label' => 'Services',  'active' => $this->context->route == 'service/index', 'url' => Yii::$app->request->baseUrl.'/service/index'],
                                 ['label' => 'Sources', 'active' => $this->context->route == 'source/index','url' => Yii::$app->request->baseUrl.'/source/index'],
                             ]],
+                            ['label' => '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users', 'active' => $this->context->route == 'user/index','url' => Yii::$app->request->baseUrl.'/user/index'],
                             ['label' => '<img src="'.Yii::$app->request->baseUrl.'/images/rating/settings.png" style="height: 24px; " > Account Settings', 'items' => [
                                 ['label' => 'Profile', 'active' => $this->context->route == 'user-profile/create', 'url' => Yii::$app->request->baseUrl.'/user-profile/create'],
                                 ['label' => 'Account', 'active' => $this->context->route == 'user/settings/account','url' => Yii::$app->request->baseUrl.'/user/settings/account'],

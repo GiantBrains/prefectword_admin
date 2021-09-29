@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\User;
@@ -13,18 +12,18 @@ use app\models\User;
 class UserSearch extends User
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['email', 'username', 'phone', 'password_hash', 'auth_key', 'password_reset_token', 'timezone', 'blocked_at', 'registration_ip', 'confirmed_at', 'confirmed', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'status', 'site_code', 'country_id', 'confirmed', 'flags', 'last_login_at'], 'integer'],
+            [['username', 'email', 'phone', 'password_hash', 'auth_key', 'access_token', 'password_reset_token', 'confirmed_at', 'timezone', 'blocked_at', 'registration_ip', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -61,21 +60,26 @@ class UserSearch extends User
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'blocked_at' => $this->blocked_at,
+            'site_code' => $this->site_code,
+            'country_id' => $this->country_id,
+            'confirmed' => $this->confirmed,
             'confirmed_at' => $this->confirmed_at,
+            'blocked_at' => $this->blocked_at,
+            'flags' => $this->flags,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'last_login_at' => $this->last_login_at,
         ]);
 
-        $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'username', $this->username])
+        $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'access_token', $this->access_token])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'timezone', $this->timezone])
-            ->andFilterWhere(['like', 'registration_ip', $this->registration_ip])
-            ->andFilterWhere(['like', 'confirmed', $this->confirmed]);
+            ->andFilterWhere(['like', 'registration_ip', $this->registration_ip]);
 
         return $dataProvider;
     }

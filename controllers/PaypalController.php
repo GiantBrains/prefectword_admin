@@ -69,8 +69,6 @@ class PaypalController extends Controller
         Yii::$app->view->params['disputed_count'] = $disputed_count;
         $deposit = 'not';
         Yii::$app->view->params['deposit'] = $deposit;
-        $withdraw = 'not';
-        Yii::$app->view->params['withdraw'] = $withdraw;
         $paypal = 'active';
         Yii::$app->view->params['paypal'] = $paypal;
         $searchModel = new PaypalSearch();
@@ -80,7 +78,6 @@ class PaypalController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'deposit' => $deposit,
-            'withdraw' => $withdraw,
             'paypal' => $paypal
         ]);
     }

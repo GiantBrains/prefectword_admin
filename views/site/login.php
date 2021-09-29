@@ -10,8 +10,10 @@ $this->title = 'Login';
         <div class="row"><br>
             <br><br><br>
             <br><br><br>
-            <div class="col-sm-4 col-sm-offset-4 col-xs-12" style="border: solid; background-color:white; border-color: #ddd; border-width: thin; border-radius: 5px">
-                <div class="row" style="background-color:whitesmoke; border-color: #ddd; border-top-left-radius: 5px; border-top-right-radius: 5px">
+            <div class="col-sm-4 col-sm-offset-4 col-xs-12"
+                 style="border: solid; background-color:white; border-color: #ddd; border-width: thin; border-radius: 5px">
+                <div class="row"
+                     style="background-color:whitesmoke; border-color: #ddd; border-top-left-radius: 5px; border-top-right-radius: 5px">
                     <h3 style="text-align: center"><?= Html::encode($this->title) ?></h3>
                 </div>
                 <?php $form = ActiveForm::begin([
