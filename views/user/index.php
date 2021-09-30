@@ -17,9 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<!--    <p>-->
-<!--        --><?php //echo Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-<!--    </p>-->
+    <!--    <p>-->
+    <!--        --><?php //echo Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+    <!--    </p>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -86,14 +86,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     'delete' => function ($url, $model) {
                         if (Yii::$app->user->can("delete-user")) {
-                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url,
-                                [
-                                    'class' => 'btn btn-sm btn-danger', 'title' => Yii::t('app', 'Delete'),
-                                    'data' => [
-                                        'confirm' => 'Are you absolutely sure ? You will lose all the information about this user.',
-                                        'method' => 'post',
-                                    ],
-                                ]);
+                            if (Yii::$app->user->id != $model->id) {
+                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url,
+                                    [
+                                        'class' => 'btn btn-sm btn-danger', 'title' => Yii::t('app', 'Delete'),
+                                        'data' => [
+                                            'confirm' => 'Are you absolutely sure ? You will lose all the information about this user.',
+                                            'method' => 'post',
+                                        ],
+                                    ]);
+                            }
                         }
                     }
 
