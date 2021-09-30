@@ -47,8 +47,9 @@ AppAsset::register($this);
                 'url' => Yii::$app->request->baseUrl.'/user-profile/create',
                 'active' => $this->context->route == 'user-profile/create'
             ],
+            '<li role="separator" class="divider"></li>',
             [
-                'label' => '<i class="fa fa-user" aria-hidden="true"></i> &nbsp; <span>Settings</span>',
+                'label' => '<i class="fa fa-cog" aria-hidden="true"></i> &nbsp; <span>Settings</span>',
                 'url' => Yii::$app->request->baseUrl.'/settings/view?id=1',
                 'active' => $this->context->route == '/settings/view?id=1'
             ],
