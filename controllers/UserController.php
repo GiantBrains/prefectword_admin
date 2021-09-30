@@ -124,8 +124,9 @@ class UserController extends Controller
     public
     function actionCreate()
     {
+        Order::getWalletBalance();
+        Order::getOrdersCount();
         $model = new User();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -145,6 +146,8 @@ class UserController extends Controller
     public
     function actionUpdate($id)
     {
+        Order::getWalletBalance();
+        Order::getOrdersCount();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
