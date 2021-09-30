@@ -47,11 +47,10 @@ AppAsset::register($this);
                 'url' => Yii::$app->request->baseUrl.'/user-profile/create',
                 'active' => $this->context->route == 'user-profile/create'
             ],
-            '<li role="separator" class="divider"></li>',
             [
-                'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/user.png" style="height: 16px; " > &nbsp;<span>Account</span>',
-                'url' => Yii::$app->request->baseUrl . '/site/account',
-                'active' => $this->context->route == 'site/account'
+                'label' => '<i class="fa fa-user" aria-hidden="true"></i> &nbsp; <span>Settings</span>',
+                'url' => Yii::$app->request->baseUrl.'/settings/view?id=1',
+                'active' => $this->context->route == '/settings/view?id=1'
             ],
         ],
     ];
