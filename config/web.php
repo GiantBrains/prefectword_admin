@@ -67,8 +67,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'info@nokiakenya.co.ke',
-                'password' => 'Hp28188685',
+                'username' => 'support@prefectword.com',
+                'password' => 'X7jm=>Aj2021',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -93,8 +93,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'info@nokiakenya.co.ke',
-                'password' => 'Hp28188685',
+                'username' => 'support@prefectword.com',
+                'password' => 'X7jm=>Aj2021',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -106,8 +106,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.zoho.com',
-                'username' => 'info@nokiakenya.co.ke',
-                'password' => 'Hp28188685',
+                'username' => 'support@prefectword.com',
+                'password' => 'X7jm=>Aj2021',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
